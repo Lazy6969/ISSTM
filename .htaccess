@@ -11,3 +11,28 @@ ErrorDocument 404 /ISSTM/404.php
 # sitemap.xml généré dynamiquement à partir du contenu en base (filières, actualités, galerie)
 RewriteEngine On
 RewriteRule ^sitemap\.xml$ sitemap.php [L]
+
+# Compression des réponses textuelles (HTML/CSS/JS/JSON/XML/SVG) : style.css et script.js
+# pesant plusieurs centaines de Ko non compressés, gzip réduit fortement le temps de
+# téléchargement sans rien changer côté PHP.
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml text/javascript
+    AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+    AddOutputFilterByType DEFLATE application/json application/xml application/rss+xml
+    AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# Mise en cache navigateur des assets statiques (images, CSS, JS, polices) : évite de
+# retélécharger ces fichiers à chaque page vue par le même visiteur.
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+    ExpiresByType text/javascript "access plus 1 week"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType video/mp4 "access plus 1 month"
+    ExpiresByType font/woff2 "access plus 1 month"
+</IfModule>
