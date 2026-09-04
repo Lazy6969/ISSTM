@@ -1,0 +1,13 @@
+# Permet d'envoyer un nombre illimité (élevé) de photos en une seule fois dans la galerie
+php_value max_file_uploads 300
+php_value post_max_size 300M
+php_value upload_max_filesize 60M
+php_value max_input_time 300
+php_value max_execution_time 300
+
+# Page 404 personnalisée (URL inexistante ou fichier manquant)
+ErrorDocument 404 /ISSTM/404.php
+
+# sitemap.xml généré dynamiquement à partir du contenu en base (filières, actualités, galerie)
+RewriteEngine On
+RewriteRule ^sitemap\.xml$ sitemap.php [L]

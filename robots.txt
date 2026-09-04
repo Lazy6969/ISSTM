@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+Disallow: /admin_actualites.php
+Disallow: /admin_contenu.php
+Disallow: /admin_filieres.php
+Disallow: /admin_galerie.php
+Disallow: /admin_newsletter.php
+Disallow: /admin_partenaires.php
+Disallow: /administrateur.php
+Disallow: /ai_help.php
+Disallow: /check_password.php
+Disallow: /generate_hash.php
+Disallow: /login_handler.php
+Disallow: /newsletter_subscribe.php
+Disallow: /profil.php
+Disallow: /test_json.php
+Disallow: /translate_api.php
+
+Sitemap: http://localhost/ISSTM/sitemap.xml

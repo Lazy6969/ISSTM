@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hors ligne - ISSTM</title>
+<style>
+    body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #003366;
+        color: #f4f4f4;
+        text-align: center;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    img { width: 90px; height: auto; border-radius: 12px; }
+    h1 { margin: 0; font-size: 1.5rem; }
+    p { margin: 0; opacity: 0.85; max-width: 380px; }
+    button {
+        margin-top: 8px;
+        padding: 10px 22px;
+        border-radius: 24px;
+        border: none;
+        background-color: #d4a017;
+        color: #04213b;
+        font-weight: 700;
+        cursor: pointer;
+        font-size: 0.95rem;
+    }
+</style>
+</head>
+<body>
+    <img src="images/icon-192.png" alt="ISSTM">
+    <h1>Vous êtes hors ligne</h1>
+    <p>Impossible de charger cette page pour le moment. Vérifiez votre connexion internet et réessayez.</p>
+    <button onclick="location.reload()">Réessayer</button>
+</body>
+</html>

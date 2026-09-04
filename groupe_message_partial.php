@@ -1,0 +1,50 @@
+<?php
+// Partial de rendu d'une bulle de message de groupe. Réutilise les mêmes classes CSS que la
+// messagerie interne fixe (messagerie-msg, messagerie-att-*...) pour un rendu visuel identique,
+// sans dupliquer le CSS. Contrairement à la messagerie fixe, il n'y a pas d'indicateur
+// lu/envoyé par message ici (le suivi se fait de façon agrégée, voir groupe_unread_count()).
+$is_own = (int) $msg['sender_id'] === (int) $self['id'];
+$can_delete_everyone = $is_own || !empty($is_owner);
+$avatar = $msg['sender_avatar'] ? htmlspecialchars($msg['sender_avatar']) : 'images/teachers/default-avatar.svg';
+?>
+<div class="messagerie-msg <?php echo $is_own ? 'is-own' : 'is-other'; ?>" data-id="<?php echo (int) $msg['id']; ?>">
+    <img src="<?php echo $avatar; ?>" alt="" class="messagerie-msg-avatar" onerror="this.src='images/teachers/default-avatar.svg'">
+    <div class="messagerie-msg-body">
+        <span class="messagerie-msg-author"><?php echo htmlspecialchars($msg['sender_nom']); ?><?php if ($msg['sender_role'] === 'enseignant'): ?> <span class="groupe-badge-enseignant"><?php echo t('groupe_enseignant_badge'); ?></span><?php endif; ?></span>
+        <div class="messagerie-msg-bubble-row">
+            <div class="messagerie-msg-bubble">
+                <?php if (!empty($msg['content'])): ?>
+                    <p class="messagerie-msg-text"><?php echo messagerie_linkify(nl2br(htmlspecialchars($msg['content']))); ?></p>
+                <?php endif; ?>
+                <?php foreach ($msg['attachments'] as $att): ?>
+                    <?php if ($att['file_type'] === 'image'): ?>
+                        <div class="messagerie-att-media-wrap">
+                            <a href="<?php echo htmlspecialchars($att['file_path']); ?>" target="_blank" rel="noopener" class="messagerie-att-image-link">
+                                <img src="<?php echo htmlspecialchars($att['file_path']); ?>" alt="<?php echo htmlspecialchars($att['original_name']); ?>" class="messagerie-att-image">
+                            </a>
+                            <a href="<?php echo htmlspecialchars($att['file_path']); ?>" download="<?php echo htmlspecialchars($att['original_name']); ?>" class="messagerie-att-download-btn" title="<?php echo t('messagerie_telecharger'); ?>"><i class="fas fa-download"></i></a>
+                        </div>
+                    <?php elseif ($att['file_type'] === 'video'): ?>
+                        <div class="messagerie-att-media-wrap">
+                            <video src="<?php echo htmlspecialchars($att['file_path']); ?>" controls class="messagerie-att-video"></video>
+                            <a href="<?php echo htmlspecialchars($att['file_path']); ?>" download="<?php echo htmlspecialchars($att['original_name']); ?>" class="messagerie-att-download-btn" title="<?php echo t('messagerie_telecharger'); ?>"><i class="fas fa-download"></i></a>
+                        </div>
+                    <?php else: ?>
+                        <a href="<?php echo htmlspecialchars($att['file_path']); ?>" download="<?php echo htmlspecialchars($att['original_name']); ?>" class="messagerie-att-file">
+                            <i class="fas <?php echo messagerie_file_icon(pathinfo($att['original_name'], PATHINFO_EXTENSION)); ?>"></i>
+                            <span class="messagerie-att-file-info">
+                                <strong><?php echo htmlspecialchars($att['original_name']); ?></strong>
+                                <small><?php echo messagerie_format_size($att['file_size']); ?></small>
+                            </span>
+                            <i class="fas fa-download messagerie-att-download-icon"></i>
+                        </a>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </div>
+            <button type="button" class="messagerie-msg-options-btn" data-is-own="<?php echo $is_own ? '1' : '0'; ?>" data-can-delete-everyone="<?php echo $can_delete_everyone ? '1' : '0'; ?>" title="<?php echo t('messagerie_options'); ?>"><i class="fas fa-ellipsis-vertical"></i></button>
+        </div>
+        <div class="messagerie-msg-meta">
+            <span class="messagerie-msg-time"><?php echo date('d/m/Y H:i', strtotime($msg['created_at'])); ?></span>
+        </div>
+    </div>
+</div>

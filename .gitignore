@@ -1,0 +1,11 @@
+# Contenus uploadés par les utilisateurs (photos, documents personnels...) : non versionnés
+/uploads/
+/bibliotheque/uploads/
+
+# Configuration locale de l'assistant, non liée à l'application
+/.claude/
+
+# Fichiers système / éditeur
+Thumbs.db
+.DS_Store
+.vscode/
