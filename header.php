@@ -140,6 +140,14 @@ if ($mysqli->query("SHOW TABLES LIKE 'site_banners'")->num_rows > 0) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- AJOUT : Bibliothèque pour les fenêtres de dialogue stylées -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <?php if ($page_banner): ?>
+        <!-- Une bannière personnalisée (image ou vidéo) est active sur cette page : on désactive
+             l'effet "polygone lumineux" par défaut de .search-banner (::after, révélé au passage
+             de la souris), qui n'a plus de raison d'être une fois un vrai média affiché. -->
+        <style>
+            .search-banner::after { display: none !important; }
+        </style>
+    <?php endif; ?>
     <?php if ($page_banner && $page_banner['media_type'] === 'image'): ?>
         <!-- Bannière personnalisée (image) de cette page, définie dans admin_banners.php -->
         <style>

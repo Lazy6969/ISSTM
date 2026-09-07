@@ -383,6 +383,28 @@ document.addEventListener('DOMContentLoaded', () => {
         banner.appendChild(layer);
     });
 
+    // --- Reflet "diamant" qui suit la souris sur les bannières par défaut (search-banner) ---
+    // Ces bannières n'ont plus de photo de fond mais un dégradé sombre façon diamant (voir
+    // .search-banner dans style.css) ; on met à jour les variables CSS --mx/--my (position du
+    // curseur en % dans la bannière) pour que son reflet radial se déplace avec la souris.
+    // Ignoré si l'utilisateur préfère moins d'animations : le reflet reste alors fixe (valeurs
+    // par défaut définies dans le CSS), cohérent avec le reste des effets de bannière.
+    if (!prefersReducedMotion) {
+        document.querySelectorAll('.search-banner').forEach(banner => {
+            banner.addEventListener('mousemove', (e) => {
+                const rect = banner.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                banner.style.setProperty('--mx', x + '%');
+                banner.style.setProperty('--my', y + '%');
+            });
+            banner.addEventListener('mouseleave', () => {
+                banner.style.setProperty('--mx', '50%');
+                banner.style.setProperty('--my', '35%');
+            });
+        });
+    }
+
     // --- Écrans "squelette" (effet de scintillement) pour les images en chargement différé ---
     // Donne une sensation de rapidité perçue pendant que les images loading="lazy" se chargent,
     // à la place d'un espace vide brut. Retiré dès que chaque image a fini de charger (ou échoué).
