@@ -91,7 +91,7 @@ $enseignants_vacataires = array_values(array_filter($enseignants, fn($e) => $e['
                         <div class="teacher-card" data-search="<?php echo htmlspecialchars(mb_strtolower($enseignant['nom'] . ' ' . $enseignant['specialite'], 'UTF-8')); ?>">
                             <div class="teacher-card-inner">
                                 <div class="teacher-card-front">
-                                    <img src="<?php echo $enseignant['image']; ?>" alt="Photo de <?php echo htmlspecialchars($enseignant['nom']); ?>" loading="lazy">
+                                    <img src="<?php echo $enseignant['image']; ?>" alt="<?php echo htmlspecialchars(sprintf(t('photo_de_alt'), $enseignant['nom'])); ?>" loading="lazy">
                                     <h3><?php echo htmlspecialchars($enseignant['nom']); ?></h3>
                                     <p class="teacher-role"><?php echo t($enseignant['role']); ?></p>
                                 </div>
@@ -124,7 +124,7 @@ $enseignants_vacataires = array_values(array_filter($enseignants, fn($e) => $e['
                         <div class="teacher-card" data-search="<?php echo htmlspecialchars(mb_strtolower($enseignant['nom'] . ' ' . $enseignant['specialite'], 'UTF-8')); ?>">
                             <div class="teacher-card-inner">
                                 <div class="teacher-card-front">
-                                    <img src="<?php echo $enseignant['image']; ?>" alt="Photo de <?php echo htmlspecialchars($enseignant['nom']); ?>" loading="lazy">
+                                    <img src="<?php echo $enseignant['image']; ?>" alt="<?php echo htmlspecialchars(sprintf(t('photo_de_alt'), $enseignant['nom'])); ?>" loading="lazy">
                                     <h3><?php echo htmlspecialchars($enseignant['nom']); ?></h3>
                                     <p class="teacher-role"><?php echo t($enseignant['role']); ?></p>
                                 </div>

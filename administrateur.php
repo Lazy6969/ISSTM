@@ -57,8 +57,19 @@ $admin_note_content = $admin_note_row['contenu'] ?? '';
                     <div class="admin-stat-tile" data-stat="evenements_a_venir"><i class="fas fa-calendar-check"></i><span class="admin-stat-value">--</span><span class="admin-stat-label"><?php echo t('admin_dashboard_stat_evenements_a_venir'); ?></span></div>
                     <div class="admin-stat-tile" data-stat="comptes_en_attente"><i class="fas fa-user-clock"></i><span class="admin-stat-value">--</span><span class="admin-stat-label"><?php echo t('admin_dashboard_stat_comptes_attente'); ?></span></div>
                     <div class="admin-stat-tile" data-stat="utilisateurs_en_ligne"><i class="fas fa-signal"></i><span class="admin-stat-value">--</span><span class="admin-stat-label"><?php echo t('admin_dashboard_stat_en_ligne'); ?></span></div>
-                    <div class="admin-stat-tile" data-stat="vues_total"><i class="fas fa-eye"></i><span class="admin-stat-value">--</span><span class="admin-stat-label"><?php echo t('admin_dashboard_stat_vues_total'); ?></span></div>
-                    <div class="admin-stat-tile" data-stat="vues_aujourdhui"><i class="fas fa-eye"></i><span class="admin-stat-value">--</span><span class="admin-stat-label"><?php echo t('admin_dashboard_stat_vues_jour'); ?></span></div>
+                    <div class="admin-stat-tile admin-stat-tile-resettable" data-stat="vues_total">
+                        <button type="button" class="admin-stat-reset-btn" data-reset-type="total" data-confirm-msg="<?php echo htmlspecialchars(t('admin_dashboard_vues_total_confirm')); ?>" title="<?php echo htmlspecialchars(t('admin_dashboard_vues_reset_label')); ?>"><i class="fas fa-rotate-left"></i></button>
+                        <i class="fas fa-eye"></i><span class="admin-stat-value">--</span><span class="admin-stat-label"><?php echo t('admin_dashboard_stat_vues_total'); ?></span>
+                    </div>
+                    <div class="admin-stat-tile admin-stat-tile-resettable" data-stat="vues_aujourdhui">
+                        <button type="button" class="admin-stat-reset-btn" data-reset-type="jour" data-confirm-msg="<?php echo htmlspecialchars(t('admin_dashboard_vues_jour_confirm')); ?>" title="<?php echo htmlspecialchars(t('admin_dashboard_vues_reset_label')); ?>"><i class="fas fa-rotate-left"></i></button>
+                        <i class="fas fa-eye"></i><span class="admin-stat-value">--</span><span class="admin-stat-label"><?php echo t('admin_dashboard_stat_vues_jour'); ?></span>
+                    </div>
+                    <div class="admin-stat-tile" data-stat="filieres_total"><i class="fas fa-graduation-cap"></i><span class="admin-stat-value">--</span><span class="admin-stat-label"><?php echo t('admin_dashboard_stat_filieres'); ?></span></div>
+                    <div class="admin-stat-tile" data-stat="enseignants_fiches"><i class="fas fa-id-card"></i><span class="admin-stat-value">--</span><span class="admin-stat-label"><?php echo t('admin_dashboard_stat_enseignants_fiches'); ?></span></div>
+                    <div class="admin-stat-tile" data-stat="galerie_albums"><i class="fas fa-images"></i><span class="admin-stat-value">--</span><span class="admin-stat-label"><?php echo t('admin_dashboard_stat_galerie'); ?></span></div>
+                    <div class="admin-stat-tile" data-stat="newsletter_abonnes"><i class="fas fa-envelope-open-text"></i><span class="admin-stat-value">--</span><span class="admin-stat-label"><?php echo t('admin_dashboard_stat_newsletter'); ?></span></div>
+                    <div class="admin-stat-tile" data-stat="partenaires_total"><i class="fas fa-handshake"></i><span class="admin-stat-value">--</span><span class="admin-stat-label"><?php echo t('admin_dashboard_stat_partenaires'); ?></span></div>
                 </div>
 
                 <div class="admin-stats-widgets">
@@ -73,16 +84,6 @@ $admin_note_content = $admin_note_row['contenu'] ?? '';
                                 <span id="admin-perf-value">-- ms</span>
                                 <span class="admin-perf-label" id="admin-perf-label"></span>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="admin-widget admin-filiere-widget">
-                        <h4><i class="fas fa-graduation-cap"></i> <?php echo t('admin_dashboard_filiere_titre'); ?></h4>
-                        <div class="etu-donut-wrap">
-                            <div class="etu-donut" id="admin-filiere-donut">
-                                <div class="etu-donut-hole"><strong id="admin-filiere-total">0</strong><span><?php echo t('admin_utilisateurs_role_etudiant'); ?></span></div>
-                            </div>
-                            <ul class="etu-legend" id="admin-filiere-legend"></ul>
                         </div>
                     </div>
 
@@ -202,6 +203,21 @@ $admin_note_content = $admin_note_row['contenu'] ?? '';
                     <p><?php echo t('admin_dashboard_profil_desc'); ?></p>
                     <span class="action-card-cta"><?php echo t('admin_dashboard_ouvrir'); ?> <i class="fas fa-arrow-right"></i></span>
                 </a>
+            </div>
+
+            <!-- === Étudiants par filière (déplacé en bas, avec diagramme en bâton par filière) === -->
+            <div class="admin-stats-dashboard admin-filiere-section" id="admin-filiere-section">
+                <div class="admin-stats-header">
+                    <h3><i class="fas fa-graduation-cap"></i> <?php echo t('admin_dashboard_filiere_titre'); ?></h3>
+                </div>
+                <div class="admin-filiere-layout">
+                    <div class="etu-donut-wrap">
+                        <div class="etu-donut" id="admin-filiere-donut">
+                            <div class="etu-donut-hole"><strong id="admin-filiere-total">0</strong><span><?php echo t('admin_utilisateurs_role_etudiant'); ?></span></div>
+                        </div>
+                    </div>
+                    <div class="etu-barchart" id="admin-filiere-legend" data-empty-label="<?php echo htmlspecialchars(t('admin_etudiants_aucune_donnee')); ?>"></div>
+                </div>
             </div>
         </div>
     </div>

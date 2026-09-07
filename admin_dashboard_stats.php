@@ -29,6 +29,11 @@ $stats['comptes_en_attente'] = (int) $mysqli->query("SELECT COUNT(*) c FROM prei
 $stats['utilisateurs_en_ligne'] = (int) $mysqli->query("SELECT COUNT(*) c FROM utilisateurs WHERE last_activity > NOW() - INTERVAL 5 MINUTE")->fetch_assoc()['c'];
 $stats['vues_total'] = (int) $mysqli->query("SELECT COUNT(*) c FROM page_views")->fetch_assoc()['c'];
 $stats['vues_aujourdhui'] = (int) $mysqli->query("SELECT COUNT(*) c FROM page_views WHERE DATE(created_at) = CURDATE()")->fetch_assoc()['c'];
+$stats['filieres_total'] = (int) $mysqli->query("SELECT COUNT(*) c FROM filieres")->fetch_assoc()['c'];
+$stats['enseignants_fiches'] = (int) $mysqli->query("SELECT COUNT(*) c FROM teachers")->fetch_assoc()['c'];
+$stats['galerie_albums'] = (int) $mysqli->query("SELECT COUNT(*) c FROM gallery_albums WHERE status='publie'")->fetch_assoc()['c'];
+$stats['newsletter_abonnes'] = (int) $mysqli->query("SELECT COUNT(*) c FROM newsletter_subscribers")->fetch_assoc()['c'];
+$stats['partenaires_total'] = (int) $mysqli->query("SELECT COUNT(*) c FROM partenaires")->fetch_assoc()['c'];
 
 // Étudiants par filière (adapté de admin_etudiants.php : total approuvés par filière, toutes années confondues)
 $par_filiere = $mysqli->query("

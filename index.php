@@ -624,6 +624,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <a class="map-external-link" href="https://www.google.com/maps?q=-15.72335804693739,46.31172101165267&z=17&t=k" target="_blank" rel="noopener"><i class="fas fa-up-right-from-square"></i> <?php echo t('ouvrir_google_maps'); ?></a>
                     <a class="map-directions-link" href="https://www.google.com/maps/dir/?api=1&destination=-15.72335804693739,46.31172101165267" target="_blank" rel="noopener"><i class="fas fa-diamond-turn-right"></i> <?php echo t('itineraire'); ?></a>
                 </div>
+                <a class="map-history-link" href="historique.php"><i class="fas fa-landmark-flag"></i> <?php echo t('localisation_annexe_historique'); ?></a>
             </div>
         </div>
     </div>

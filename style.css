@@ -574,6 +574,13 @@ body.dark-mode .dropdown-menu::before {
     width: 460px;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    /* 11 liens (nombre impair) : en remplissage par ligne (comportement par défaut), le dernier
+       lien se retrouve seul sur une 6e ligne, laissant toute une cellule vide à côté de lui -
+       d'où l'impression de "trop d'écart" au bas du panneau. En remplissant par colonne à la
+       place (colonne 1 pleine avant de passer à la colonne 2), c'est juste la 2e colonne qui
+       est un cran plus courte : un déséquilibre bien plus discret qu'une case vide isolée. */
+    grid-auto-flow: column;
+    grid-template-rows: repeat(6, auto);
     gap: 2px 6px;
     padding: 14px;
 }
@@ -2577,6 +2584,46 @@ body.dark-mode .testimonial-program {
     filter: brightness(1.1);
 }
 
+.map-history-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--primary-color));
+    background-size: 200% 100%;
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    animation: map-history-shimmer 3s ease-in-out infinite;
+}
+
+.map-history-link:hover {
+    animation-play-state: paused;
+    filter: brightness(1.12);
+}
+
+.map-history-link i {
+    animation: map-history-icon-bounce 1.6s ease-in-out infinite;
+}
+
+@keyframes map-history-shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+@keyframes map-history-icon-bounce {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(4px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .map-history-link,
+    .map-history-link i {
+        animation: none !important;
+    }
+}
+
 /* --- Map & Footer --- */
 .map-section iframe {
     display: block; /* Enlève l'espace en dessous */
@@ -2598,6 +2645,125 @@ body.dark-mode .testimonial-program {
 
 @media (prefers-reduced-motion: reduce) {
     .main-footer-bottom { animation: none; }
+}
+
+/* --- Bandeau de consentement cookies (footer.php, affiché sur toutes les pages) --- */
+.cookie-banner {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3000;
+    padding: 16px;
+    transform: translateY(120%);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+}
+
+.cookie-banner.is-visible {
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.cookie-banner-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    background-color: var(--box-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 18px 22px;
+    box-shadow: 0 10px 35px var(--box-shadow-color);
+}
+
+.cookie-banner-icon {
+    font-size: 1.8rem;
+    color: var(--secondary-color);
+    flex-shrink: 0;
+    animation: cookie-banner-icon-wiggle 2.5s ease-in-out infinite;
+}
+
+@keyframes cookie-banner-icon-wiggle {
+    0%, 40%, 100% { transform: rotate(0deg); }
+    10% { transform: rotate(-12deg); }
+    20% { transform: rotate(10deg); }
+    30% { transform: rotate(-6deg); }
+}
+
+.cookie-banner-text {
+    flex: 1 1 320px;
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: var(--text-color);
+}
+
+.cookie-banner-text a {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.cookie-banner-actions {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.cookie-banner-btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 700;
+    font-size: 0.88rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.2s ease, background-color 0.2s ease;
+}
+
+.cookie-banner-accept {
+    background: linear-gradient(45deg, var(--primary-color), color-mix(in srgb, var(--primary-color) 60%, var(--secondary-color) 40%));
+    color: #fff;
+}
+
+.cookie-banner-accept:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px var(--box-shadow-color);
+}
+
+.cookie-banner-refuse {
+    background: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.cookie-banner-refuse:hover {
+    background-color: color-mix(in srgb, var(--text-color) 8%, transparent);
+}
+
+@media (max-width: 640px) {
+    .cookie-banner-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+    .cookie-banner-actions {
+        width: 100%;
+    }
+    .cookie-banner-btn {
+        flex: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cookie-banner {
+        transition: none;
+    }
+    .cookie-banner-icon {
+        animation: none;
+    }
 }
 
 .footer-logo {
@@ -2997,10 +3163,28 @@ body.dark-mode .testimonial-program {
     }
     .footer-layout {
         grid-template-columns: 1fr;
-        text-align: center;
+        gap: 0;
     }
+    /* Empilées sur mobile, les 3 colonnes sont toutes centrées (liens, logo, contact) au lieu
+       du left/center/right de la grille PC - une seule colonne pleine largeur alignée à droite
+       ou à gauche selon la colonne d'origine casse la lecture, alors qu'un empilement centré
+       reste net et reproduit l'esprit "3 blocs bien rangés" du PC. Un fin séparateur entre
+       chaque bloc remplace visuellement les colonnes de la grille. */
     .footer-column {
         align-items: center;
+        text-align: center;
+        padding: 28px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .footer-links {
+        padding-top: 0;
+        border-top: none;
+    }
+    .footer-contact .footer-address,
+    .footer-contact .footer-hours {
+        width: auto;
+        max-width: 100%;
+        text-align: left;
     }
     .maps-container {
         grid-template-columns: 1fr;
@@ -5361,6 +5545,52 @@ body.dark-mode .enseignants-dissertation {
 .admin-stat-tile.is-updating {
     background-color: color-mix(in srgb, var(--secondary-color) 16%, var(--section-bg-color));
     transform: scale(1.03);
+}
+
+.admin-stat-tile-resettable { position: relative; }
+
+.admin-stat-reset-btn {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    border-radius: 50%;
+    color: var(--text-color);
+    opacity: 0.45;
+    cursor: pointer;
+    font-size: 0.75rem;
+    transition: opacity 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+.admin-stat-reset-btn:hover {
+    opacity: 1;
+    background-color: color-mix(in srgb, var(--text-color) 10%, transparent);
+    transform: rotate(-45deg);
+}
+
+.admin-stat-reset-btn:disabled { opacity: 0.25; cursor: wait; transform: none; }
+
+/* --- Étudiants par filière (section du bas, donut + diagramme en bâton côte à côte) --- */
+.admin-filiere-section { margin-top: 40px; }
+
+.admin-filiere-layout {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+}
+
+.admin-filiere-layout .etu-donut-wrap { flex: 0 0 auto; }
+
+.admin-filiere-layout .etu-barchart {
+    flex: 1 1 320px;
+    min-width: 0;
 }
 
 .admin-stats-widgets {
@@ -11285,6 +11515,19 @@ body:has(.messagerie-page-content) .ai-help-panel {
 
 .profile-header-card h2 { margin: 0 0 10px; }
 
+.profile-network-link {
+    margin-top: 0;
+    margin-left: auto;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.profile-network-link .messagerie-nav-badge {
+    position: static;
+    margin-left: 6px;
+    display: inline-block;
+}
+
 .profile-role-badge {
     display: inline-flex;
     align-items: center;
@@ -14563,6 +14806,12 @@ body.dark-mode .profile-role-badge.is-admin { color: var(--secondary-color); }
     flex-direction: column;
     gap: 12px;
     margin-bottom: 14px;
+    /* Au-dela d'environ 3 commentaires (fils "Voir tous les commentaires" ouvert compris),
+       la liste defile dans sa propre zone plutot que d'allonger indefiniment la carte de
+       publication. */
+    max-height: 280px;
+    overflow-y: auto;
+    padding-right: 6px;
 }
 
 .communaute-comment {
@@ -14879,6 +15128,12 @@ body.dark-mode .profile-role-badge.is-admin { color: var(--secondary-color); }
     font-size: 0.85rem;
     cursor: pointer;
     padding: 4px 0;
+    /* Reste visible en haut de la zone de defilement des commentaires (.communaute-comments)
+       plutot que de disparaitre en scrollant vers le bas. */
+    position: sticky;
+    top: 0;
+    background-color: var(--box-bg-color);
+    z-index: 1;
 }
 
 .communaute-comments-toggle:hover { text-decoration: underline; }

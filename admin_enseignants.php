@@ -23,19 +23,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // --- Créer ou mettre à jour un enseignant ---
     if (isset($_POST['save_teacher'])) {
-        $teacher_id  = isset($_POST['teacher_id']) && ctype_digit($_POST['teacher_id']) ? (int) $_POST['teacher_id'] : 0;
-        $nom         = trim($_POST['nom'] ?? '');
-        $categorie   = ($_POST['categorie'] ?? '') === 'vacataire' ? 'vacataire' : 'permanent';
-        $specialite  = trim($_POST['specialite'] ?? '');
-        $email_in    = trim($_POST['email'] ?? '');
-        $email       = $email_in !== '' ? $email_in : (ens_slug($nom) . '@isstm.mg');
-        $statut      = $categorie === 'permanent' ? 'permanent(e)' : 'vacataire';
-        $description = "Enseignant(e) $statut spécialisé(e) en $specialite, au service de la réussite des étudiants de l'ISSTM.";
+        $teacher_id    = isset($_POST['teacher_id']) && ctype_digit($_POST['teacher_id']) ? (int) $_POST['teacher_id'] : 0;
+        $nom           = trim($_POST['nom'] ?? '');
+        $categorie     = ($_POST['categorie'] ?? '') === 'vacataire' ? 'vacataire' : 'permanent';
+        $specialite_fr = trim($_POST['specialite_fr'] ?? '');
+        $specialite_en = trim($_POST['specialite_en'] ?? '');
+        $specialite_mg = trim($_POST['specialite_mg'] ?? '');
+        $email_in      = trim($_POST['email'] ?? '');
+        $email         = $email_in !== '' ? $email_in : (ens_slug($nom) . '@isstm.mg');
+        $statut        = $categorie === 'permanent' ? 'permanent(e)' : 'vacataire';
 
-        if ($nom === '' || $specialite === '') {
+        if ($nom === '' || $specialite_fr === '') {
             header("Location: admin_enseignants.php?flash=" . urlencode('error|' . t('admin_enseignants_error_champs')));
             exit;
         }
+
+        // Traductions manquantes : complétées automatiquement (même moteur que le bouton
+        // "Traduire" utilisé ailleurs dans l'admin, voir mymemory_translate() dans db_connect.php)
+        // si l'admin ne les a pas remplies lui-même - pour ne jamais enregistrer un enseignant
+        // sans specialite_en/mg ni description_en/mg.
+        if ($specialite_en === '') $specialite_en = mymemory_translate($specialite_fr, 'en');
+        if ($specialite_mg === '') $specialite_mg = mymemory_translate($specialite_fr, 'mg');
+
+        $description_fr = "Enseignant(e) $statut spécialisé(e) en $specialite_fr, au service de la réussite des étudiants de l'ISSTM.";
+        $description_en = mymemory_translate($description_fr, 'en');
+        $description_mg = mymemory_translate($description_fr, 'mg');
 
         $photo_name = null;
         if (isset($_FILES['photo']) && $_FILES['photo']['error'] === 0 && in_array($_FILES['photo']['type'], $allowed_types)) {
@@ -48,11 +60,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($teacher_id > 0) {
             if ($photo_name) {
-                $stmt = $mysqli->prepare("UPDATE teachers SET nom=?, categorie=?, specialite_fr=?, specialite_en=NULL, specialite_mg=NULL, description_fr=?, description_en=NULL, description_mg=NULL, email=?, photo=? WHERE id=?");
-                $stmt->bind_param("ssssssi", $nom, $categorie, $specialite, $description, $email, $photo_name, $teacher_id);
+                $stmt = $mysqli->prepare("UPDATE teachers SET nom=?, categorie=?, specialite_fr=?, specialite_en=?, specialite_mg=?, description_fr=?, description_en=?, description_mg=?, email=?, photo=? WHERE id=?");
+                $stmt->bind_param("ssssssssssi", $nom, $categorie, $specialite_fr, $specialite_en, $specialite_mg, $description_fr, $description_en, $description_mg, $email, $photo_name, $teacher_id);
             } else {
-                $stmt = $mysqli->prepare("UPDATE teachers SET nom=?, categorie=?, specialite_fr=?, specialite_en=NULL, specialite_mg=NULL, description_fr=?, description_en=NULL, description_mg=NULL, email=? WHERE id=?");
-                $stmt->bind_param("sssssi", $nom, $categorie, $specialite, $description, $email, $teacher_id);
+                $stmt = $mysqli->prepare("UPDATE teachers SET nom=?, categorie=?, specialite_fr=?, specialite_en=?, specialite_mg=?, description_fr=?, description_en=?, description_mg=?, email=? WHERE id=?");
+                $stmt->bind_param("sssssssssi", $nom, $categorie, $specialite_fr, $specialite_en, $specialite_mg, $description_fr, $description_en, $description_mg, $email, $teacher_id);
             }
             $stmt->execute();
             $stmt->close();
@@ -61,8 +73,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $max_order = (int) $mysqli->query("SELECT COALESCE(MAX(display_order),0) m FROM teachers")->fetch_assoc()['m'];
             $max_order++;
-            $stmt = $mysqli->prepare("INSERT INTO teachers (nom, categorie, specialite_fr, description_fr, email, photo, display_order) VALUES (?,?,?,?,?,?,?)");
-            $stmt->bind_param("ssssssi", $nom, $categorie, $specialite, $description, $email, $photo_name, $max_order);
+            $stmt = $mysqli->prepare("INSERT INTO teachers (nom, categorie, specialite_fr, specialite_en, specialite_mg, description_fr, description_en, description_mg, email, photo, display_order) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+            $stmt->bind_param("ssssssssssi", $nom, $categorie, $specialite_fr, $specialite_en, $specialite_mg, $description_fr, $description_en, $description_mg, $email, $photo_name, $max_order);
             $stmt->execute();
             $stmt->close();
             header("Location: admin_enseignants.php?flash=" . urlencode('success|' . t('admin_enseignants_succes_ajout')));
@@ -151,7 +163,18 @@ include 'header.php';
                 </div>
                 <div class="form-group">
                     <label><?php echo t('specialite'); ?></label>
-                    <input type="text" name="specialite" value="<?php echo htmlspecialchars($edit_teacher['specialite_fr'] ?? ''); ?>" required>
+                    <div class="translatable-field-group" data-group-id="teacher-specialite">
+                        <div class="lang-tabs">
+                            <button type="button" class="lang-tab is-active" data-lang="fr">🇫🇷 FR</button>
+                            <button type="button" class="lang-tab" data-lang="en">🇬🇧 EN</button>
+                            <button type="button" class="lang-tab" data-lang="mg">🇲🇬 MG</button>
+                            <button type="button" class="btn-translate-all"><i class="fas fa-language"></i> Traduire</button>
+                        </div>
+                        <div class="lang-panel is-active" data-lang="fr"><input type="text" name="specialite_fr" value="<?php echo htmlspecialchars($edit_teacher['specialite_fr'] ?? ''); ?>" data-lang-input="fr" required></div>
+                        <div class="lang-panel" data-lang="en"><input type="text" name="specialite_en" value="<?php echo htmlspecialchars($edit_teacher['specialite_en'] ?? ''); ?>" data-lang-input="en"></div>
+                        <div class="lang-panel" data-lang="mg"><input type="text" name="specialite_mg" value="<?php echo htmlspecialchars($edit_teacher['specialite_mg'] ?? ''); ?>" data-lang-input="mg"></div>
+                    </div>
+                    <small class="preinscription-hint"><?php echo t('admin_enseignants_specialite_hint'); ?></small>
                 </div>
                 <div class="form-group">
                     <label><?php echo t('email'); ?></label>
@@ -207,6 +230,46 @@ include 'header.php';
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.translatable-field-group').forEach(group => {
+        const tabs = group.querySelectorAll('.lang-tab');
+        const panels = group.querySelectorAll('.lang-panel');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('is-active'));
+                panels.forEach(p => p.classList.remove('is-active'));
+                tab.classList.add('is-active');
+                group.querySelector(`.lang-panel[data-lang="${tab.dataset.lang}"]`).classList.add('is-active');
+            });
+        });
+        const translateBtn = group.querySelector('.btn-translate-all');
+        if (translateBtn) {
+            translateBtn.addEventListener('click', async () => {
+                const frInput = group.querySelector('[data-lang-input="fr"]');
+                const enInput = group.querySelector('[data-lang-input="en"]');
+                const mgInput = group.querySelector('[data-lang-input="mg"]');
+                const text = frInput.value.trim();
+                if (!text) return;
+                translateBtn.disabled = true;
+                translateBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Traduction...';
+                try {
+                    const [enRes, mgRes] = await Promise.all([
+                        fetch('translate_api.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ text, source_lang: 'fr', target_lang: 'en' }) }),
+                        fetch('translate_api.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ text, source_lang: 'fr', target_lang: 'mg' }) })
+                    ]);
+                    const enData = await enRes.json();
+                    const mgData = await mgRes.json();
+                    if (enData.translatedText) enInput.value = enData.translatedText;
+                    if (mgData.translatedText) mgInput.value = mgData.translatedText;
+                    translateBtn.innerHTML = '<i class="fas fa-check"></i> Traduit !';
+                } catch (e) {
+                    translateBtn.innerHTML = '<i class="fas fa-triangle-exclamation"></i> Erreur';
+                } finally {
+                    setTimeout(() => { translateBtn.disabled = false; translateBtn.innerHTML = '<i class="fas fa-language"></i> Traduire'; }, 1800);
+                }
+            });
+        }
+    });
+
     document.querySelectorAll('.upload-zone-input').forEach(input => {
         input.addEventListener('change', () => {
             const zone = input.closest('.upload-zone');

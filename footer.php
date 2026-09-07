@@ -88,6 +88,51 @@ $footer_hide_visible = in_array(basename($_SERVER['PHP_SELF']), ['messagerie.php
 </footer>
 <?php endif; ?>
 
+<!-- Bandeau de consentement cookies (Global) : ne s'affiche que si le visiteur n'a pas déjà
+     répondu (cookie isstm_cookie_consent absent). Le choix est posé en JS pour disparaître
+     immédiatement au clic, sans recharger la page. -->
+<?php if (!isset($_COOKIE['isstm_cookie_consent'])): ?>
+<div class="cookie-banner" id="cookie-banner" role="dialog" aria-live="polite" aria-label="<?php echo htmlspecialchars(t('cookie_banner_titre')); ?>">
+    <div class="cookie-banner-inner">
+        <i class="fas fa-cookie-bite cookie-banner-icon" aria-hidden="true"></i>
+        <p class="cookie-banner-text">
+            <?php echo t('cookie_banner_texte'); ?>
+            <a href="<?php echo SITE_URL; ?>/confidentialite.php"><?php echo t('cookie_banner_en_savoir_plus'); ?></a>
+        </p>
+        <div class="cookie-banner-actions">
+            <button type="button" class="cookie-banner-btn cookie-banner-refuse" id="cookie-banner-refuse"><?php echo t('cookie_banner_refuser'); ?></button>
+            <button type="button" class="cookie-banner-btn cookie-banner-accept" id="cookie-banner-accept"><?php echo t('cookie_banner_accepter'); ?></button>
+        </div>
+    </div>
+</div>
+<script>
+(function () {
+    var banner = document.getElementById('cookie-banner');
+    if (!banner) return;
+    var cookiePath = <?php echo json_encode(SITE_URL . '/', JSON_UNESCAPED_SLASHES); ?>;
+
+    function setConsent(value) {
+        var maxAge = 60 * 60 * 24 * 365; // 1 an
+        document.cookie = 'isstm_cookie_consent=' + value + '; path=' + cookiePath + '; max-age=' + maxAge + '; samesite=Lax';
+        banner.classList.remove('is-visible');
+        banner.addEventListener('transitionend', function remove() {
+            banner.removeEventListener('transitionend', remove);
+            banner.remove();
+        });
+        // Filet de sécurité si prefers-reduced-motion désactive la transition.
+        setTimeout(function () { if (banner.isConnected) banner.remove(); }, 600);
+    }
+
+    document.getElementById('cookie-banner-accept').addEventListener('click', function () { setConsent('accepte'); });
+    document.getElementById('cookie-banner-refuse').addEventListener('click', function () { setConsent('refuse'); });
+
+    requestAnimationFrame(function () {
+        requestAnimationFrame(function () { banner.classList.add('is-visible'); });
+    });
+})();
+</script>
+<?php endif; ?>
+
 <!-- Lightbox Structure (Global) -->
 <div id="lightbox" class="lightbox">
     <span class="lightbox-close">&times;</span>

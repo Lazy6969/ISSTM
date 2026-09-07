@@ -245,7 +245,7 @@ if ($mysqli->query("SHOW TABLES LIKE 'site_banners'")->num_rows > 0) {
                         <li><a href="<?php echo SITE_URL; ?>/historique.php"><?php echo t('historiques'); ?></a></li>
                         <li><a href="<?php echo SITE_URL; ?>/parcours.php"><?php echo t('menu_organigramme'); ?></a></li>
                         <li><a href="<?php echo SITE_URL; ?>/filieres.php"><?php echo t('filieres_section_titre'); ?></a></li>
-                        <li><a href="<?php echo SITE_URL; ?>/inscription.php"><?php echo t('form_inscription'); ?></a></li>
+                        <li><a href="<?php echo SITE_URL; ?>/inscription.php"><?php echo t('header_admissions'); ?></a></li>
                         <li><a href="<?php echo SITE_URL; ?>/enseignants.php"><?php echo t('enseignants'); ?></a></li>
                         <li><a href="<?php echo SITE_URL; ?>/vie_etudiante.php"><?php echo t('vie_etudiante'); ?></a></li>
                         <li><a href="<?php echo SITE_URL; ?>/bourse.php"><?php echo t('bourse'); ?></a></li>
@@ -300,17 +300,6 @@ if ($mysqli->query("SHOW TABLES LIKE 'site_banners'")->num_rows > 0) {
                             <li><a href="<?php echo SITE_URL; ?>/bibliotheque/admin/profil.php"><?php echo t('bib_mon_profil'); ?></a></li>
                             <li><a href="<?php echo SITE_URL; ?>/bibliotheque/admin/dashboard.php"><?php echo t('bib_admin_dashboard_titre'); ?></a></li>
                         </ul>
-                    </li>
-                <?php endif; ?>
-
-                <?php if ($header_has_amis): ?>
-                    <li class="nav-icon messagerie-nav-icon">
-                        <a href="<?php echo SITE_URL; ?>/mes_amis.php" title="<?php echo t('header_mon_reseau'); ?>">
-                            <i class="fas fa-user-group"></i>
-                            <?php if ($header_amis_demandes_recues > 0): ?>
-                                <span class="messagerie-nav-badge"><?php echo $header_amis_demandes_recues > 9 ? '9+' : $header_amis_demandes_recues; ?></span>
-                            <?php endif; ?>
-                        </a>
                     </li>
                 <?php endif; ?>
 
@@ -386,7 +375,7 @@ if ($mysqli->query("SHOW TABLES LIKE 'site_banners'")->num_rows > 0) {
     <a href="<?php echo SITE_URL; ?>/enseignants.php"><?php echo t('enseignants'); ?></a>
     <a href="<?php echo SITE_URL; ?>/vie_etudiante.php"><?php echo t('vie_etudiante'); ?></a>
     <a href="<?php echo SITE_URL; ?>/bourse.php"><?php echo t('bourse'); ?></a>
-    <a href="<?php echo SITE_URL; ?>/inscription.php"><?php echo t('form_inscription'); ?></a>
+    <a href="<?php echo SITE_URL; ?>/inscription.php"><?php echo t('header_admissions'); ?></a>
     <a href="<?php echo SITE_URL; ?>/galerie.php"><?php echo t('galeries_photos_media'); ?></a>
     <a href="<?php echo SITE_URL; ?>/evenements.php"><?php echo t('menu_evenements'); ?></a>
     <a href="<?php echo SITE_URL; ?>/bibliotheque/index.php"><?php echo t('bib_nav_titre'); ?></a>
@@ -415,9 +404,6 @@ if ($mysqli->query("SHOW TABLES LIKE 'site_banners'")->num_rows > 0) {
         <?php if ($header_has_communaute): ?>
             <a href="<?php echo SITE_URL; ?>/communaute.php"><i class="fas fa-users-rectangle"></i> <?php echo t('communaute_titre'); ?></a>
             <a href="<?php echo SITE_URL; ?>/notifications.php"><i class="fas fa-bell"></i> <?php echo t('notifications_titre'); ?><?php if ($header_notifications_unread > 0): ?> <span class="messagerie-nav-badge"><?php echo $header_notifications_unread > 9 ? '9+' : $header_notifications_unread; ?></span><?php endif; ?></a>
-        <?php endif; ?>
-        <?php if ($header_has_amis): ?>
-            <a href="<?php echo SITE_URL; ?>/mes_amis.php"><i class="fas fa-user-group"></i> <?php echo t('header_mon_reseau'); ?><?php if ($header_amis_demandes_recues > 0): ?> <span class="messagerie-nav-badge"><?php echo $header_amis_demandes_recues > 9 ? '9+' : $header_amis_demandes_recues; ?></span><?php endif; ?></a>
         <?php endif; ?>
         <a href="<?php echo SITE_URL; ?>/logout.php"><i class="fas fa-right-from-bracket"></i> <?php echo t('deconnexion'); ?></a>
     <?php elseif ($header_is_bib_admin_only): ?>

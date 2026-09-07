@@ -81,32 +81,43 @@ document.addEventListener('DOMContentLoaded', () => {
         labelEl.style.color = color;
     }
 
-    // --- Donut étudiants par filière (réutilise les classes .etu-donut* déjà utilisées côté PHP) ---
+    // --- Donut + diagramme en bâton "Étudiants par filière" (section du bas) : le donut reste
+    // la synthèse globale (réutilise les classes .etu-donut* déjà utilisées côté PHP), et le
+    // diagramme réutilise tel quel .etu-barchart* (même composant que admin_etudiants.php),
+    // une barre par filière dont la hauteur est relative à la filière la plus peuplée. ---
     function updateFiliereDonut(parFiliere) {
         const donut = document.getElementById('admin-filiere-donut');
         const totalEl = document.getElementById('admin-filiere-total');
-        const legend = document.getElementById('admin-filiere-legend');
-        if (!donut || !legend) return;
+        const chart = document.getElementById('admin-filiere-legend');
+        if (!donut || !chart) return;
         const total = parFiliere.reduce((s, f) => s + Number(f.total), 0);
         totalEl.textContent = total.toLocaleString('fr-FR');
         if (total === 0) {
             donut.style.background = 'conic-gradient(var(--border-color) 0deg 360deg)';
-            legend.innerHTML = '';
+            chart.innerHTML = `<p class="gallery-empty"><i class="fas fa-chart-column"></i> ${escapeHtml(chart.dataset.emptyLabel || 'Aucune donnée disponible.')}</p>`;
             return;
         }
+        const maxTotal = Math.max(...parFiliere.map((f) => Number(f.total)));
         let cumulative = 0;
         const stops = [];
-        legend.innerHTML = '';
+        chart.innerHTML = '';
         parFiliere.forEach((f, i) => {
             const color = palette[i % palette.length];
+            const count = Number(f.total);
             const start = (cumulative / total) * 360;
-            cumulative += Number(f.total);
+            cumulative += count;
             const end = (cumulative / total) * 360;
             stops.push(`${color} ${start}deg ${end}deg`);
-            const pct = Math.round((Number(f.total) / total) * 100);
-            const li = document.createElement('li');
-            li.innerHTML = `<span class="etu-legend-dot" style="background:${color};"></span> ${f.filiere} — <strong>${f.total}</strong> (${pct}%)`;
-            legend.appendChild(li);
+            const groupHeight = Math.max(Math.round((count / maxTotal) * 100), 4);
+            const group = document.createElement('div');
+            group.className = 'etu-barchart-group';
+            group.innerHTML = `
+                <div class="etu-barchart-stack" style="height:${groupHeight}%;">
+                    <div class="etu-barchart-segment" style="height:100%; background:${color};" title="${escapeHtml(f.filiere)} : ${count}"></div>
+                </div>
+                <span class="etu-barchart-label">${escapeHtml(f.filiere)} (${count})</span>
+            `;
+            chart.appendChild(group);
         });
         donut.style.background = `conic-gradient(${stops.join(', ')})`;
     }
@@ -229,6 +240,40 @@ document.addEventListener('DOMContentLoaded', () => {
             statusEl.className = 'admin-notes-status';
             clearTimeout(saveTimeout);
             saveTimeout = setTimeout(saveNote, 900);
+        });
+    })();
+
+    // --- Réinitialisation des compteurs de vues (boutons sur les tuiles "Vues totales" /
+    // "Vues aujourd'hui") : confirmation stylée (voir script.js), puis appel AJAX et
+    // rafraîchissement immédiat des tuiles au lieu d'attendre le prochain sondage. ---
+    (function initVuesReset() {
+        dashboard.addEventListener('click', async (e) => {
+            const btn = e.target.closest('.admin-stat-reset-btn');
+            if (!btn) return;
+            e.preventDefault();
+            e.stopPropagation();
+
+            const type = btn.dataset.resetType;
+            const msg = btn.dataset.confirmMsg || 'Confirmer cette action ?';
+            const ok = typeof window.iSSTMConfirm === 'function' ? await window.iSSTMConfirm(msg) : window.confirm(msg);
+            if (!ok) return;
+
+            btn.disabled = true;
+            try {
+                const res = await fetch('admin_reset_vues.php', {
+                    method: 'POST',
+                    body: new URLSearchParams({ type }),
+                });
+                const data = await res.json();
+                if (!data.success) throw new Error('reset failed');
+                refresh();
+            } catch (err) {
+                if (typeof Swal !== 'undefined') {
+                    Swal.fire({ icon: 'error', text: 'Échec de la réinitialisation. Réessayez.' });
+                }
+            } finally {
+                btn.disabled = false;
+            }
         });
     })();
 

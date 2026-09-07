@@ -7,6 +7,7 @@ $translations = [
     'parcours' => ['fr' => 'Parcours', 'en' => 'Programs', 'mg' => 'Lalana'],
     'menu_organigramme' => ['fr' => 'Organigramme', 'en' => 'Organizational Chart', 'mg' => 'Rafitra fandaminana'],
     'form_inscription' => ['fr' => 'Formulaire d\'inscription', 'en' => 'Registration Form', 'mg' => 'Taratasy fisoratana anarana'],
+    'header_admissions' => ['fr' => 'Admissions', 'en' => 'Admissions', 'mg' => 'Fidirana'],
     'enseignants' => ['fr' => 'Enseignants', 'en' => 'Teachers', 'mg' => 'Mpampianatra'],
     'vie_etudiante' => ['fr' => 'Vie étudiante', 'en' => 'Student Life', 'mg' => 'Fiainan\'ny mpianatra'],
     'bourse' => ['fr' => 'Bourse', 'en' => 'Scholarship', 'mg' => 'Vatsim-pianarana'],
@@ -57,6 +58,7 @@ $translations = [
     'localisation_principale' => ['fr' => 'Campus Principal', 'en' => 'Main Campus', 'mg' => 'Tobim-pianarana Lehibe'],
     'localisation_annexe_titre' => ['fr' => 'Bâtiment Ex-Lolo, en face de Leader Price, Majunga be', 'en' => 'Ex-Lolo Building, opposite Leader Price, Majunga be', 'mg' => 'Trano Ex-Lolo, tandrifin\'i Leader Price, Majunga be'],
     'localisation_annexe_adresse' => ['fr' => '', 'en' => '', 'mg' => ''],
+    'localisation_annexe_historique' => ['fr' => 'Voir l\'historique du bâtiment Ex-Lolo', 'en' => 'See the history of the Ex-Lolo building', 'mg' => 'Jereo ny tantaran\'ny trano Ex-Lolo'],
 
     // --- Section Carousel "Découvrir nos pages" ---
     'decouvrir_titre' => ['fr' => 'Découvrez notre univers', 'en' => 'Discover our world', 'mg' => 'Fantaro ny tontolonay'],
@@ -100,6 +102,11 @@ $translations = [
     'droits_reserves' => ['fr' => 'ISSTM Mahajanga. Tous droits réservés.', 'en' => 'ISSTM Mahajanga. All rights reserved.', 'mg' => 'ISSTM Mahajanga. Zo rehetra voatokana'],
     'liens_rapides' => ['fr' => 'Liens Rapides', 'en' => 'Quick Links', 'mg' => 'Rohy haingana'],
     'footer_confidentialite' => ['fr' => 'Politique de confidentialité', 'en' => 'Privacy Policy', 'mg' => 'Politikan\'ny fiainana tsiambaratelo'],
+    'cookie_banner_titre' => ['fr' => 'Gestion des cookies', 'en' => 'Cookie settings', 'mg' => 'Fitantanana ny cookie'],
+    'cookie_banner_texte' => ['fr' => 'Ce site utilise des cookies techniques (session, préférences) et des ressources externes (polices, icônes) nécessaires à son bon fonctionnement.', 'en' => 'This site uses technical cookies (session, preferences) and external resources (fonts, icons) needed for it to work properly.', 'mg' => 'Mampiasa cookie ara-teknika (session, safidy) sy loharanon-kevitra ivelany (endri-tsoratra, kisary) ilaina amin\'ny fampandehanana azy tsara ity tranonkala ity.'],
+    'cookie_banner_en_savoir_plus' => ['fr' => 'En savoir plus', 'en' => 'Learn more', 'mg' => 'Fantaro bebe kokoa'],
+    'cookie_banner_refuser' => ['fr' => 'Refuser', 'en' => 'Decline', 'mg' => 'Tsy manaiky'],
+    'cookie_banner_accepter' => ['fr' => 'Accepter', 'en' => 'Accept', 'mg' => 'Manaiky'],
     'erreur_404_titre' => ['fr' => 'Page introuvable', 'en' => 'Page not found', 'mg' => 'Tsy hita ny pejy'],
     'erreur_404_code' => ['fr' => 'Erreur 404', 'en' => 'Error 404', 'mg' => 'Fahadisoana 404'],
     'erreur_404_texte' => ['fr' => 'Désolé, la page que vous recherchez n\'existe pas ou a été déplacée.', 'en' => 'Sorry, the page you are looking for does not exist or has been moved.', 'mg' => 'Miala tsiny, tsy misy na efa nafindra ny pejy tadiavinao.'],
@@ -513,6 +520,7 @@ $translations['aucun_resultat_trouve'] = ['fr' => 'Aucun résultat trouvé', 'en
 
 // Recherche et filtres (enseignants.php)
 $translations['rechercher_enseignant'] = ['fr' => 'Rechercher un enseignant par nom ou spécialité...', 'en' => 'Search a teacher by name or specialty...', 'mg' => 'Hitady mpampianatra amin\'ny anarany na ny fahaizany manokana...'];
+$translations['photo_de_alt'] = ['fr' => 'Photo de %s', 'en' => 'Photo of %s', 'mg' => 'Sarin\'i %s'];
 
 // Page Associations (statuts A.E.I)
 $translations['aei_carte_identite'] = ['fr' => 'Carte d\'Identité de l\'Association', 'en' => 'Association Identity Card', 'mg' => 'Karatra Maha-izy azy ny Fikambanana'];
@@ -586,6 +594,15 @@ $translations['admin_dashboard_stat_comptes_attente'] = ['fr' => 'Comptes en att
 $translations['admin_dashboard_stat_en_ligne'] = ['fr' => 'En ligne maintenant', 'en' => 'Online now', 'mg' => 'Mivantana izao'];
 $translations['admin_dashboard_stat_vues_total'] = ['fr' => 'Vues totales', 'en' => 'Total views', 'mg' => 'Fahitana rehetra'];
 $translations['admin_dashboard_stat_vues_jour'] = ['fr' => 'Vues aujourd\'hui', 'en' => 'Views today', 'mg' => 'Fahitana androany'];
+$translations['admin_dashboard_vues_reset_label'] = ['fr' => 'Réinitialiser', 'en' => 'Reset', 'mg' => 'Averina ho tsinontsinona'];
+$translations['admin_dashboard_vues_total_confirm'] = ['fr' => 'Réinitialiser les vues totales ? Tout l\'historique des vues sera supprimé définitivement.', 'en' => 'Reset total views? The entire view history will be permanently deleted.', 'mg' => 'Averina ho tsinontsinona ny fahitana rehetra ? Ho fafana tanteraka ny tantaram-pahitana rehetra.'];
+$translations['admin_dashboard_vues_jour_confirm'] = ['fr' => 'Réinitialiser les vues d\'aujourd\'hui uniquement ? Les vues des jours précédents ne seront pas affectées.', 'en' => 'Reset only today\'s views? Previous days\' views will not be affected.', 'mg' => 'Averina ho tsinontsinona ny fahitana androany ihany ? Tsy hisy fiovana amin\'ny fahitan\'ny andro teo aloha.'];
+$translations['admin_dashboard_vues_reset_erreur'] = ['fr' => 'Échec de la réinitialisation. Réessayez.', 'en' => 'Reset failed. Please try again.', 'mg' => 'Tsy nahomby ny famerenana. Andramo indray.'];
+$translations['admin_dashboard_stat_filieres'] = ['fr' => 'Filières', 'en' => 'Programs', 'mg' => 'Sampam-pianarana'];
+$translations['admin_dashboard_stat_enseignants_fiches'] = ['fr' => 'Fiches enseignants', 'en' => 'Teacher profiles', 'mg' => 'Endrik\'ny mpampianatra'];
+$translations['admin_dashboard_stat_galerie'] = ['fr' => 'Albums galerie', 'en' => 'Gallery albums', 'mg' => 'Albôma sary'];
+$translations['admin_dashboard_stat_newsletter'] = ['fr' => 'Abonnés newsletter', 'en' => 'Newsletter subscribers', 'mg' => 'Mpanaraka taratasy vaovao'];
+$translations['admin_dashboard_stat_partenaires'] = ['fr' => 'Partenaires', 'en' => 'Partners', 'mg' => 'Mpiara-miombon\'antoka'];
 $translations['admin_dashboard_perf_titre'] = ['fr' => 'Vitesse du serveur', 'en' => 'Server speed', 'mg' => 'Hafainganam-pandehan\'ny mpizara'];
 $translations['admin_dashboard_filiere_titre'] = ['fr' => 'Étudiants par filière', 'en' => 'Students by program', 'mg' => 'Mpianatra isaky ny lalana'];
 $translations['admin_dashboard_calendrier_titre'] = ['fr' => 'Calendrier des événements', 'en' => 'Events calendar', 'mg' => 'Diariny hetsika'];
@@ -961,6 +978,7 @@ $translations['admin_enseignants_categorie_label'] = ['fr' => 'Catégorie', 'en'
 $translations['admin_enseignants_categorie_permanent'] = ['fr' => 'Permanent(e)', 'en' => 'Permanent', 'mg' => 'Tsy tapaka'];
 $translations['admin_enseignants_categorie_vacataire'] = ['fr' => 'Vacataire', 'en' => 'Part-time', 'mg' => 'Vonjimaika'];
 $translations['admin_enseignants_email_hint'] = ['fr' => 'Laisser vide pour générer automatiquement à partir du nom', 'en' => 'Leave empty to auto-generate from the name', 'mg' => 'Avelao banga raha te hamorona azy ho azy avy amin\'ny anarana'];
+$translations['admin_enseignants_specialite_hint'] = ['fr' => 'Laisser EN/MG vide pour traduire automatiquement depuis le FR à l\'enregistrement.', 'en' => 'Leave EN/MG empty to auto-translate from FR on save.', 'mg' => 'Avelao banga ny EN/MG raha te hadika ho azy avy amin\'ny FR rehefa tehirizina.'];
 $translations['admin_enseignants_ajouter_btn'] = ['fr' => 'Ajouter l\'enseignant', 'en' => 'Add teacher', 'mg' => 'Ampidiro ny mpampianatra'];
 $translations['admin_enseignants_liste_titre'] = ['fr' => 'Liste des enseignants', 'en' => 'Teacher list', 'mg' => 'Lisitry ny mpampianatra'];
 $translations['admin_enseignants_confirm_delete'] = ['fr' => 'Supprimer définitivement cet enseignant ?', 'en' => 'Permanently delete this teacher?', 'mg' => 'Hofafana tanteraka ve ity mpampianatra ity?'];

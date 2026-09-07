@@ -23,6 +23,11 @@ $current_centres_interet = $profil_row['centres_interet'] ?? '';
 $current_lien_facebook = $profil_row['lien_facebook'] ?? '';
 $current_lien_linkedin = $profil_row['lien_linkedin'] ?? '';
 $current_site_web = $profil_row['site_web'] ?? '';
+// Compteur de demandes d'amis reçues, pour le badge du lien "Mon réseau" (même requête que
+// l'icône retirée du header : le lien vit désormais uniquement ici).
+$profil_amis_demandes_recues = (int) $mysqli->query(
+    "SELECT COUNT(*) c FROM amis_demandes WHERE destinataire_id = $user_id AND statut = 'en_attente'"
+)->fetch_assoc()['c'];
 $upload_dir = 'uploads/';
 $allowed_types = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp', 'image/gif'];
 $flash = null;
@@ -190,6 +195,12 @@ include 'header.php';
                     <?php echo $role_badge['label']; ?>
                 </span>
             </div>
+            <a href="mes_amis.php" class="btn-add-item profile-network-link">
+                <i class="fas fa-user-group"></i> <?php echo t('header_mon_reseau'); ?>
+                <?php if ($profil_amis_demandes_recues > 0): ?>
+                    <span class="messagerie-nav-badge"><?php echo $profil_amis_demandes_recues > 9 ? '9+' : $profil_amis_demandes_recues; ?></span>
+                <?php endif; ?>
+            </a>
         </div>
 
         <div class="profile-settings-grid">
