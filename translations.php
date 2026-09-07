@@ -59,6 +59,7 @@ $translations = [
     'localisation_annexe_titre' => ['fr' => 'Bâtiment Ex-Lolo, en face de Leader Price, Majunga be', 'en' => 'Ex-Lolo Building, opposite Leader Price, Majunga be', 'mg' => 'Trano Ex-Lolo, tandrifin\'i Leader Price, Majunga be'],
     'localisation_annexe_adresse' => ['fr' => '', 'en' => '', 'mg' => ''],
     'localisation_annexe_historique' => ['fr' => 'Voir l\'historique du bâtiment Ex-Lolo', 'en' => 'See the history of the Ex-Lolo building', 'mg' => 'Jereo ny tantaran\'ny trano Ex-Lolo'],
+    'localisation_principale_voir_campus' => ['fr' => 'Voir le campus', 'en' => 'View the campus', 'mg' => 'Jereo ny campus'],
 
     // --- Section Carousel "Découvrir nos pages" ---
     'decouvrir_titre' => ['fr' => 'Découvrez notre univers', 'en' => 'Discover our world', 'mg' => 'Fantaro ny tontolonay'],
@@ -1467,6 +1468,14 @@ $translations['admin_utilisateurs_stats_par_niveau'] = ['fr' => 'Étudiants par 
 $translations['admin_utilisateurs_role_etudiant'] = ['fr' => 'Étudiant', 'en' => 'Student', 'mg' => 'Mpianatra'];
 $translations['admin_utilisateurs_role_enseignant'] = ['fr' => 'Enseignant', 'en' => 'Teacher', 'mg' => 'Mpampianatra'];
 $translations['admin_utilisateurs_role_bibliotheque'] = ['fr' => 'Bibliothèque', 'en' => 'Library', 'mg' => 'Trano-boky'];
+$translations['admin_utilisateurs_bib_compte_autonome'] = ['fr' => 'Compte autonome (base bibliothèque)', 'en' => 'Standalone account (library database)', 'mg' => 'Kaonty mahaleo tena (angon-drakitra trano-boky)'];
+$translations['admin_utilisateurs_bib_dernier_compte'] = ['fr' => 'Impossible de supprimer le dernier compte administrateur de la bibliothèque.', 'en' => 'Cannot delete the last library administrator account.', 'mg' => 'Tsy azo fafana ny kaonty mpitantana farany an\'ny trano-boky.'];
+$translations['admin_utilisateurs_role_tous'] = ['fr' => 'Tous les rôles', 'en' => 'All roles', 'mg' => 'Anjara rehetra'];
+$translations['admin_utilisateurs_tri_recent'] = ['fr' => 'Plus récents', 'en' => 'Most recent', 'mg' => 'Vao haingana indrindra'];
+$translations['admin_utilisateurs_tri_ancien'] = ['fr' => 'Plus anciens', 'en' => 'Oldest', 'mg' => 'Taloha indrindra'];
+$translations['admin_utilisateurs_tri_nom_asc'] = ['fr' => 'Nom (A → Z)', 'en' => 'Name (A → Z)', 'mg' => 'Anarana (A → Z)'];
+$translations['admin_utilisateurs_tri_nom_desc'] = ['fr' => 'Nom (Z → A)', 'en' => 'Name (Z → A)', 'mg' => 'Anarana (Z → A)'];
+$translations['admin_utilisateurs_tri_role'] = ['fr' => 'Par rôle', 'en' => 'By role', 'mg' => 'Araka ny anjara'];
 $translations['admin_utilisateurs_stats_autre'] = ['fr' => 'Administration (autre)', 'en' => 'Administration (other)', 'mg' => 'Fitantanana (hafa)'];
 $translations['admin_utilisateurs_nom_enseignant_placeholder'] = ['fr' => 'Nom complet de l\'enseignant', 'en' => 'Teacher\'s full name', 'mg' => 'Anaran\'ny mpampianatra feno'];
 $translations['admin_utilisateurs_ajouter_enseignant'] = ['fr' => 'Ajouter un compte enseignant', 'en' => 'Add a teacher account', 'mg' => 'Ampio kaonty mpampianatra'];

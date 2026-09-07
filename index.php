@@ -608,6 +608,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <a class="map-external-link" href="https://www.google.com/maps?q=-15.702528,46.353861&z=17&t=k" target="_blank" rel="noopener"><i class="fas fa-up-right-from-square"></i> <?php echo t('ouvrir_google_maps'); ?></a>
                     <a class="map-directions-link" href="https://www.google.com/maps/dir/?api=1&destination=-15.702528,46.353861" target="_blank" rel="noopener"><i class="fas fa-diamond-turn-right"></i> <?php echo t('itineraire'); ?></a>
                 </div>
+                <a class="map-history-link" href="campus.php"><i class="fas fa-building-columns"></i> <?php echo t('localisation_principale_voir_campus'); ?></a>
             </div>
             <div class="map-wrapper">
                 <h3><?php echo t('localisation_annexe_titre'); ?></h3>

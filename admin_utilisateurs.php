@@ -152,6 +152,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: admin_utilisateurs.php?flash=' . urlencode('success|' . t('admin_utilisateurs_mdp_regenere')));
         exit;
     }
+
+    // --- Compte administrateur de la bibliothèque : table "admins" de la base séparée
+    // "bibliotheque" (voir bibliotheque/config.php et login_handler.php). On y accède via
+    // le nom de table qualifié (bibliotheque.admins) sans jamais changer la base par défaut
+    // de $mysqli, pour ne pas casser les requêtes non qualifiées du reste de cette page. ---
+    if (isset($_POST['regenerate_bib_password_id'])) {
+        $bid = (int) $_POST['regenerate_bib_password_id'];
+        $bib_row = $mysqli->query("SELECT username FROM bibliotheque.admins WHERE id = $bid")->fetch_assoc();
+        if ($bib_row) {
+            $new_password = admu_generate_password(10);
+            $hashed = password_hash($new_password, PASSWORD_DEFAULT);
+            $stmt = $mysqli->prepare("UPDATE bibliotheque.admins SET password = ? WHERE id = ?");
+            $stmt->bind_param('si', $hashed, $bid);
+            $stmt->execute();
+            $stmt->close();
+            $_SESSION['admu_new_account'] = ['identifiant' => $bib_row['username'], 'password' => $new_password, 'nom' => $bib_row['username']];
+        }
+        header('Location: admin_utilisateurs.php?flash=' . urlencode('success|' . t('admin_utilisateurs_mdp_regenere')));
+        exit;
+    }
+
+    if (isset($_POST['delete_bib_admin_id'])) {
+        $bid = (int) $_POST['delete_bib_admin_id'];
+        $bib_count = (int) $mysqli->query("SELECT COUNT(*) c FROM bibliotheque.admins")->fetch_assoc()['c'];
+        if ($bib_count <= 1) {
+            header('Location: admin_utilisateurs.php?flash=' . urlencode('error|' . t('admin_utilisateurs_bib_dernier_compte')));
+            exit;
+        }
+        $mysqli->query("DELETE FROM bibliotheque.admins WHERE id = $bid");
+        header('Location: admin_utilisateurs.php?flash=' . urlencode('success|Compte supprimé.'));
+        exit;
+    }
 }
 
 if (isset($_GET['flash'])) {
@@ -264,20 +296,37 @@ include 'header.php';
             </form>
 
         <?php else:
-            $where = '';
+            $role_filter = in_array($_GET['role'] ?? '', $valid_roles, true) ? $_GET['role'] : '';
+            $sort_options = [
+                'recent'   => 'u.date_creation DESC',
+                'ancien'   => 'u.date_creation ASC',
+                'nom_asc'  => 'u.nom ASC',
+                'nom_desc' => 'u.nom DESC',
+                'role'     => 'u.role ASC, u.nom ASC',
+            ];
+            $sort = isset($sort_options[$_GET['sort'] ?? '']) ? $_GET['sort'] : 'recent';
+
+            $where_parts = [];
             $params = [];
             $types = '';
             if ($q !== '') {
-                $where = 'WHERE u.nom LIKE ? OR u.email LIKE ?';
+                $where_parts[] = '(u.nom LIKE ? OR u.email LIKE ?)';
                 $like = "%$q%";
-                $types = 'ss';
-                $params = [$like, $like];
+                $types .= 'ss';
+                $params[] = $like;
+                $params[] = $like;
             }
+            if ($role_filter !== '') {
+                $where_parts[] = 'u.role = ?';
+                $types .= 's';
+                $params[] = $role_filter;
+            }
+            $where = $where_parts ? 'WHERE ' . implode(' AND ', $where_parts) : '';
             $sql = "SELECT u.*, p.filiere_id, p.niveau, f.nom_fr AS filiere_nom
                     FROM utilisateurs u
                     LEFT JOIN preinscriptions p ON p.user_id = u.id AND p.status = 'approuve'
                     LEFT JOIN filieres f ON f.id = p.filiere_id
-                    $where ORDER BY u.date_creation DESC";
+                    $where ORDER BY {$sort_options[$sort]}";
             if ($params) {
                 $stmt = $mysqli->prepare($sql);
                 $stmt->bind_param($types, ...$params);
@@ -287,9 +336,35 @@ include 'header.php';
             } else {
                 $all_users = $mysqli->query($sql)->fetch_all(MYSQLI_ASSOC);
             }
+
+            // Compte(s) administrateur de la bibliothèque : table "admins" de la base séparée
+            // "bibliotheque" (voir explication au niveau du header ci-dessus). Affiché dans la
+            // même liste que les comptes ISSTM, mais gardé dans un tableau à part car son schéma
+            // (username/password/role, pas d'email/téléphone/date_creation) ne colle pas à
+            // $all_users, utilisé aussi pour les statistiques par filière/année.
+            $bib_admins = [];
+            // Rôle "conceptuel" de ce compte dans cette page (badge/filtre) : la colonne "role" de
+            // bibliotheque.admins a sa propre signification interne, sans rapport avec les rôles
+            // ISSTM (etudiant/enseignant/admin/...), donc on ne s'en sert pas pour le filtre ici.
+            if ($role_filter === '' || $role_filter === 'bibliotheque') {
+                $bib_res = @$mysqli->query("SELECT id, username, avatar_path, role FROM bibliotheque.admins ORDER BY id ASC");
+                if ($bib_res) {
+                    $bib_admins = $bib_res->fetch_all(MYSQLI_ASSOC);
+                    if ($q !== '') {
+                        $bib_admins = array_values(array_filter($bib_admins, function ($a) use ($q) {
+                            return stripos($a['username'], $q) !== false;
+                        }));
+                    }
+                    if ($sort === 'nom_desc') {
+                        usort($bib_admins, function ($a, $b) { return strcasecmp($b['username'], $a['username']); });
+                    } else {
+                        usort($bib_admins, function ($a, $b) { return strcasecmp($a['username'], $b['username']); });
+                    }
+                }
+            }
         ?>
             <div class="admin-galerie-stats">
-                <div class="admin-stat-card"><i class="fas fa-users"></i><div><strong><?php echo count($all_users); ?></strong><span><?php echo t('admin_utilisateurs_total'); ?></span></div></div>
+                <div class="admin-stat-card"><i class="fas fa-users"></i><div><strong><?php echo count($all_users) + count($bib_admins); ?></strong><span><?php echo t('admin_utilisateurs_total'); ?></span></div></div>
             </div>
 
             <div class="admin-galerie-toolbar etu-tabs">
@@ -506,6 +581,21 @@ include 'header.php';
                         <i class="fas fa-magnifying-glass"></i>
                         <input type="search" name="q" value="<?php echo htmlspecialchars($q); ?>" placeholder="<?php echo t('admin_utilisateurs_recherche_placeholder'); ?>">
                     </div>
+                    <select name="role">
+                        <option value=""><?php echo t('admin_utilisateurs_role_tous'); ?></option>
+                        <option value="etudiant" <?php echo $role_filter === 'etudiant' ? 'selected' : ''; ?>><?php echo t('admin_utilisateurs_role_etudiant'); ?></option>
+                        <option value="enseignant" <?php echo $role_filter === 'enseignant' ? 'selected' : ''; ?>><?php echo t('admin_utilisateurs_role_enseignant'); ?></option>
+                        <option value="bibliotheque" <?php echo $role_filter === 'bibliotheque' ? 'selected' : ''; ?>><?php echo t('admin_utilisateurs_role_bibliotheque'); ?></option>
+                        <option value="admin" <?php echo $role_filter === 'admin' ? 'selected' : ''; ?>><?php echo t('admin_utilisateurs_role_admin'); ?></option>
+                        <option value="user" <?php echo $role_filter === 'user' ? 'selected' : ''; ?>><?php echo t('admin_utilisateurs_role_user'); ?></option>
+                    </select>
+                    <select name="sort">
+                        <option value="recent" <?php echo $sort === 'recent' ? 'selected' : ''; ?>><?php echo t('admin_utilisateurs_tri_recent'); ?></option>
+                        <option value="ancien" <?php echo $sort === 'ancien' ? 'selected' : ''; ?>><?php echo t('admin_utilisateurs_tri_ancien'); ?></option>
+                        <option value="nom_asc" <?php echo $sort === 'nom_asc' ? 'selected' : ''; ?>><?php echo t('admin_utilisateurs_tri_nom_asc'); ?></option>
+                        <option value="nom_desc" <?php echo $sort === 'nom_desc' ? 'selected' : ''; ?>><?php echo t('admin_utilisateurs_tri_nom_desc'); ?></option>
+                        <option value="role" <?php echo $sort === 'role' ? 'selected' : ''; ?>><?php echo t('admin_utilisateurs_tri_role'); ?></option>
+                    </select>
                     <button type="submit" class="btn-outline"><i class="fas fa-filter"></i> <?php echo t('admin_etudiants_filtrer'); ?></button>
                 </form>
                 <a href="admin_utilisateurs.php?view=edit" class="btn-add-item admin-new-album-btn"><i class="fas fa-plus"></i> <?php echo t('admin_utilisateurs_nouveau'); ?></a>
@@ -519,10 +609,36 @@ include 'header.php';
                 <button type="submit" name="create_teacher" class="btn-add-item"><i class="fas fa-user-plus"></i> <?php echo t('admin_utilisateurs_ajouter_enseignant'); ?></button>
             </form>
 
-            <?php if (empty($all_users)): ?>
+            <?php if (empty($all_users) && empty($bib_admins)): ?>
                 <p class="gallery-empty"><i class="fas fa-users"></i> <?php echo t('admin_utilisateurs_aucun'); ?></p>
             <?php else: ?>
                 <div class="admin-album-list">
+                    <?php foreach ($bib_admins as $ba):
+                        // avatar_path est stocké relatif au dossier bibliotheque/ (voir
+                        // bibliotheque/admin/profil.php, préfixé par "../" depuis admin/) : il faut
+                        // donc le préfixer par "bibliotheque/" pour un affichage correct depuis la racine.
+                        $ba_avatar = $ba['avatar_path'] ? 'bibliotheque/' . $ba['avatar_path'] : 'images/teachers/default-avatar.svg';
+                    ?>
+                        <div class="admin-album-row">
+                            <img src="<?php echo htmlspecialchars($ba_avatar); ?>" alt="" class="admin-album-row-thumb">
+                            <div class="admin-album-row-info">
+                                <h4><?php echo htmlspecialchars($ba['username']); ?></h4>
+                                <div class="admin-album-row-meta">
+                                    <span><i class="fas fa-id-badge"></i> <?php echo htmlspecialchars($ba['username']); ?></span>
+                                    <span><i class="fas fa-shield-halved"></i> <?php echo t('admin_utilisateurs_role_bibliotheque'); ?></span>
+                                    <span class="etu-badge"><i class="fas fa-database"></i> <?php echo t('admin_utilisateurs_bib_compte_autonome'); ?></span>
+                                </div>
+                            </div>
+                            <div class="admin-album-row-actions">
+                                <form action="admin_utilisateurs.php" method="POST" style="display:inline;" class="js-confirm-submit" data-confirm-msg="<?php echo htmlspecialchars(t('admin_utilisateurs_regenerer_confirm')); ?>">
+                                    <button type="submit" name="regenerate_bib_password_id" value="<?php echo (int) $ba['id']; ?>" class="btn-outline" title="<?php echo t('admin_utilisateurs_regenerer_mdp'); ?>"><i class="fas fa-key"></i></button>
+                                </form>
+                                <form action="admin_utilisateurs.php" method="POST" style="display:inline;" class="js-confirm-submit" data-confirm-msg="<?php echo htmlspecialchars(t('admin_utilisateurs_confirm_suppr')); ?>">
+                                    <button type="submit" name="delete_bib_admin_id" value="<?php echo (int) $ba['id']; ?>" class="btn-delete" title="<?php echo t('admin_supprimer'); ?>"><i class="fas fa-trash-alt"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
                     <?php foreach ($all_users as $u): ?>
                         <div class="admin-album-row">
                             <img src="<?php echo htmlspecialchars($u['avatar_path'] ?: 'images/teachers/default-avatar.svg'); ?>" alt="" class="admin-album-row-thumb">

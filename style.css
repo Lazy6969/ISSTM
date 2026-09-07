@@ -5908,7 +5908,7 @@ body.dark-mode .enseignants-dissertation {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 24px;
-    align-items: start;
+    align-items: stretch;
 }
 
 .admin-widget {
@@ -5917,6 +5917,8 @@ body.dark-mode .enseignants-dissertation {
     border-radius: 14px;
     padding: 18px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .admin-widget h4 {
@@ -5933,11 +5935,17 @@ body.dark-mode .enseignants-dissertation {
    jauge circulaire) — voir updatePerfChart() dans admin_dashboard.js. */
 .admin-perf-chart-wrap {
     position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .admin-perf-chart {
     width: 100%;
-    height: 110px;
+    height: 100%;
+    min-height: 110px;
+    flex: 1;
     display: block;
 }
 
@@ -6112,6 +6120,7 @@ body.dark-mode .enseignants-dissertation {
 .admin-notes-textarea {
     width: 100%;
     min-height: 130px;
+    flex: 1;
     resize: vertical;
     box-sizing: border-box;
     border: 1px solid var(--border-color);
