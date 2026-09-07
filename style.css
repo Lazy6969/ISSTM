@@ -3003,6 +3003,18 @@ body.dark-mode .testimonial-program {
     font-size: 0.9rem;
 }
 
+.footer-concue-par-link {
+    color: var(--secondary-color);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.25s ease;
+}
+
+.footer-concue-par-link:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
 .error-404-block {
     text-align: center;
     max-width: 560px;
@@ -4988,6 +5000,305 @@ body.dark-mode .enseignants-dissertation {
 .animate-on-scroll.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* --- Page Équipe (equipe.php) --- */
+.team-intro {
+    max-width: 780px;
+    margin: 0 auto 20px;
+    text-align: center;
+}
+
+.team-list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+/* Chaque ligne applique son propre --delay (décalage entre les 4 dev), et chaque élément
+   à l'intérieur (photo, nom, rôle, mention, bio, citation) porte aussi .animate-on-scroll
+   avec un --delay incrémental : ça fait apparaître le contenu d'une même ligne morceau par
+   morceau, pas d'un bloc, comme demandé ("animer les contenus"). */
+.team-row.animate-on-scroll,
+.team-row-media.animate-on-scroll,
+.team-row-name.animate-on-scroll,
+.team-row-role.animate-on-scroll,
+.team-row-mention.animate-on-scroll,
+.team-row-bio.animate-on-scroll,
+.team-row-highlight.animate-on-scroll {
+    transition-delay: var(--delay, 0s);
+}
+
+.team-row-media.animate-on-scroll {
+    transform: translateX(-36px);
+}
+
+.team-row-media.animate-on-scroll.visible {
+    transform: translateX(0);
+}
+
+.team-row-name.animate-on-scroll,
+.team-row-role.animate-on-scroll,
+.team-row-mention.animate-on-scroll,
+.team-row-bio.animate-on-scroll,
+.team-row-highlight.animate-on-scroll {
+    transform: translateX(24px);
+}
+
+.team-row-name.animate-on-scroll.visible,
+.team-row-role.animate-on-scroll.visible,
+.team-row-mention.animate-on-scroll.visible,
+.team-row-bio.animate-on-scroll.visible,
+.team-row-highlight.animate-on-scroll.visible {
+    transform: translateX(0);
+}
+
+.team-row {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 40px;
+    align-items: center;
+    background-color: var(--box-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 22px;
+    padding: 32px;
+    box-shadow: 0 8px 24px var(--box-shadow-color);
+    transition: transform 0.4s var(--card-hover-ease, ease), box-shadow 0.4s ease;
+}
+
+.team-row:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 45px var(--box-shadow-color);
+}
+
+/* Le leader du projet se distingue visuellement du reste de l'équipe : liseré et halo dorés,
+   fond légèrement teinté, badge "à l'honneur" sur sa photo. */
+.team-row.is-featured {
+    position: relative;
+    border: 2px solid var(--secondary-color);
+    background: linear-gradient(135deg, color-mix(in srgb, var(--secondary-color) 10%, var(--box-bg-color)), var(--box-bg-color) 60%);
+    box-shadow: 0 10px 34px color-mix(in srgb, var(--secondary-color) 30%, transparent);
+}
+
+.team-row-media {
+    position: relative;
+    width: 100%;
+    max-width: 220px;
+    aspect-ratio: 1;
+    margin: 0 auto;
+}
+
+.team-row.is-featured .team-row-media {
+    max-width: 250px;
+}
+
+.team-card-ring {
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, var(--primary-color), var(--secondary-color), var(--primary-color));
+    animation: team-ring-spin 6s linear infinite;
+}
+
+@keyframes team-ring-spin {
+    to { transform: rotate(360deg); }
+}
+
+.team-card-photo {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--box-bg-color);
+    display: block;
+}
+
+.team-featured-badge {
+    position: absolute;
+    z-index: 2;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    background: linear-gradient(45deg, var(--secondary-color), #f4c542);
+    color: var(--gold-contrast-text);
+    font-weight: 700;
+    font-size: 0.72rem;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--secondary-color) 45%, transparent);
+    animation: team-badge-pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes team-badge-pulse {
+    0%, 100% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.06); }
+}
+
+.team-row-info {
+    min-width: 0;
+}
+
+.team-row-name {
+    margin: 0 0 8px;
+    font-size: 1.35rem;
+    color: var(--primary-color);
+    line-height: 1.3;
+}
+
+.team-row-role {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    border-radius: 20px;
+    background: color-mix(in srgb, var(--secondary-color) 18%, transparent);
+    color: var(--secondary-color);
+    font-weight: 700;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.team-row-mention {
+    margin: 10px 0 14px;
+    font-size: 0.8rem;
+    font-style: italic;
+    opacity: 0.65;
+}
+
+.team-row-bio {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    opacity: 0.9;
+}
+
+.team-row-highlight {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 16px 0 0;
+    padding: 14px 18px;
+    border-left: 3px solid var(--secondary-color);
+    background: color-mix(in srgb, var(--secondary-color) 10%, transparent);
+    border-radius: 0 12px 12px 0;
+    font-weight: 600;
+    font-style: italic;
+    color: var(--primary-color);
+    font-size: 0.92rem;
+    line-height: 1.55;
+}
+
+.team-row-highlight i {
+    color: var(--secondary-color);
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.team-row-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.team-contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.2s ease;
+}
+
+.team-contact-btn:hover {
+    transform: translateY(-3px);
+}
+
+.team-contact-tel {
+    background: color-mix(in srgb, var(--primary-color) 12%, transparent);
+    color: var(--primary-color);
+    border: 1px solid color-mix(in srgb, var(--primary-color) 30%, transparent);
+}
+
+.team-contact-tel:hover {
+    background: var(--primary-color);
+    color: #fff;
+    box-shadow: 0 8px 18px color-mix(in srgb, var(--primary-color) 35%, transparent);
+}
+
+.team-contact-fb {
+    background: color-mix(in srgb, #1877f2 12%, transparent);
+    color: #1877f2;
+    border: 1px solid color-mix(in srgb, #1877f2 30%, transparent);
+}
+
+.team-contact-fb:hover {
+    background: #1877f2;
+    color: #fff;
+    box-shadow: 0 8px 18px color-mix(in srgb, #1877f2 35%, transparent);
+}
+
+@media (max-width: 700px) {
+    .team-row-contact {
+        justify-content: center;
+    }
+    .team-row {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 26px 22px;
+    }
+    .team-row-bio,
+    .team-row-highlight {
+        text-align: left;
+    }
+}
+
+.team-merci {
+    text-align: center;
+    max-width: 640px;
+    margin: 60px auto 0;
+    padding: 30px;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--primary-color);
+}
+
+.team-merci i {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 1.6rem;
+    color: #e74c3c;
+    animation: team-heartbeat 1.6s ease-in-out infinite;
+}
+
+.team-merci p {
+    margin: 0;
+}
+
+@keyframes team-heartbeat {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.25); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.2); }
+    60% { transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .team-card-ring,
+    .team-featured-badge,
+    .team-merci i {
+        animation: none;
+    }
 }
 
 .og-arrow {

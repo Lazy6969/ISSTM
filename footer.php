@@ -78,7 +78,7 @@ $footer_hide_visible = in_array(basename($_SERVER['PHP_SELF']), ['messagerie.php
                 <span class="footer-hours"><i class="fas fa-clock"></i> <?php echo dc_footer('footer_horaires'); ?></span>
             </div>
         </div>
-        <p class="copyright-text">&copy; <?php echo date("Y"); ?> <?php echo t('droits_reserves'); ?></p>
+        <p class="copyright-text">&copy; <?php echo date("Y"); ?> <?php echo t('droits_reserves'); ?> <span aria-hidden="true">·</span> <a href="<?php echo SITE_URL; ?>/equipe.php" class="footer-concue-par-link"><i class="fas fa-code" aria-hidden="true"></i> <?php echo t('footer_concue_par'); ?></a></p>
         <p class="footer-legal-links">
             <a href="<?php echo SITE_URL; ?>/confidentialite.php"><?php echo t('footer_confidentialite'); ?></a>
             <span aria-hidden="true">|</span>
@@ -211,6 +211,7 @@ $palette_items = [
     ['label' => t('actualites'), 'href' => SITE_URL . '/actualite.php', 'icon' => 'fa-newspaper', 'group' => 'nav'],
     ['label' => t('associations_titre'), 'href' => SITE_URL . '/associations.php', 'icon' => 'fa-people-roof', 'group' => 'nav'],
     ['label' => t('campus_titre'), 'href' => SITE_URL . '/campus.php', 'icon' => 'fa-city', 'group' => 'nav'],
+    ['label' => t('equipe_titre'), 'href' => SITE_URL . '/equipe.php', 'icon' => 'fa-user-group', 'group' => 'nav'],
 ];
 if (!empty($header_is_site_user)) {
     $palette_items[] = ['label' => t('profil_titre'), 'href' => SITE_URL . '/profil.php', 'icon' => 'fa-user', 'group' => 'compte'];
