@@ -4847,6 +4847,37 @@ body.dark-mode .enseignants-dissertation {
     margin-top: 0;
 }
 
+/* Checklist des 3 critères de robustesse du nouveau mot de passe (reinitialiser_mdp.php),
+   mise à jour en direct par script.js au fil de la saisie ; la vérification serveur reste
+   la seule qui compte, ceci n'est qu'un guide visuel. */
+.pwd-criteria-list {
+    list-style: none;
+    margin: -8px 0 16px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.85rem;
+}
+
+.pwd-criteria-list li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-color);
+    opacity: 0.6;
+    transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.pwd-criteria-list li i {
+    font-size: 0.8rem;
+}
+
+.pwd-criteria-list li.is-met {
+    color: #2ecc71;
+    opacity: 1;
+}
+
 .teacher-card-front img {
     width: 150px;
     height: 150px;
@@ -10069,6 +10100,34 @@ body.dark-mode .placeholder-section p {
 }
 .admin-status-publie { background: color-mix(in srgb, #2ecc71 20%, transparent); color: #1e8449; }
 .admin-status-brouillon { background: color-mix(in srgb, #f39c12 20%, transparent); color: #b9770e; }
+.admin-status-erreur { background: color-mix(in srgb, #e74c3c 20%, transparent); color: #c0392b; }
+.admin-status-info { background: color-mix(in srgb, #3498db 20%, transparent); color: #2471a3; }
+
+/* admin_securite.php : profil (photo + nom) résolu derrière chaque événement, actions groupées */
+.admin-securite-toolbar-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.admin-securite-row-main {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.admin-securite-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 1px solid var(--border-color);
+}
+
+.admin-securite-ip {
+    opacity: 0.6;
+}
 
 .admin-album-row-actions {
     display: flex;

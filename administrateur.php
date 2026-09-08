@@ -119,6 +119,12 @@ $admin_note_content = $admin_note_row['contenu'] ?? '';
                     <p><?php echo t('admin_dashboard_utilisateurs_desc'); ?></p>
                     <span class="action-card-cta"><?php echo t('admin_dashboard_ouvrir'); ?> <i class="fas fa-arrow-right"></i></span>
                 </a>
+                <a href="admin_securite.php" class="action-card">
+                    <div class="action-card-icon"><i class="fas fa-shield-halved"></i></div>
+                    <h3><?php echo t('admin_dashboard_securite_titre'); ?></h3>
+                    <p><?php echo t('admin_dashboard_securite_desc'); ?></p>
+                    <span class="action-card-cta"><?php echo t('admin_dashboard_ouvrir'); ?> <i class="fas fa-arrow-right"></i></span>
+                </a>
                 <a href="admin_etudiants.php" class="action-card">
                     <div class="action-card-icon"><i class="fas fa-user-graduate"></i></div>
                     <h3><?php echo t('admin_dashboard_etudiants_titre'); ?></h3>

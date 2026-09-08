@@ -22,14 +22,14 @@ function nl_build_email_body($subject, $message, $email) {
     return '<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;">'
           . '<h2 style="color:#003366;">' . htmlspecialchars($subject) . '</h2>'
           . '<div>' . nl2br(htmlspecialchars($message)) . '</div>'
-          . '<hr><p style="font-size:12px;color:#888;">ISSTM Mahajanga — isstm.umg@gmail.com<br>'
+          . '<hr><p style="font-size:12px;color:#888;">ISSTM Mahajanga — isstm.univ.umg@gmail.com<br>'
           . '<a href="' . htmlspecialchars($unsub) . '" style="color:#888;">Se désabonner</a></p></div>';
 }
 
 // --- Envoi effectif d'une campagne (immédiate ou programmée arrivée à échéance) ---
 function nl_send_campaign($mysqli, $campaign_id, $subject, $message) {
     $recipients = $mysqli->query("SELECT email FROM newsletter_subscribers")->fetch_all(MYSQLI_ASSOC);
-    $headers = "MIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\nFrom: ISSTM Mahajanga <isstm.umg@gmail.com>\r\n";
+    $headers = "MIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\nFrom: ISSTM Mahajanga <isstm.univ.umg@gmail.com>\r\n";
     $sent = 0;
     foreach ($recipients as $r) {
         $body = nl_build_email_body($subject, $message, $r['email']);

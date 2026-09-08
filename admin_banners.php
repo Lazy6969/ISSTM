@@ -74,6 +74,7 @@ $manageable_pages = [
     'admin_partenaires.php'   => ['label' => 'Admin — Partenaires', 'group' => 'admin'],
     'admin_newsletter.php'    => ['label' => 'Admin — Newsletter', 'group' => 'admin'],
     'admin_banners.php'       => ['label' => 'Admin — Bannières', 'group' => 'admin'],
+    'admin_securite.php'      => ['label' => 'Admin — Sécurité', 'group' => 'admin'],
     'admin_evenements.php'    => ['label' => 'Admin — Événements', 'group' => 'admin'],
     'admin_communaute.php'    => ['label' => 'Admin — Communauté', 'group' => 'admin'],
 
