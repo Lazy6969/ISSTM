@@ -39,6 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     // Redirection en fonction du rôle
                     if ($role === 'admin') {
                         header('Location: administrateur.php');
+                    } elseif ($role === 'materiel') {
+                        header('Location: admin_materiel.php');
                     } elseif ($is_scolarite) {
                         header('Location: admin_etudiants.php');
                     } elseif ($role === 'enseignant') {

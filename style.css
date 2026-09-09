@@ -13128,6 +13128,23 @@ body.dark-mode .profile-role-badge.is-admin { color: var(--secondary-color); }
     overflow: hidden;
 }
 
+/* Piste optionnelle entre .etu-barchart-group et .etu-barchart-stack : occupe exactement
+   l'espace vertical restant une fois la légende (hauteur fixe, voir .etu-barchart-label
+   ci-dessous) retirée, et ancre la barre à sa base — sans elle, une légende plus longue sur
+   plusieurs lignes pousse la barre plus haut que ses voisines et casse l'alignement du
+   diagramme (constaté sur "Pannes par lieu" avec des noms de lieux longs). */
+.etu-barchart-track {
+    flex: 1;
+    width: 60%;
+    min-width: 30px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.etu-barchart-track .etu-barchart-stack {
+    width: 100%;
+}
+
 .etu-barchart-segment {
     width: 100%;
     min-height: 3px;
@@ -13136,7 +13153,10 @@ body.dark-mode .profile-role-badge.is-admin { color: var(--secondary-color); }
 
 .etu-barchart-label {
     margin-top: 10px;
+    height: 2.7rem;
+    overflow: hidden;
     font-size: 0.78rem;
+    line-height: 1.15;
     text-align: center;
     color: var(--text-color);
     opacity: 0.75;
@@ -15762,6 +15782,578 @@ body.dark-mode .profile-role-badge.is-admin { color: var(--secondary-color); }
     gap: 6px;
     padding: 0;
     margin-bottom: 8px;
+}
+
+/* ==========================================================================
+   === admin_materiel.php : gestion du matériel et mobilier de l'ISSTM ===
+   ========================================================================== */
+
+.admin-stat-card-alert {
+    border-color: color-mix(in srgb, #e74c3c 40%, var(--border-color));
+}
+
+.admin-stat-card-alert i {
+    color: #e74c3c;
+}
+
+.materiel-picker-count {
+    opacity: 0.6;
+    font-size: 0.78rem;
+    margin-left: 2px;
+}
+
+.materiel-picker-panne-dot {
+    color: #e74c3c;
+    font-size: 0.7rem;
+    margin-left: 4px;
+    animation: materiel-pulse 1.6s ease-in-out infinite;
+}
+
+.materiel-add-form-wrap {
+    background-color: var(--section-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 22px;
+    margin-bottom: 30px;
+}
+
+.materiel-add-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+    align-items: end;
+    margin-top: 12px;
+}
+
+.materiel-add-form .form-group {
+    margin-bottom: 0;
+}
+
+.materiel-add-form .btn-add-item {
+    height: fit-content;
+}
+
+.materiel-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.materiel-card {
+    background-color: var(--section-bg-color);
+    border: 1px solid var(--border-color);
+    border-left: 5px solid var(--border-color);
+    border-radius: 14px;
+    padding: 18px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-left-color 0.25s ease;
+}
+
+.materiel-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.materiel-card.materiel-etat-bon_etat { border-left-color: #2ecc71; }
+.materiel-card.materiel-etat-en_marche { border-left-color: #3498db; }
+.materiel-card.materiel-etat-mauvais,
+.materiel-card.materiel-etat-mauvais_etat { border-left-color: #f39c12; }
+.materiel-card.materiel-etat-en_panne {
+    border-left-color: #e74c3c;
+    animation: materiel-panne-glow 2.4s ease-in-out infinite;
+}
+
+@keyframes materiel-panne-glow {
+    0%, 100% { box-shadow: 0 0 0 rgba(231, 76, 60, 0); }
+    50% { box-shadow: 0 0 14px rgba(231, 76, 60, 0.25); }
+}
+
+@keyframes materiel-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(1.3); }
+}
+
+.materiel-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.materiel-card-head h3 {
+    margin: 0;
+    font-size: 1.02rem;
+    color: var(--primary-color);
+    line-height: 1.3;
+}
+
+.materiel-card-head .admin-status-badge {
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.materiel-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.85rem;
+    margin-bottom: 14px;
+}
+
+.materiel-card-body i {
+    color: var(--secondary-color);
+    width: 16px;
+}
+
+.materiel-card-obs {
+    opacity: 0.75;
+    font-style: italic;
+}
+
+/* Colonne plutôt que ligne : dans une carte de ~280px, un tampon + un texte + un bouton
+   alignés côte à côte ne laissaient que quelques dizaines de pixels au texte, qui repartait
+   à la ligne à presque chaque mot (voir capture d'écran signalée). En colonne, chaque élément
+   profite de toute la largeur de la carte. */
+.materiel-emprunt-banner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    background: color-mix(in srgb, #e74c3c 6%, transparent);
+    border: 1px dashed color-mix(in srgb, #e74c3c 45%, var(--border-color));
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    font-size: 0.8rem;
+    animation: materiel-slide-down 0.25s ease;
+}
+
+/* Effet "tampon encreur" rouge, légèrement tourné, comme sur un vrai cachet de prêt. */
+.materiel-emprunt-stamp {
+    flex-shrink: 0;
+    display: inline-block;
+    border: 2px solid #e74c3c;
+    border-radius: 5px;
+    color: #e74c3c;
+    font-weight: 800;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 3px 9px;
+    transform: rotate(-7deg);
+    opacity: 0.85;
+    user-select: none;
+}
+
+.materiel-emprunt-stamps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+/* Le tampon est désormais un vrai bouton (ouvre le détail de l'emprunt) : gomme le style de
+   bouton natif tout en gardant l'effet tampon, avec un léger redressement + halo au survol
+   pour qu'on comprenne que c'est cliquable. */
+.materiel-emprunt-stamp-btn {
+    background: color-mix(in srgb, #e74c3c 8%, transparent);
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.materiel-emprunt-stamp-btn:hover {
+    transform: rotate(0deg) scale(1.05);
+    box-shadow: 0 2px 10px rgba(231, 76, 60, 0.35);
+}
+
+.materiel-emprunt-popup-modal {
+    max-width: 420px;
+}
+
+.materiel-emprunt-popup-text {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin: 0 0 10px;
+}
+
+.materiel-emprunt-popup-text strong {
+    color: var(--primary-color);
+}
+
+.materiel-emprunt-banner-text {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    line-height: 1.45;
+}
+
+.materiel-emprunt-banner-text strong {
+    color: var(--primary-color);
+}
+
+.materiel-emprunt-banner-date {
+    font-size: 0.72rem;
+    opacity: 0.65;
+}
+
+.materiel-emprunt-banner form {
+    margin: 0;
+    align-self: flex-end;
+}
+
+.materiel-retour-btn {
+    color: #2ecc71;
+    border-color: color-mix(in srgb, #2ecc71 40%, var(--border-color));
+}
+
+/* Carte "visiteuse" : matériel physiquement présent ici via un emprunt actif, mais dont la
+   fiche appartient à un autre lieu (voir $incoming_loans dans admin_materiel.php). Bordure en
+   tirets bleus pour la distinguer d'un coup d'œil des fiches qui appartiennent vraiment à ce
+   lieu. */
+.materiel-card-emprunte {
+    border-style: dashed;
+    border-color: color-mix(in srgb, #3498db 45%, var(--border-color));
+    background: color-mix(in srgb, #3498db 5%, var(--section-bg-color));
+}
+
+.materiel-card-emprunte:hover {
+    border-color: #3498db;
+}
+
+.materiel-emprunt-stamp-inline {
+    margin-bottom: 12px;
+}
+
+.materiel-stats-chart-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.materiel-stats-chart-header h3 {
+    margin: 0;
+}
+
+.materiel-stats-chart-toggle {
+    display: flex;
+    gap: 8px;
+}
+
+.materiel-stats-chart-toggle .btn-outline {
+    font-size: 0.78rem;
+    padding: 6px 12px;
+}
+
+.materiel-stats-chart-toggle .btn-outline.is-active {
+    background-color: var(--etat-color, var(--primary-color));
+    border-color: var(--etat-color, var(--primary-color));
+    color: #fff;
+}
+
+.materiel-stats-subtitle {
+    margin: 18px 0 8px;
+    font-size: 0.8rem;
+    opacity: 0.65;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.etu-barchart-secondary {
+    height: 160px;
+    opacity: 0.85;
+}
+
+.materiel-toggle-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 2px;
+}
+
+.materiel-panel-title {
+    margin: 0 0 10px;
+    font-size: 0.85rem;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.materiel-card-actions {
+    display: flex;
+    gap: 8px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 12px;
+}
+
+.materiel-card-actions form {
+    margin: 0;
+}
+
+.materiel-maintenance-panel {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--border-color);
+    animation: materiel-slide-down 0.25s ease;
+}
+
+@keyframes materiel-slide-down {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.materiel-maintenance-list {
+    list-style: none;
+    margin: 0 0 12px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.materiel-maintenance-list li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    background-color: var(--box-bg-color);
+    border-radius: 8px;
+    padding: 8px 10px;
+}
+
+.materiel-maintenance-date {
+    font-weight: 700;
+    color: var(--primary-color);
+    white-space: nowrap;
+}
+
+.materiel-maintenance-empty {
+    font-size: 0.8rem;
+    opacity: 0.65;
+    font-style: italic;
+    margin: 0 0 12px;
+}
+
+.materiel-maintenance-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.materiel-maintenance-form input[type="text"] {
+    flex: 1 1 160px;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--box-bg-color);
+    color: var(--text-color);
+    font-size: 0.82rem;
+}
+
+.materiel-maintenance-form select {
+    padding: 8px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--box-bg-color);
+    color: var(--text-color);
+    font-size: 0.82rem;
+}
+
+.materiel-edit-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 20px;
+    animation: materiel-fade-in 0.2s ease;
+}
+
+/* Les fenêtres d'emprunt (une par prêt actif) sont présentes dans le HTML en permanence et
+   basculées en JS via l'attribut hidden natif : sans cette règle, le display:flex ci-dessus
+   (même spécificité qu'un sélecteur [hidden], mais règle d'auteur donc prioritaire sur la
+   feuille de style du navigateur) les rendrait visibles malgré hidden. */
+.materiel-edit-overlay[hidden] {
+    display: none;
+}
+
+@keyframes materiel-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.materiel-edit-modal {
+    background-color: var(--section-bg-color);
+    border-radius: 16px;
+    padding: 28px;
+    max-width: 520px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.materiel-edit-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.materiel-historique-modal {
+    max-width: 720px;
+}
+
+.materiel-historique-modal-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.materiel-historique-modal-head .admin-section-title {
+    margin: 0;
+}
+
+.materiel-historique-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: var(--box-bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    flex-shrink: 0;
+    transition: background-color 0.2s ease;
+}
+
+.materiel-historique-close:hover {
+    background-color: var(--border-color);
+}
+
+.materiel-historique-filtres {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.materiel-historique-filtres .btn-outline {
+    font-size: 0.78rem;
+    padding: 6px 14px;
+}
+
+.materiel-historique-filtres .btn-outline.is-active {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--light-text-color);
+}
+
+.materiel-historique-tout-supprimer {
+    margin-left: auto;
+}
+
+.materiel-historique-tout-supprimer .btn-delete {
+    font-size: 0.78rem;
+    padding: 6px 14px;
+}
+
+.materiel-historique-globale-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.materiel-historique-globale-actions form {
+    margin: 0;
+}
+
+.materiel-historique-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.materiel-historique-toolbar .etu-search-input-wrap {
+    flex: 1;
+    min-width: 200px;
+}
+
+.materiel-historique-toolbar select {
+    padding: 10px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--box-bg-color);
+    color: var(--text-color);
+    font-size: 0.85rem;
+}
+
+.materiel-historique-empty-search {
+    text-align: center;
+    padding: 20px;
+    opacity: 0.65;
+    font-size: 0.85rem;
+}
+
+.materiel-historique-globale-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.materiel-historique-globale-list li {
+    background-color: var(--box-bg-color);
+    border-radius: 10px;
+    padding: 12px 14px;
+}
+
+.materiel-historique-globale-list p {
+    margin: 8px 0 0;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+.materiel-historique-globale-list p strong {
+    color: var(--primary-color);
+}
+
+.materiel-historique-globale-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.materiel-historique-globale-footer form {
+    margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .materiel-card,
+    .materiel-card.materiel-etat-en_panne,
+    .materiel-picker-panne-dot,
+    .materiel-maintenance-panel,
+    .materiel-edit-overlay {
+        animation: none;
+        transition: none;
+    }
 }
 
 .mdp-oublie-restart-btn:hover { color: var(--primary-color); }

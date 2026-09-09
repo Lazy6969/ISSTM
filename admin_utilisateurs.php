@@ -24,7 +24,7 @@ function admu_generate_password($length = 10) {
 }
 
 $flash = null;
-$valid_roles = ['admin', 'user', 'etudiant', 'enseignant', 'bibliotheque'];
+$valid_roles = ['admin', 'user', 'etudiant', 'enseignant', 'bibliotheque', 'materiel'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -276,6 +276,7 @@ include 'header.php';
                         <option value="etudiant" <?php echo (($u['role'] ?? 'etudiant') === 'etudiant') ? 'selected' : ''; ?>><?php echo t('admin_utilisateurs_role_etudiant'); ?></option>
                         <option value="enseignant" <?php echo (($u['role'] ?? '') === 'enseignant') ? 'selected' : ''; ?>><?php echo t('admin_utilisateurs_role_enseignant'); ?></option>
                         <option value="bibliotheque" <?php echo (($u['role'] ?? '') === 'bibliotheque') ? 'selected' : ''; ?>><?php echo t('admin_utilisateurs_role_bibliotheque'); ?></option>
+                        <option value="materiel" <?php echo (($u['role'] ?? '') === 'materiel') ? 'selected' : ''; ?>><?php echo t('admin_utilisateurs_role_materiel'); ?></option>
                         <option value="admin" <?php echo (($u['role'] ?? '') === 'admin') ? 'selected' : ''; ?>><?php echo t('admin_utilisateurs_role_admin'); ?></option>
                     </select>
                 </div>
@@ -586,6 +587,7 @@ include 'header.php';
                         <option value="etudiant" <?php echo $role_filter === 'etudiant' ? 'selected' : ''; ?>><?php echo t('admin_utilisateurs_role_etudiant'); ?></option>
                         <option value="enseignant" <?php echo $role_filter === 'enseignant' ? 'selected' : ''; ?>><?php echo t('admin_utilisateurs_role_enseignant'); ?></option>
                         <option value="bibliotheque" <?php echo $role_filter === 'bibliotheque' ? 'selected' : ''; ?>><?php echo t('admin_utilisateurs_role_bibliotheque'); ?></option>
+                        <option value="materiel" <?php echo $role_filter === 'materiel' ? 'selected' : ''; ?>><?php echo t('admin_utilisateurs_role_materiel'); ?></option>
                         <option value="admin" <?php echo $role_filter === 'admin' ? 'selected' : ''; ?>><?php echo t('admin_utilisateurs_role_admin'); ?></option>
                         <option value="user" <?php echo $role_filter === 'user' ? 'selected' : ''; ?>><?php echo t('admin_utilisateurs_role_user'); ?></option>
                     </select>
@@ -652,6 +654,7 @@ include 'header.php';
                                         'enseignant' => t('admin_utilisateurs_role_enseignant'),
                                         'etudiant' => t('admin_utilisateurs_role_etudiant'),
                                         'bibliotheque' => t('admin_utilisateurs_role_bibliotheque'),
+                                        'materiel' => t('admin_utilisateurs_role_materiel'),
                                         'user' => t('admin_utilisateurs_role_user'),
                                     ];
                                     ?>

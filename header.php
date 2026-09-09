@@ -280,6 +280,10 @@ if ($mysqli->query("SHOW TABLES LIKE 'site_banners'")->num_rows > 0) {
                             <li><a href="<?php echo SITE_URL; ?>/profil.php"><?php echo t('profil_titre'); ?></a></li>
                             <?php if ($_SESSION['user_role'] === 'admin'): ?>
                                 <li><a href="<?php echo SITE_URL; ?>/administrateur.php"><?php echo t('administration'); ?></a></li>
+                                <li><a href="<?php echo SITE_URL; ?>/admin_materiel.php"><?php echo t('header_materiel'); ?></a></li>
+                            <?php endif; ?>
+                            <?php if ($_SESSION['user_role'] === 'materiel'): ?>
+                                <li><a href="<?php echo SITE_URL; ?>/admin_materiel.php"><?php echo t('header_materiel'); ?></a></li>
                             <?php endif; ?>
                             <?php if ($header_is_scolarite): ?>
                                 <li><a href="<?php echo SITE_URL; ?>/admin_etudiants.php"><?php echo t('admin_etudiants_titre'); ?></a></li>
@@ -398,6 +402,10 @@ if ($mysqli->query("SHOW TABLES LIKE 'site_banners'")->num_rows > 0) {
         <a href="<?php echo SITE_URL; ?>/profil.php"><i class="fas fa-circle-user"></i> <?php echo t('profil_titre'); ?></a>
         <?php if ($_SESSION['user_role'] === 'admin'): ?>
             <a href="<?php echo SITE_URL; ?>/administrateur.php"><i class="fas fa-toolbox"></i> <?php echo t('administration'); ?></a>
+            <a href="<?php echo SITE_URL; ?>/admin_materiel.php"><i class="fas fa-boxes-stacked"></i> <?php echo t('header_materiel'); ?></a>
+        <?php endif; ?>
+        <?php if ($_SESSION['user_role'] === 'materiel'): ?>
+            <a href="<?php echo SITE_URL; ?>/admin_materiel.php"><i class="fas fa-boxes-stacked"></i> <?php echo t('header_materiel'); ?></a>
         <?php endif; ?>
         <?php if ($header_is_scolarite): ?>
             <a href="<?php echo SITE_URL; ?>/admin_etudiants.php"><i class="fas fa-user-graduate"></i> <?php echo t('admin_etudiants_titre'); ?></a>
