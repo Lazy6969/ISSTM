@@ -16063,9 +16063,33 @@ body.dark-mode .profile-role-badge.is-admin { color: var(--secondary-color); }
     gap: 6px;
 }
 
-.etu-barchart-secondary {
-    height: 160px;
-    opacity: 0.85;
+/* Grille "État par lieu" (admin_materiel.php, vue stats) : tous les départements,
+   6 colonnes par rangée, une nouvelle rangée de 6 en dessous tant qu'il en reste —
+   remplace l'ancien découpage top 12 / "autres lieux" en second graphique séparé. */
+.etu-barchart-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 200px;
+    gap: 30px 14px;
+    padding: 6px;
+}
+
+.etu-barchart-grid .etu-barchart-group {
+    flex: none;
+    min-width: 0;
+    height: 100%;
+}
+
+@media (max-width: 1100px) {
+    .etu-barchart-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (max-width: 700px) {
+    .etu-barchart-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 480px) {
+    .etu-barchart-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 .materiel-toggle-dot {

@@ -415,11 +415,11 @@ include 'header.php';
             }
             $conic_gradient = !empty($conic_stops) ? 'conic-gradient(' . implode(', ', $conic_stops) . ')' : 'conic-gradient(var(--border-color) 0deg 360deg)';
 
-            // Un classement (top 12, lieux les plus concernés en premier) par état, calculé une
-            // fois pour les 5 boutons de la section "État par lieu" ci-dessous — chaque bouton
-            // n'affiche que SON état (jamais les 5 empilés ensemble). "reste" complète avec les
-            // lieux qui ne rentrent pas dans le top 12, pour que TOUS les lieux restent visibles
-            // quelque part (rien n'est vraiment caché, juste réparti en deux rangées).
+            // Un classement (lieux les plus concernés en premier) par état, calculé une fois
+            // pour les 5 boutons de la section "État par lieu" ci-dessous — chaque bouton
+            // n'affiche que SON état (jamais les 5 empilés ensemble). Tous les lieux sont
+            // affichés (pas de top N tronqué) dans une grille de 6 colonnes qui redescend
+            // d'une nouvelle rangée de 6 tant qu'il reste des lieux à afficher.
             $etat_chart_data = [];
             foreach ($etat_colors as $key => $color) {
                 $sorted = $lieux_list;
@@ -427,9 +427,8 @@ include 'header.php';
                 $max = 1;
                 foreach ($lieux_list as $l) { $max = max($max, (int) $l['c_' . $key]); }
                 $etat_chart_data[$key] = [
-                    'top'   => array_slice($sorted, 0, 12),
-                    'reste' => array_slice($sorted, 12),
-                    'max'   => $max,
+                    'all' => $sorted,
+                    'max' => $max,
                 ];
             }
         ?>
@@ -490,15 +489,9 @@ include 'header.php';
                             <?php if ($data['max'] <= 1 && $etat_counts[$key] === 0): ?>
                                 <p class="gallery-empty"><i class="fas fa-circle-info"></i> <?php echo t('materiel_aucun_dans_etat'); ?></p>
                             <?php else: ?>
-                                <div class="etu-barchart">
-                                    <?php $render_etat_bars($data['top'], $key, $color, $data['max']); ?>
+                                <div class="etu-barchart-grid">
+                                    <?php $render_etat_bars($data['all'], $key, $color, $data['max']); ?>
                                 </div>
-                                <?php if (!empty($data['reste'])): ?>
-                                    <p class="materiel-stats-subtitle"><i class="fas fa-ellipsis"></i> <?php echo sprintf(t('materiel_stats_autres_lieux'), count($data['reste'])); ?></p>
-                                    <div class="etu-barchart etu-barchart-secondary">
-                                        <?php $render_etat_bars($data['reste'], $key, $color, $data['max']); ?>
-                                    </div>
-                                <?php endif; ?>
                             <?php endif; ?>
                         </div>
                     <?php endforeach; ?>
