@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 07 sep. 2026 à 21:20
+-- Généré le : mer. 09 sep. 2026 à 02:57
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -61,7 +61,8 @@ CREATE TABLE `amis_demandes` (
 
 INSERT INTO `amis_demandes` (`id`, `demandeur_id`, `destinataire_id`, `statut`, `created_at`, `updated_at`) VALUES
 (2, 23, 10, 'acceptee', '2026-08-26 13:42:42', '2026-08-26 16:43:30'),
-(5, 23, 14, 'en_attente', '2026-08-28 20:27:40', NULL);
+(5, 23, 14, 'en_attente', '2026-08-28 20:27:40', NULL),
+(8, 10, 3, 'acceptee', '2026-09-07 22:49:49', '2026-09-08 01:50:42');
 
 -- --------------------------------------------------------
 
@@ -142,34 +143,9 @@ CREATE TABLE `communaute_comments` (
 --
 
 INSERT INTO `communaute_comments` (`id`, `post_id`, `parent_id`, `user_id`, `contenu`, `created_at`, `updated_at`) VALUES
-(7, 6, NULL, 3, 'opop', '2026-08-25 23:49:30', NULL),
-(8, 6, NULL, 3, 'opop', '2026-08-25 23:49:32', NULL),
-(10, 6, 7, 23, 'nk', '2026-08-25 23:59:39', NULL),
-(11, 6, 7, 23, 'nknjk', '2026-08-25 23:59:41', NULL),
-(12, 6, 7, 23, 'nkj', '2026-08-25 23:59:44', NULL),
-(13, 6, 7, 23, 'nknjk', '2026-08-25 23:59:48', NULL),
-(42, 6, 8, 23, 'll', '2026-08-26 14:11:54', NULL),
-(43, 6, 8, 23, 'llljkl', '2026-08-26 14:11:57', NULL),
-(44, 6, 8, 23, 'jkljkl', '2026-08-26 14:11:59', NULL),
-(45, 6, 8, 23, 'jlkj', '2026-08-26 14:12:02', NULL),
-(46, 6, NULL, 23, 'jlkjl', '2026-08-26 14:12:04', NULL),
-(52, 17, NULL, 3, 'gjhgj', '2026-08-28 20:36:07', NULL),
-(53, 17, NULL, 3, 'hgj', '2026-08-28 20:36:07', NULL),
-(54, 17, NULL, 3, 'gj', '2026-08-28 20:36:08', NULL),
-(55, 17, NULL, 3, 'ghj', '2026-08-28 20:36:08', NULL),
-(56, 17, NULL, 3, 'hgj', '2026-08-28 20:36:09', NULL),
-(57, 17, NULL, 3, 'hgj', '2026-08-28 20:36:09', NULL),
-(58, 17, NULL, 3, 'ghj', '2026-08-28 20:36:09', NULL),
-(59, 17, NULL, 3, 'hgj', '2026-08-28 20:36:09', NULL),
-(61, 17, NULL, 3, 'fdsff', '2026-08-28 20:37:46', NULL),
-(62, 17, NULL, 3, 'sdf', '2026-08-28 20:37:46', NULL),
-(63, 17, NULL, 3, 'sdf', '2026-08-28 20:37:47', NULL),
-(64, 17, NULL, 3, 'ds', '2026-08-28 20:37:47', NULL),
-(65, 17, NULL, 3, 'f', '2026-08-28 20:37:47', NULL),
-(66, 17, NULL, 3, 'd', '2026-08-28 20:37:47', NULL),
-(67, 17, NULL, 3, 'sdff', '2026-08-28 20:37:48', NULL),
-(68, 17, NULL, 3, 'fin', '2026-08-28 20:37:51', NULL),
-(69, 17, 67, 3, 'sqd', '2026-08-28 20:37:54', NULL);
+(73, 19, NULL, 3, 'C\'est génial', '2026-09-08 21:16:37', NULL),
+(74, 19, 73, 23, 'oui carrément', '2026-09-08 21:17:47', NULL),
+(75, 20, NULL, 23, 'ok', '2026-09-08 21:19:35', NULL);
 
 -- --------------------------------------------------------
 
@@ -193,14 +169,22 @@ CREATE TABLE `communaute_notifications` (
 --
 
 INSERT INTO `communaute_notifications` (`id`, `user_id`, `type`, `post_id`, `comment_id`, `actor_id`, `is_read`, `created_at`) VALUES
-(62, 3, 'reponse_commentaire', 6, 8, 23, 1, '2026-08-26 14:11:54'),
-(63, 3, 'reponse_commentaire', 6, 8, 23, 1, '2026-08-26 14:11:57'),
-(64, 3, 'reponse_commentaire', 6, 8, 23, 1, '2026-08-26 14:11:59'),
-(65, 3, 'reponse_commentaire', 6, 8, 23, 1, '2026-08-26 14:12:02'),
-(71, 3, 'nouvelle_publication', 17, NULL, 23, 1, '2026-08-28 20:16:15'),
-(72, 10, 'nouvelle_publication', 17, NULL, 23, 1, '2026-08-28 20:16:15'),
-(73, 14, 'nouvelle_publication', 17, NULL, 23, 0, '2026-08-28 20:16:15'),
-(74, 63, 'nouvelle_publication', 17, NULL, 23, 0, '2026-08-28 20:16:15');
+(76, 10, 'nouvelle_publication', 19, NULL, 3, 0, '2026-09-08 21:16:18'),
+(77, 14, 'nouvelle_publication', 19, NULL, 3, 0, '2026-09-08 21:16:18'),
+(78, 23, 'nouvelle_publication', 19, NULL, 3, 0, '2026-09-08 21:16:18'),
+(79, 63, 'nouvelle_publication', 19, NULL, 3, 0, '2026-09-08 21:16:18'),
+(80, 76, 'nouvelle_publication', 19, NULL, 3, 0, '2026-09-08 21:16:18'),
+(83, 3, 'reponse_commentaire', 19, 73, 23, 0, '2026-09-08 21:17:47'),
+(84, 3, 'nouvelle_publication', 20, NULL, 23, 0, '2026-09-08 21:19:08'),
+(85, 10, 'nouvelle_publication', 20, NULL, 23, 0, '2026-09-08 21:19:08'),
+(86, 14, 'nouvelle_publication', 20, NULL, 23, 0, '2026-09-08 21:19:08'),
+(87, 63, 'nouvelle_publication', 20, NULL, 23, 0, '2026-09-08 21:19:08'),
+(88, 76, 'nouvelle_publication', 20, NULL, 23, 0, '2026-09-08 21:19:08'),
+(91, 3, 'nouvelle_publication', 21, NULL, 23, 0, '2026-09-08 21:21:49'),
+(92, 10, 'nouvelle_publication', 21, NULL, 23, 0, '2026-09-08 21:21:49'),
+(93, 14, 'nouvelle_publication', 21, NULL, 23, 0, '2026-09-08 21:21:49'),
+(94, 63, 'nouvelle_publication', 21, NULL, 23, 0, '2026-09-08 21:21:49'),
+(95, 76, 'nouvelle_publication', 21, NULL, 23, 0, '2026-09-08 21:21:49');
 
 -- --------------------------------------------------------
 
@@ -224,10 +208,9 @@ CREATE TABLE `communaute_posts` (
 --
 
 INSERT INTO `communaute_posts` (`id`, `auteur_id`, `type`, `contenu`, `media_path`, `media_type`, `created_at`, `updated_at`) VALUES
-(5, 3, 'autre', 'opopop', 'uploads/communaute_6a8e29ec828b2.jpg', 'image', '2026-08-25 23:49:00', NULL),
-(6, 3, 'actualite', 'iiiii', 'uploads/communaute_6a8e29fbcfd66.png', 'image', '2026-08-25 23:49:15', NULL),
-(9, 3, 'media', 'popopopopo', NULL, 'none', '2026-08-26 00:27:40', '2026-08-26 03:28:57'),
-(17, 23, 'autre', 'TSY MIANATRA RAHAMPITSO', NULL, 'none', '2026-08-28 20:16:15', NULL);
+(19, 3, 'media', 'Les étudiants L1 à L3 auront un réunion le 12/09/2026', NULL, 'none', '2026-09-08 21:16:18', NULL),
+(20, 23, 'actualite', 'Les cours de Mr MOISE seront remporté à la semaine prochaine', NULL, 'none', '2026-09-08 21:19:07', NULL),
+(21, 23, 'media', 'Petite test interview soutenance 2024-2025', NULL, 'none', '2026-09-08 21:21:48', NULL);
 
 -- --------------------------------------------------------
 
@@ -248,18 +231,15 @@ CREATE TABLE `communaute_post_media` (
 --
 
 INSERT INTO `communaute_post_media` (`id`, `post_id`, `media_path`, `media_type`, `display_order`) VALUES
-(5, 9, 'uploads/communaute_6a8e32fc6a745_0.jpg', 'image', 1),
-(6, 9, 'uploads/communaute_6a8e32fc712ba_1.jpg', 'image', 2),
-(7, 9, 'uploads/communaute_6a8e331d91586_0.mp4', 'video', 3),
-(8, 9, 'uploads/communaute_6a8e334918846_0.png', 'image', 4),
-(9, 9, 'uploads/communaute_6a8e33491999b_1.png', 'image', 5),
-(10, 9, 'uploads/communaute_6a8e33491cb7c_2.jpg', 'image', 6),
-(11, 9, 'uploads/communaute_6a8e33491ddf1_3.png', 'image', 7),
-(12, 9, 'uploads/communaute_6a8e33492103a_4.png', 'image', 8),
-(13, 9, 'uploads/communaute_6a8e3349220c1_5.jpg', 'image', 9),
-(14, 9, 'uploads/communaute_6a8e334924a95_6.png', 'image', 10),
-(15, 9, 'uploads/communaute_6a8e334928117_7.jpg', 'image', 11),
-(21, 17, 'uploads/communaute_6a91ec8f98b8d_0.jpg', 'image', 1);
+(22, 19, 'uploads/communaute_6aa07b2239dda_0.png', 'image', 1),
+(23, 20, 'uploads/communaute_6aa07bcbe2aeb_0.png', 'image', 1),
+(24, 20, 'uploads/communaute_6aa07bcbe4ee7_1.png', 'image', 2),
+(25, 20, 'uploads/communaute_6aa07bcbe736f_2.png', 'image', 3),
+(26, 20, 'uploads/communaute_6aa07bcbee210_3.png', 'image', 4),
+(27, 20, 'uploads/communaute_6aa07bcc04227_4.jpg', 'image', 5),
+(28, 20, 'uploads/communaute_6aa07bcc069eb_5.png', 'image', 6),
+(29, 20, 'uploads/communaute_6aa07bcc0e6e7_6.png', 'image', 7),
+(30, 21, 'uploads/communaute_6aa07c6d07b69_0.mp4', 'video', 1);
 
 -- --------------------------------------------------------
 
@@ -280,13 +260,10 @@ CREATE TABLE `communaute_reactions` (
 --
 
 INSERT INTO `communaute_reactions` (`id`, `post_id`, `user_id`, `type`, `created_at`) VALUES
-(5, 6, 3, 'love', '2026-08-25 23:49:26'),
-(8, 6, 23, 'like', '2026-08-25 23:59:58'),
-(10, 17, 10, 'love', '2026-08-28 20:17:43'),
-(13, 9, 10, 'love', '2026-08-28 20:17:50'),
-(15, 6, 10, 'like', '2026-08-28 20:17:53'),
-(16, 17, 3, 'love', '2026-08-28 20:36:03'),
-(17, 17, 23, 'love', '2026-08-28 22:52:06');
+(23, 19, 3, 'love', '2026-09-08 21:16:27'),
+(26, 19, 23, 'like', '2026-09-08 21:17:39'),
+(27, 20, 23, 'like', '2026-09-08 21:19:29'),
+(28, 21, 23, 'love', '2026-09-08 21:21:58');
 
 -- --------------------------------------------------------
 
@@ -329,7 +306,8 @@ CREATE TABLE `dm_conversations` (
 --
 
 INSERT INTO `dm_conversations` (`id`, `user_a_id`, `user_b_id`, `created_at`) VALUES
-(2, 10, 23, '2026-08-26 13:43:42');
+(2, 10, 23, '2026-08-26 13:43:42'),
+(6, 3, 10, '2026-09-07 22:50:49');
 
 -- --------------------------------------------------------
 
@@ -359,7 +337,8 @@ INSERT INTO `dm_messages` (`id`, `conversation_id`, `sender_id`, `content`, `cre
 (9, 2, 10, 'lkm', '2026-08-28 20:18:39', '2026-08-28 23:19:25', NULL),
 (10, 2, 10, '🥶🥶🥶', '2026-08-28 20:18:44', '2026-08-28 23:19:25', NULL),
 (11, 2, 23, 'df', '2026-08-28 20:19:31', '2026-08-29 01:08:15', NULL),
-(13, 2, 10, NULL, '2026-08-28 22:14:58', '2026-08-29 01:52:46', NULL);
+(13, 2, 10, NULL, '2026-08-28 22:14:58', '2026-08-29 01:52:46', NULL),
+(14, 6, 3, 'pppp', '2026-09-07 22:50:54', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1199,7 +1178,7 @@ CREATE TABLE `groupe_membres` (
 INSERT INTO `groupe_membres` (`groupe_id`, `user_id`, `role_in_group`, `is_banned`, `joined_at`, `last_read_at`, `is_delegate`) VALUES
 (2, 10, 'etudiant', 0, '2026-08-23 15:40:33', '2026-08-23 23:34:17', 0),
 (2, 23, 'enseignant', 0, '2026-08-23 15:37:18', '2026-08-26 16:11:46', 0),
-(3, 10, 'etudiant', 0, '2026-08-23 15:53:49', '2026-08-28 17:41:40', 1),
+(3, 10, 'etudiant', 0, '2026-08-23 15:53:49', '2026-09-08 01:48:33', 1),
 (3, 23, 'enseignant', 0, '2026-08-23 15:46:58', '2026-09-07 12:00:01', 0);
 
 -- --------------------------------------------------------
@@ -1401,6 +1380,418 @@ INSERT INTO `hero_slides` (`id`, `image_path`, `media_type`, `display_order`) VA
 (10, 'images/slide1.jpg', 'image', 1),
 (11, 'images/slide2.jpg', 'image', 2),
 (12, 'images/slide3.jpg', 'image', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `materiels`
+--
+
+CREATE TABLE `materiels` (
+  `id` int(11) NOT NULL,
+  `lieu` varchar(150) NOT NULL,
+  `nom` varchar(255) NOT NULL,
+  `quantite` int(11) NOT NULL DEFAULT 1,
+  `etat` enum('bon_etat','mauvais','mauvais_etat','en_marche','en_panne') NOT NULL DEFAULT 'bon_etat',
+  `observation` varchar(255) DEFAULT NULL,
+  `date_ajout` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `ajoute_par` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `materiels`
+--
+
+INSERT INTO `materiels` (`id`, `lieu`, `nom`, `quantite`, `etat`, `observation`, `date_ajout`, `updated_at`, `ajoute_par`) VALUES
+(1, 'Bureau de Direction', 'Table de bureau Mélanine à 3 pièces', 1, 'bon_etat', '', '2026-09-09 01:57:04', '2026-09-09 01:57:04', NULL),
+(2, 'Bureau de Direction', 'Armoire Vitrée', 1, 'bon_etat', '', '2026-09-09 01:57:04', '2026-09-09 01:57:04', NULL),
+(3, 'Bureau de Direction', 'Chaise de bureau roulante', 1, 'bon_etat', '', '2026-09-09 01:57:04', '2026-09-09 01:57:04', NULL),
+(4, 'Bureau de Direction', 'Chaise de bureau visiteur', 3, 'bon_etat', '', '2026-09-09 01:57:04', '2026-09-09 01:57:04', NULL),
+(5, 'Bureau de Direction', 'Tabouret à pied métalliques', 3, 'bon_etat', '', '2026-09-09 01:57:04', '2026-09-09 01:57:04', NULL),
+(6, 'Bureau de Direction', 'Tableau Ecran tactile numérique (alimentation)', 1, 'en_marche', '', '2026-09-09 01:57:04', '2026-09-09 01:57:04', NULL),
+(7, 'Bureau de Direction', 'Carton équipement tableau numérique', 2, 'bon_etat', '', '2026-09-09 01:57:04', '2026-09-09 01:57:04', NULL),
+(8, 'Bureau de Direction', 'Climatiseur', 1, 'en_panne', '', '2026-09-09 01:57:04', '2026-09-09 01:57:04', NULL),
+(9, 'Bureau de Direction', 'Prise Multiple', 2, 'en_marche', '', '2026-09-09 01:57:04', '2026-09-09 01:57:04', NULL),
+(10, 'Bureau de Direction', 'Vidéo Projecteur (03 Philips et 02 Acer noire avec housse)', 5, 'en_marche', '', '2026-09-09 01:57:04', '2026-09-09 01:57:04', NULL),
+(11, 'Bureau de Direction', 'Coupes Championnat', 3, 'bon_etat', '', '2026-09-09 01:57:04', '2026-09-09 01:57:04', NULL),
+(12, 'Bureau de Direction', 'Coupe Miss et Mister', 1, 'bon_etat', '', '2026-09-09 01:57:04', '2026-09-09 01:57:04', NULL),
+(13, 'Bureau de Direction', 'Photo de Andry Rajoelina (président de la République)', 1, 'bon_etat', '', '2026-09-09 01:57:04', '2026-09-09 01:57:04', NULL),
+(14, 'Bureau de Direction', 'Photo des membres fondateurs de l\'ISSTM', 1, 'bon_etat', '', '2026-09-09 01:57:04', '2026-09-09 01:57:04', NULL),
+(15, 'Bureau de Direction', 'Photos des directeurs de l\'ISSTM', 2, 'bon_etat', '', '2026-09-09 01:57:04', '2026-09-09 01:57:04', NULL),
+(16, 'Bureau de Direction', 'Rideaux (pour fenêtre et porte)', 5, 'bon_etat', '', '2026-09-09 01:57:04', '2026-09-09 01:57:04', NULL),
+(17, 'Bureau de Direction', 'Poubelle plastique', 1, 'bon_etat', '', '2026-09-09 01:57:04', '2026-09-09 01:57:04', NULL),
+(18, 'Bureau de Direction', 'Auto radio Rocky (marque Sonny)', 1, 'bon_etat', '', '2026-09-09 01:57:04', '2026-09-09 01:57:04', NULL),
+(19, 'Bureau de Direction', 'Télécommande vidéo projecteur avec pile', 5, 'en_marche', '', '2026-09-09 01:57:04', '2026-09-09 01:57:04', NULL),
+(20, 'Bureau de Direction', 'Fleur artificielle', 1, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(21, 'Bureau de Direction', 'Clé de porte principale (bureau secrétaire, direction, scolarité)', 2, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(22, 'Secrétariat de Direction', 'Table de bureau mélanine avec 3 tiroirs', 1, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(23, 'Secrétariat de Direction', 'Table ordinateur pour impression', 1, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(24, 'Secrétariat de Direction', 'Ordinateur complet Bureautique avec tapis souris', 2, 'en_marche', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(25, 'Secrétariat de Direction', 'Onduleur 1KVA', 1, 'en_marche', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(26, 'Secrétariat de Direction', 'Imprimante Canon', 2, 'en_marche', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(27, 'Secrétariat de Direction', 'Prise multiple', 1, 'en_marche', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(28, 'Secrétariat de Direction', 'Ventilateur mural', 1, 'en_marche', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(29, 'Secrétariat de Direction', 'Chaise de bureau roulante', 1, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(30, 'Secrétariat de Direction', 'Chaise de bureau visiteur à pied métallique', 1, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(31, 'Secrétariat de Direction', 'Tabouret à pied métallique', 4, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(32, 'Secrétariat de Direction', 'Rideau court pour fenêtre', 1, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(33, 'Secrétariat de Direction', 'Poubelle en plastique', 1, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(34, 'Secrétariat de Direction', 'Montre murale', 1, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(35, 'Service de la Scolarité', 'Armoire métallique, 2 portes', 3, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(36, 'Service de la Scolarité', 'Armoire métallique, 4 portes', 2, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(37, 'Service de la Scolarité', 'Table de bureau en mélamine, 3 tiroirs', 4, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(38, 'Service de la Scolarité', 'Table de bureau à pied métallique', 1, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(39, 'Service de la Scolarité', 'Chaise de bureau à roulette', 1, 'mauvais', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(40, 'Service de la Scolarité', 'Chaise de bureau à pied métallique', 5, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(41, 'Service de la Scolarité', 'Chaise en bois à pied métallique', 1, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(42, 'Service de la Scolarité', 'Tabouret à pied métallique', 1, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(43, 'Service de la Scolarité', 'Ordinateur de bureau complet (Ecran, UC, Souris)', 2, 'en_marche', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(44, 'Service de la Scolarité', 'Ordinateur de bureau complet pour chef de service', 1, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(45, 'Service de la Scolarité', 'Unité centrale seule (à diagnostiquer)', 2, 'en_panne', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(46, 'Service de la Scolarité', 'Ventilateur mural', 2, 'en_marche', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(47, 'Service de la Scolarité', 'Prise multiple diverse', 3, 'en_marche', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(48, 'Service de la Scolarité', 'Poubelle en plastique', 3, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(49, 'Service de la Scolarité', 'Switch 8 ports', 1, 'en_panne', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(50, 'Chef de Mention', 'Armoire métallique, 2 portes', 1, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(51, 'Chef de Mention', 'Table de bureau mélanine', 3, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(52, 'Chef de Mention', 'Tabouret à pied métallique', 3, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(53, 'Chef de Mention', 'Chaise de bureau à pied métallique', 2, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(54, 'Chef de Mention', 'Prise multiple', 1, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(55, 'Chef de Mention', 'Ventilateur murale', 1, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(56, 'Chef de Parcours Génie Informatique', 'Table de bureau à pied métallique', 1, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(57, 'Chef de Parcours Génie Informatique', 'Chaise de bureau à pied métallique', 1, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(58, 'Chef de Parcours Génie Informatique', 'Tabouret à pied métallique', 1, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(59, 'Chef de Parcours Génie Informatique', 'Chaise de bureau en bois', 1, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(60, 'Chef de Parcours Génie Informatique', 'Prise multiple', 1, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(61, 'Chef de Parcours Génie Informatique', 'Ventilateur murale', 1, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(62, 'Chef de Parcours Génie Informatique', 'Ecran 19\'\' Dell avec alimentation', 1, 'en_marche', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(63, 'Labo GT', 'Armoire métallique', 1, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(64, 'Labo GT', 'Table de bureau PM à pied métalliques', 2, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(65, 'Labo GT', 'Table de bureau GM à pied métalliques', 2, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(66, 'Labo GT', 'Table à banc', 7, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(67, 'Labo GT', 'Tabouret à pied métalliques', 5, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(68, 'Labo GT', 'Unité Centrale mini nouvelle génération Dell', 3, 'bon_etat', 'Une unité de cette catégorie est chez Dr Hary Jean', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(69, 'Labo GT', 'Unité Centrale GM', 1, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(70, 'Labo GT', 'Unité Centrale ancienne', 1, 'mauvais_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(71, 'Labo GT', 'Ecran 17\" carré Dell', 3, 'en_marche', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(72, 'Labo GT', 'Ecran 19\" rectangle Dell', 1, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(73, 'Labo GT', 'Clavier', 6, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(74, 'Labo GT', 'Souris', 2, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(75, 'Labo GT', 'Onduleur 1KVA', 1, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(76, 'Labo GT', 'Switcher', 1, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(77, 'Labo GT', 'Prise multiples', 4, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(78, 'Labo GT', 'Bêche', 3, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(79, 'Direction Adjointe', 'Armoire métallique', 1, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(80, 'Direction Adjointe', 'Table de bureau mélanine', 1, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(81, 'Direction Adjointe', 'Chaise de bureau roulante', 1, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(82, 'Direction Adjointe', 'Chaise de bureau visiteur à pied métallique', 1, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(83, 'Direction Adjointe', 'Tabouret à pied métalliques', 2, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(84, 'Direction Adjointe', 'Prise multiples', 1, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(85, 'Direction Adjointe', 'Vidéo projecteur BenQ (câble alimentation et HDMI)', 1, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(86, 'Direction Adjointe', 'Ventilateur murale', 1, 'bon_etat', '', '2026-09-09 01:57:05', '2026-09-09 01:57:05', NULL),
+(87, 'Direction Adjointe', 'Coffre à outils INGECO', 1, 'bon_etat', '5% des outils restants', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(88, 'Bureau du Concierge', 'Armoire métallique', 1, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(89, 'Bureau du Concierge', 'Table de bureau GM à pied métalliques', 2, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(90, 'Bureau du Concierge', 'Tabouret à pied métalliques', 5, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(91, 'Bureau du Concierge', 'Vidéo projecteur ancien (normal)', 5, 'en_marche', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(92, 'Bureau du Concierge', 'Vidéo projecteur ancien Casio', 3, 'en_marche', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(93, 'Bureau du Concierge', 'Cric auto', 1, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(94, 'Bureau du Concierge', 'Règle jaune 1m GM', 1, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(95, 'Bureau du Concierge', 'Règle équerre GM', 1, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(96, 'Bureau du Concierge', 'Compas CM', 1, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(97, 'Bureau du Concierge', 'Chaise de bureau à pied métallique', 1, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(98, 'Bureau du Concierge', 'Chaise de bureau roulante', 1, 'mauvais_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(99, 'Bureau du Concierge', 'Poubelle', 1, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(100, 'Bureau du Concierge', 'Prise multiples', 6, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(101, 'Bureau du Concierge', 'Bâche pour vidéo projecteur', 1, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(102, 'Secrétariat Principal', 'Armoire métallique, 2 portes', 1, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(103, 'Secrétariat Principal', 'Armoire en mélanine, 2 portes', 1, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(104, 'Secrétariat Principal', 'Ordinateur de bureau complet', 1, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(105, 'Secrétariat Principal', 'Chaise de bureau roulante', 1, 'mauvais_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(106, 'Secrétariat Principal', 'Table de bureau mélanine', 1, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(107, 'Secrétariat Principal', 'Chaise de bureau à pied métallique', 2, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(108, 'Secrétariat Principal', 'Tabouret à pied métallique', 4, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(109, 'Secrétariat Principal', 'Enceinte USB', 1, 'mauvais_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(110, 'Secrétariat Principal', 'Prise multiple', 1, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(111, 'Secrétariat Principal', 'Ventilateur mural', 1, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(112, 'Secrétariat Principal', 'Imprimante EPSON L3110', 1, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(113, 'Secrétariat Principal', 'Switcher', 1, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(114, 'Bibliothèque', 'Table de bureau en bois', 1, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(115, 'Bibliothèque', 'Table GM à pied métallique', 1, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(116, 'Bibliothèque', 'Tabouret à pied métalliques', 20, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(117, 'Bibliothèque', 'Chaise de bureau à pied métalliques', 1, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(118, 'Bibliothèque', 'Lampe LED', 2, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(119, 'Bibliothèque', 'Interrupteur', 1, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(120, 'Bibliothèque', 'Prise femelle', 9, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(121, 'Bibliothèque', 'Prise multiples 5 trous', 6, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(122, 'Bibliothèque', 'Ventilateur murale', 1, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(123, 'Bibliothèque', 'Ventilateur plafonnier', 1, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(124, 'Bibliothèque', 'Tableau noir', 2, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(125, 'Bibliothèque', 'Ordinateur de bureau complet, puissant', 11, 'bon_etat', '10 en bon état, 1 en marche', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(126, 'Bibliothèque', 'Ordinateur complet du responsable', 1, 'en_marche', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(127, 'Bibliothèque', 'Vidéo projecteur GM Acer blanc', 1, 'en_marche', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(128, 'Bibliothèque', 'Enceinte chargeable', 4, 'en_marche', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(129, 'Bibliothèque', 'Base du logo ISSTM', 3, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(130, 'Bibliothèque', 'Tableau numérique ViewSonic', 1, 'en_marche', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(131, 'Bibliothèque', 'Armoire de bibliothèque', 2, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 02:22:52', NULL),
+(132, 'Bibliothèque', 'Rideau GM', 2, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(133, 'Bibliothèque', 'Poubelle', 1, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(134, 'Bibliothèque', 'Porte métallique double fermeture', 1, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(135, 'Bibliothèque', 'Slide projecteur électronique', 1, 'en_marche', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(136, 'Bibliothèque', 'Routeur LB-Link', 1, 'en_marche', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(137, 'Salle Informatique', 'Armoire mélanine, 2 portes', 1, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(138, 'Salle Informatique', 'Tabouret à pied métallique', 2, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(139, 'Salle Informatique', 'Chaise de bureau à pied métallique', 4, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(140, 'Salle Informatique', 'Chaise de bureau en bois', 1, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(141, 'Salle Informatique', 'Table GM à pied métallique', 1, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(142, 'Salle Informatique', 'Table de bureau à pied métallique', 1, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(143, 'Salle Informatique', 'Ordinateur de bureau complet', 10, 'en_marche', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(144, 'Salle Informatique', 'Ordinateur de bureau complet', 2, 'en_panne', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(145, 'Salle Informatique', 'Ecran seul', 10, 'en_marche', 'Certains en panne', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(146, 'Salle Informatique', 'Clavier', 31, 'en_marche', 'Certains en panne', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(147, 'Salle Informatique', 'Routeur', 6, 'en_marche', 'Certains en panne', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(148, 'Salle Informatique', 'Switch (connexion internet)', 7, 'en_marche', 'Certains en panne', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(149, 'Salle Informatique', 'Multimètre numérique', 8, 'en_marche', 'Certains en panne', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(150, 'Salle Informatique', 'Tapis souris', 30, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(151, 'Salle Informatique', 'Plaquettes d\'essai', 8, 'en_marche', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(152, 'Salle Informatique', 'Table de bureau mélanine', 1, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(153, 'Salle Informatique', 'Ventilateur mural', 1, 'en_marche', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(154, 'Salle Informatique', 'Prise multiple diverse', 12, 'en_marche', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(155, 'Salle Informatique', 'Vidéo projecteur ViewSonic', 1, 'en_marche', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(156, 'Salle Informatique', 'Câble VGA (3m/5m/15m)', 5, 'en_marche', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(157, 'Salle Informatique', 'Câble HDMI (1.5m/3m/5m)', 5, 'en_marche', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(158, 'Salle Informatique', 'Onduleur 1KVA', 1, 'en_marche', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(159, 'Salle Informatique', 'Stabilisateur', 1, 'en_marche', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(160, 'Salle Informatique', 'Routeur bord avec équipement de connexion', 1, 'en_marche', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(161, 'Salle Informatique', 'Fer à souder', 1, 'en_marche', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(162, 'Salle Informatique', 'Groupe électrogène', 1, 'en_panne', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(163, 'Salle Informatique', 'Air compresseur', 1, 'en_marche', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(164, 'Salle Informatique', 'Batterie gel spéciale solaire', 1, 'en_marche', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(165, 'Salle Informatique', 'Batterie auto', 1, 'en_marche', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(166, 'Salle Informatique', 'Chargeur de batterie 12V/24V', 1, 'en_marche', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(167, 'Salle Informatique', 'Pince à sertir', 1, 'bon_etat', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(168, 'Salle Informatique', 'Testeur de câble', 1, 'en_marche', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(169, 'Salle Informatique', 'Kit micro sans fil double', 3, 'en_marche', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(170, 'Salle Informatique', 'Kit micro sans fil simple', 1, 'en_marche', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(171, 'Salle Informatique', 'Enceinte Thunder GM chargeable', 1, 'en_marche', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(172, 'Salle Informatique', 'Perceuse', 1, 'en_marche', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(173, 'Salle Informatique', 'Ampoule caméra', 1, 'en_marche', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(174, 'Salle Informatique', 'Chargeur de piles standard', 3, 'en_marche', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(175, 'Salle Informatique', 'Tournevis en bois', 2, 'mauvais', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(176, 'Salle Informatique', 'Convertisseur 12V', 1, 'en_marche', '', '2026-09-09 01:57:06', '2026-09-09 01:57:06', NULL),
+(177, 'Magasin de Stockage', 'Souris', 29, 'mauvais_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(178, 'Magasin de Stockage', 'Clavier', 32, 'mauvais_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(179, 'Magasin de Stockage', 'Câble VGA / HDMI / alimentation', 1, 'en_marche', 'Quantité non précisée sur l\'inventaire papier', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(180, 'Magasin de Stockage', 'Vidéo projecteur Casio n°6', 1, 'en_marche', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(181, 'Magasin de Stockage', 'Lampe LED', 1, 'en_marche', 'Quantité non précisée sur l\'inventaire papier', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(182, 'Magasin de Stockage', 'Interrupteur', 1, 'en_marche', 'Quantité non précisée sur l\'inventaire papier', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(183, 'Magasin de Stockage', 'Prise femelle', 1, 'en_marche', 'Quantité non précisée sur l\'inventaire papier', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(184, 'Magasin de Stockage', 'UC ancien modèle HP (matériel salle info)', 7, 'en_panne', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(185, 'Magasin de Stockage', 'UC ancien modèle Dell (matériel salle info)', 4, 'en_panne', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(186, 'Magasin de Stockage', 'UC puissant labo GC', 1, 'en_panne', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(187, 'Magasin de Stockage', 'UC puissant labo GT', 2, 'en_panne', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(188, 'Magasin de Stockage', 'UC simple salle info', 1, 'en_panne', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(189, 'Magasin de Stockage', 'UC simple direction adjointe', 1, 'en_panne', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(190, 'Magasin de Stockage', 'Ventilateur', 8, 'mauvais_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(191, 'Magasin de Stockage', 'Phare LED projecteur pour auto (Rocky)', 1, 'en_marche', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(192, 'Magasin de Stockage', 'Feu LED antibrouillard (Rocky)', 2, 'en_marche', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(193, 'Magasin de Stockage', 'Panier de linge de table (réception)', 1, 'bon_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(194, 'Magasin de Stockage', 'Base GM logo ISSTM', 1, 'bon_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(195, 'Magasin de Stockage', 'Climatiseur portable pour travaux pratiques', 1, 'en_panne', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(196, 'Magasin de Stockage', 'Ballon de sport', 1, 'bon_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(197, 'Magasin de Stockage', 'Sac à éponge', 2, 'bon_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(198, 'Magasin de Stockage', 'Planche à coffrage de tableau numérique', 1, 'bon_etat', 'Quantité/état non précisés sur l\'inventaire papier', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(199, 'Magasin de Stockage', 'Haut-parleur (x26) avec coffrage', 2, 'en_marche', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(200, 'Labo GE n°1', 'Souris', 29, 'mauvais_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(201, 'Labo GE n°1', 'Clavier', 4, 'mauvais_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(202, 'Labo GE n°1', 'Moteur électrique', 4, 'en_marche', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(203, 'Labo GE n°1', 'Panneau photovoltaïque (PAN)', 2, 'en_marche', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(204, 'Labo GE n°1', 'Panneau photovoltaïque (PV)', 1, 'en_marche', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(205, 'Labo GE n°1', 'Vélo', 1, 'bon_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(206, 'Labo GE n°1', 'Ordinateur complet', 1, 'en_marche', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(207, 'Labo GE n°1', 'UC ancien modèle', 5, 'en_panne', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(208, 'Labo GE n°1', 'Autotransformateur', 1, 'en_marche', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(209, 'Labo GE n°1', 'Vidéo projecteur Acer noir (câble alimentation HDMI)', 1, 'en_marche', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(210, 'Labo GE n°1', 'Câble VGA 10m', 1, 'en_panne', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(211, 'Labo GE n°1', 'Fixateur de vidéoprojecteur', 1, 'bon_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(212, 'Labo GE n°1', 'Disjoncteur', 1, 'en_marche', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(213, 'Labo GE n°1', 'Ventilateur murale', 1, 'en_marche', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(214, 'Labo GE n°1', 'Switch 16 ports', 1, 'en_marche', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(215, 'Labo GE n°1', 'Prise multiple', 1, 'en_marche', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(216, 'Labo GE n°1', 'Chaise en bois à pied métallique', 4, 'bon_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(217, 'Labo GE n°1', 'Tabouret à pied métallique', 9, 'bon_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(218, 'Labo GE n°1', 'Table banc', 2, 'en_panne', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(219, 'Labo GE n°1', 'Table de bureau à pied métallique', 7, 'bon_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(220, 'Labo GE n°1', 'Table de bureau à pied métallique PM', 1, 'bon_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(221, 'Labo GE n°1', 'Contacteur', 1, 'bon_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(222, 'Labo GE n°1', 'Bidon bleu plastique', 1, 'bon_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(223, 'Labo GE n°1', 'Ecran', 2, 'en_panne', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(224, 'Labo GE n°2', 'Ordinateur complet', 4, 'en_marche', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(225, 'Labo GE n°2', 'Table de bureau à pied métallique', 2, 'bon_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(226, 'Labo GE n°2', 'Table de bureau à pied métallique PM', 3, 'bon_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(227, 'Labo GE n°2', 'Prise multiple', 4, 'bon_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(228, 'Labo GE n°2', 'Disjoncteur', 2, 'en_marche', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(229, 'Labo GE n°2', 'Ventilateur murale', 1, 'en_marche', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(230, 'Labo GE n°2', 'Chaise à pied métallique', 2, 'bon_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(231, 'Labo GE n°2', 'Tabouret à pied métalliques', 2, 'bon_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(232, 'Labo GE n°2', 'UC simple', 2, 'en_panne', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(233, 'Labo GE n°2', 'Switcher', 1, 'en_marche', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(234, 'Labo GE n°2', 'Contacteur', 1, 'en_marche', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(235, 'Labo GE n°2', 'Multi-maître (bloc multiprise labo)', 24, 'bon_etat', 'États mélangés (bon état / mauvais / en marche / en panne selon les unités)', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(236, 'Labo GE n°2', 'Plaquette d\'essai', 6, 'bon_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(237, 'Labo GE n°2', 'Tournevis plat', 2, 'bon_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(238, 'Labo GE n°2', 'Pince', 2, 'bon_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(239, 'Labo GE n°2', 'Fer à souder', 1, 'mauvais', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(240, 'Labo GE n°2', 'Sécateur', 1, 'bon_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(241, 'Labo GE n°2', 'Lime à bois', 2, 'bon_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(242, 'Labo GI', 'Tableau noir', 1, 'bon_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(243, 'Labo GI', 'Table de bureau à pied métalliques', 1, 'bon_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(244, 'Labo GI', 'Lampe LED', 1, 'bon_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(245, 'Labo GI', 'Prise femelle', 2, 'bon_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(246, 'Labo GI', 'Interrupteur', 1, 'bon_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(247, 'Labo GI', 'Table à banc', 3, 'bon_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(248, 'Labo GI', 'Tabouret à pied métalliques', 2, 'bon_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(249, 'Labo GI', 'Porte métallique avec deux serrures Vachette', 1, 'bon_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(250, 'Labo GI', 'Ecran 17\" carré noir', 4, 'bon_etat', '', '2026-09-09 01:57:07', '2026-09-09 01:57:07', NULL),
+(251, 'Labo GI', 'Ecran 17\" carré gris', 1, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(252, 'Labo GI', 'Ecran 19\" rectangle Dell', 1, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(253, 'Labo GI', 'Unité centrale performante', 2, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(254, 'Labo GI', 'Unité Centrale nouvelle génération Dell', 3, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(255, 'Labo GI', 'Unité Centrale ancienne Dell', 3, 'mauvais', '1 en bon état, 2 en mauvais état', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(256, 'Labo GI', 'Unité centrale ancienne HP', 3, 'mauvais', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(257, 'Labo GI', 'Clavier', 9, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(258, 'Labo GI', 'Souris', 8, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(259, 'Labo GI', 'Onduleur', 1, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(260, 'Labo GI', 'Switcher', 1, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(261, 'Labo GI', 'Prise multiples', 2, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(262, 'Labo GI', 'Bêche', 3, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(263, 'Labo GI', 'Chaise de bureau', 2, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(264, 'Labo GI', 'Ventilateur', 1, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(265, 'Labo Génie Électronique-Informatique', 'Armoire métallique, 2 portes', 1, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(266, 'Labo Génie Électronique-Informatique', 'Tabouret à pied métallique', 7, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(267, 'Labo Génie Électronique-Informatique', 'Chaise de bureau à pied métallique', 1, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(268, 'Labo Génie Électronique-Informatique', 'Table banc à pied métallique', 12, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(269, 'Labo Génie Électronique-Informatique', 'Ordinateur de bureau complet', 4, 'en_marche', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(270, 'Labo Génie Électronique-Informatique', 'Unité centrale seule', 2, 'en_panne', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(271, 'Labo Génie Électronique-Informatique', 'Multimètre numérique', 6, 'en_marche', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(272, 'Labo Génie Électronique-Informatique', 'Alimentation réglable (0-5V / 0-15V)', 1, 'en_marche', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(273, 'Labo Génie Électronique-Informatique', 'Ordinateur de bureau complet', 1, 'en_panne', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(274, 'Labo Génie Électronique-Informatique', 'Switch (connexion internet)', 1, 'en_panne', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(275, 'Labo Génie Électronique-Informatique', 'Ventilateur mural', 2, 'en_marche', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(276, 'Labo Génie Électronique-Informatique', 'Prise multiple diverse', 5, 'en_marche', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(277, 'Labo Génie Électronique-Informatique', 'Vidéo projecteur ViewSonic (câble VGA)', 1, 'en_marche', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(278, 'Labo Génie Électronique-Informatique', 'Onduleur 1KVA', 1, 'en_marche', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(279, 'Labo Génie Électronique-Informatique', 'Fer à souder', 1, 'en_marche', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(280, 'Labo Génie Électronique-Informatique', 'Mini-oscilloscope', 2, 'en_marche', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(281, 'Labo Génie Électronique-Informatique', 'Souris et clavier', 1, 'en_marche', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(282, 'Labo Génie Électronique-Informatique', 'Plaquettes d\'essai', 10, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(283, 'Labo Génie Électronique-Informatique', 'Décapeur thermique (air chaud)', 1, 'en_marche', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(284, 'Labo Génie Électronique-Informatique', 'Prise multiples', 4, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(285, 'Labo GC', 'Tableau noir', 1, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(286, 'Labo GC', 'Table de bureau à pied métalliques', 4, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(287, 'Labo GC', 'Lampe LED', 2, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(288, 'Labo GC', 'Prise femelle', 5, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(289, 'Labo GC', 'Interrupteur', 1, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(290, 'Labo GC', 'Table à banc', 8, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(291, 'Labo GC', 'Tabouret à pied métalliques', 9, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(292, 'Labo GC', 'Porte en bois avec deux serrures Vachette', 1, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(293, 'Labo GC', 'Ecran 17\" carré Dell', 4, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(294, 'Labo GC', 'Ecran 17\" carré HP', 1, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(295, 'Labo GC', 'Ecran 19\" rectangle Dell', 2, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(296, 'Labo GC', 'Unité centrale performante', 3, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(297, 'Labo GC', 'Unité Centrale nouvelle génération Dell', 3, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(298, 'Labo GC', 'Unité Centrale ancienne Dell', 4, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(299, 'Labo GC', 'Unité centrale ancienne HP', 1, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(300, 'Labo GC', 'Clavier', 9, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(301, 'Labo GC', 'Souris', 8, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(302, 'Labo GC', 'Onduleur', 1, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(303, 'Labo GC', 'Switcher', 1, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(304, 'Labo GC', 'Prise multiples', 2, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(305, 'Labo GC', 'Bêche', 3, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(306, 'Labo GC', 'Chaise de bureau', 2, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(307, 'Labo GC', 'Ventilateur', 1, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(308, 'Salle R1', 'Tableau blanc alu', 1, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(309, 'Salle R1', 'Slide projecteur électrique', 1, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(310, 'Salle R1', 'Ventilateur', 3, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(311, 'Salle R1', 'Table de bureau à pied métalliques', 3, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(312, 'Salle R1', 'Table à banc GM', 17, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(313, 'Salle R1', 'Table à banc PM', 29, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(314, 'Salle R1', 'Tabouret à pied métalliques', 2, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(315, 'Salle R1', 'Congélateur', 1, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(316, 'Salle R1', 'Porte métallique avec deux serrures Vachette', 1, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(317, 'Salle R2', 'Tableau noir', 1, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(318, 'Salle R2', 'Slide projecteur électrique', 1, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(319, 'Salle R2', 'Table de bureau à pied métalliques', 4, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(320, 'Salle R2', 'Table à banc', 27, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(321, 'Salle R2', 'Tabouret à pied métalliques', 2, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(322, 'Salle R2', 'Porte métallique avec deux serrures Vachette', 1, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(323, 'Salle R3', 'Vidéo projecteur noir marque Acer', 1, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(324, 'Salle R3', 'Câble alimentation pour vidéo projecteur', 1, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(325, 'Salle R3', 'Câble VGA noir 5m', 1, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(326, 'Salle R3', 'Fixateur de projecteur', 1, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(327, 'Salle R3', 'Table à banc', 17, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(328, 'Salle R3', 'Tabouret à pied métalliques', 2, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(329, 'Salle R3', 'Porte métallique avec deux serrures Vachette', 2, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(330, 'Salle R4', 'Table à banc', 9, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(331, 'Labo GBM', 'Fauteuil dentaire', 4, 'mauvais_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(332, 'Labo GBM', 'Prise multiple', 1, 'mauvais_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(333, 'Labo GBM', 'Étagère', 1, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(334, 'Labo GBM', 'Table à banc', 2, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(335, 'Salle L3 GBM', 'Table à banc', 10, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(336, 'Salle L2 GBM', 'Table à banc', 11, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(337, 'Salle L2 GBM', 'Chaise', 1, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(338, 'Salle L2 GBM', 'Seau', 1, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(339, 'Salle L2 GBM', 'Tabouret', 1, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(340, 'Salle L2 GBM', 'Ventilateur mural', 1, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(341, 'Salle L2 GBM', 'Table de l\'enseignant', 1, 'bon_etat', '', '2026-09-09 01:57:08', '2026-09-09 01:57:08', NULL),
+(342, 'Salle E2', 'Slide pour projecteur électronique', 1, 'bon_etat', '', '2026-09-09 01:57:09', '2026-09-09 01:57:09', NULL),
+(343, 'Salle E2', 'Table à banc', 6, 'bon_etat', '', '2026-09-09 01:57:09', '2026-09-09 01:57:09', NULL),
+(344, 'Salle E2', 'Table de bureau à pied métallique', 1, 'bon_etat', '', '2026-09-09 01:57:09', '2026-09-09 01:57:09', NULL),
+(345, 'Salle Labo Info', 'Table de l\'enseignant', 1, 'bon_etat', '', '2026-09-09 01:57:09', '2026-09-09 01:57:09', NULL),
+(346, 'Salle Labo Info', 'Table à banc', 8, 'bon_etat', '', '2026-09-09 01:57:09', '2026-09-09 01:57:09', NULL),
+(347, 'Salle E', 'Slide pour projecteur électronique', 1, 'bon_etat', '', '2026-09-09 01:57:09', '2026-09-09 01:57:09', NULL),
+(348, 'Salle E', 'Table à banc', 12, 'bon_etat', '', '2026-09-09 01:57:09', '2026-09-09 01:57:09', NULL),
+(349, 'Salle E', 'Fixateur projecteur', 1, 'bon_etat', '', '2026-09-09 01:57:09', '2026-09-09 01:57:09', NULL),
+(350, 'Salle E', 'Vidéo projecteur Acer noir', 1, 'bon_etat', '', '2026-09-09 01:57:09', '2026-09-09 01:57:09', NULL),
+(351, 'Salle E', 'Câble alimentation', 1, 'bon_etat', '', '2026-09-09 01:57:09', '2026-09-09 01:57:09', NULL),
+(352, 'Salle E', 'Câble VGA', 1, 'bon_etat', '', '2026-09-09 01:57:09', '2026-09-09 01:57:09', NULL),
+(353, 'Salle E', 'Câble HDMI', 1, 'bon_etat', '', '2026-09-09 01:57:09', '2026-09-09 01:57:09', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `materiel_deplacements`
+--
+
+CREATE TABLE `materiel_deplacements` (
+  `id` int(11) NOT NULL,
+  `materiel_id` int(11) NOT NULL,
+  `lieu_origine` varchar(150) NOT NULL,
+  `lieu_destination` varchar(150) NOT NULL,
+  `motif` varchar(255) DEFAULT NULL,
+  `emprunteur` varchar(150) DEFAULT NULL,
+  `quantite` int(11) NOT NULL DEFAULT 1,
+  `statut` enum('en_cours','retourne') NOT NULL DEFAULT 'en_cours',
+  `date_deplacement` datetime NOT NULL DEFAULT current_timestamp(),
+  `date_retour` datetime DEFAULT NULL,
+  `cree_par` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `materiel_maintenance`
+--
+
+CREATE TABLE `materiel_maintenance` (
+  `id` int(11) NOT NULL,
+  `materiel_id` int(11) NOT NULL,
+  `description` varchar(500) NOT NULL,
+  `etat_apres` enum('bon_etat','mauvais','mauvais_etat','en_marche','en_panne') DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `cree_par` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -2765,7 +3156,407 @@ INSERT INTO `page_views` (`id`, `page`, `user_id`, `created_at`) VALUES
 (1025, 'historique.php', 6, '2026-09-07 09:03:37'),
 (1026, 'index.php', 6, '2026-09-07 09:05:33'),
 (1027, 'enseignants.php', 6, '2026-09-07 09:05:45'),
-(1028, 'index.php', NULL, '2026-09-07 19:17:04');
+(1028, 'index.php', NULL, '2026-09-07 19:17:04'),
+(1029, 'index.php', NULL, '2026-09-07 19:27:44'),
+(1030, 'index.php', NULL, '2026-09-07 19:34:53'),
+(1031, 'login.php', NULL, '2026-09-07 19:34:57'),
+(1032, 'index.php', 3, '2026-09-07 19:36:09'),
+(1033, 'historique.php', 3, '2026-09-07 19:37:06'),
+(1034, 'index.php', 3, '2026-09-07 19:37:12');
+INSERT INTO `page_views` (`id`, `page`, `user_id`, `created_at`) VALUES
+(1035, 'evenements.php', 3, '2026-09-07 19:38:16'),
+(1036, 'communaute.php', 3, '2026-09-07 19:38:24'),
+(1037, 'communaute.php', 3, '2026-09-07 19:43:54'),
+(1038, 'index.php', 3, '2026-09-07 19:44:02'),
+(1039, 'index.php', NULL, '2026-09-07 19:50:36'),
+(1040, 'login.php', NULL, '2026-09-07 19:50:39'),
+(1041, 'profil.php', 6, '2026-09-07 19:50:47'),
+(1042, 'messagerie.php', 6, '2026-09-07 19:50:52'),
+(1043, 'index.php', 6, '2026-09-07 19:50:57'),
+(1044, 'index.php', 6, '2026-09-07 19:51:04'),
+(1045, 'index.php', 6, '2026-09-07 19:52:56'),
+(1046, 'index.php', 6, '2026-09-07 19:53:03'),
+(1047, 'index.php', 6, '2026-09-07 19:53:14'),
+(1048, 'index.php', 6, '2026-09-07 19:53:43'),
+(1049, 'index.php', 6, '2026-09-07 19:53:45'),
+(1050, 'index.php', 6, '2026-09-07 19:59:00'),
+(1051, 'index.php', NULL, '2026-09-07 19:59:11'),
+(1052, 'login.php', NULL, '2026-09-07 19:59:33'),
+(1053, 'communaute.php', 3, '2026-09-07 19:59:46'),
+(1054, 'messages_prives.php', 3, '2026-09-07 19:59:53'),
+(1055, 'messagerie.php', 3, '2026-09-07 19:59:58'),
+(1056, 'communaute.php', 3, '2026-09-07 20:00:06'),
+(1057, 'profil.php', 3, '2026-09-07 20:00:15'),
+(1058, 'index.php', NULL, '2026-09-07 20:00:22'),
+(1059, 'login.php', NULL, '2026-09-07 20:02:43'),
+(1060, 'profil.php', 10, '2026-09-07 20:02:57'),
+(1061, 'mes_amis.php', 10, '2026-09-07 20:03:20'),
+(1062, 'profil.php', 10, '2026-09-07 20:03:29'),
+(1063, 'profil.php', 10, '2026-09-07 20:03:38'),
+(1064, 'mes_amis.php', 10, '2026-09-07 20:03:39'),
+(1065, 'mes_amis.php', 10, '2026-09-07 20:03:42'),
+(1066, 'mes_amis.php', 10, '2026-09-07 20:03:43'),
+(1067, 'mes_amis.php', 10, '2026-09-07 20:03:45'),
+(1068, 'index.php', 10, '2026-09-07 20:03:53'),
+(1069, 'communaute.php', 10, '2026-09-07 20:04:06'),
+(1070, 'communaute.php', 10, '2026-09-07 20:04:22'),
+(1071, 'index.php', NULL, '2026-09-07 20:05:47'),
+(1072, 'login.php', NULL, '2026-09-07 20:05:51'),
+(1073, 'communaute.php', 3, '2026-09-07 20:07:55'),
+(1074, 'messages_prives.php', 3, '2026-09-07 20:08:20'),
+(1075, 'annuaire.php', 3, '2026-09-07 20:08:23'),
+(1076, 'evenements.php', 3, '2026-09-07 20:08:36'),
+(1077, 'actualite.php', 3, '2026-09-07 20:08:49'),
+(1078, 'messagerie.php', 3, '2026-09-07 20:09:07'),
+(1079, 'index.php', 3, '2026-09-07 20:09:17'),
+(1080, 'communaute.php', 3, '2026-09-07 20:09:44'),
+(1081, 'communaute.php', 3, '2026-09-07 20:10:15'),
+(1082, 'actualite.php', 3, '2026-09-07 20:10:22'),
+(1083, 'actualite.php', 3, '2026-09-07 20:10:34'),
+(1084, 'index.php', 3, '2026-09-07 20:10:35'),
+(1085, 'index.php', NULL, '2026-09-07 20:22:50'),
+(1086, 'login.php', NULL, '2026-09-07 20:22:54'),
+(1087, 'inscription.php', NULL, '2026-09-07 20:22:57'),
+(1088, 'preinscription.php', NULL, '2026-09-07 20:23:25'),
+(1089, 'index.php', NULL, '2026-09-07 20:23:59'),
+(1090, 'index.php', NULL, '2026-09-07 20:32:39'),
+(1091, 'historique.php', NULL, '2026-09-07 20:33:06'),
+(1092, 'index.php', NULL, '2026-09-07 20:33:20'),
+(1093, 'enseignants.php', NULL, '2026-09-07 20:33:24'),
+(1094, 'index.php', NULL, '2026-09-07 20:34:05'),
+(1095, 'inscription.php', NULL, '2026-09-07 20:37:38'),
+(1096, 'actualite.php', NULL, '2026-09-07 20:39:01'),
+(1097, 'actualite.php', NULL, '2026-09-07 20:39:17'),
+(1098, 'actualite.php', NULL, '2026-09-07 20:39:21'),
+(1099, 'actualite.php', NULL, '2026-09-07 20:39:28'),
+(1100, 'actualite.php', NULL, '2026-09-07 20:39:31'),
+(1101, 'index.php', NULL, '2026-09-07 20:39:44'),
+(1102, 'recherche.php', NULL, '2026-09-07 20:42:11'),
+(1103, 'index.php', NULL, '2026-09-07 20:42:18'),
+(1104, 'recherche.php', NULL, '2026-09-07 20:42:26'),
+(1105, 'recherche.php', NULL, '2026-09-07 20:42:33'),
+(1106, 'index.php', NULL, '2026-09-07 20:42:42'),
+(1107, 'index.php', NULL, '2026-09-07 20:44:15'),
+(1108, 'index.php', NULL, '2026-09-07 20:44:40'),
+(1109, 'index.php', NULL, '2026-09-07 20:45:48'),
+(1110, 'index.php', NULL, '2026-09-07 20:46:03'),
+(1111, 'index.php', NULL, '2026-09-07 20:46:34'),
+(1112, 'index.php', NULL, '2026-09-07 20:48:13'),
+(1113, 'index.php', NULL, '2026-09-07 20:48:22'),
+(1114, 'index.php', NULL, '2026-09-07 20:53:02'),
+(1115, 'index.php', NULL, '2026-09-07 20:53:11'),
+(1116, 'index.php', NULL, '2026-09-07 20:54:00'),
+(1117, 'confidentialite.php', NULL, '2026-09-07 20:54:07'),
+(1118, 'confidentialite.php', NULL, '2026-09-07 20:54:27'),
+(1119, 'index.php', NULL, '2026-09-07 20:54:28'),
+(1120, 'index.php', NULL, '2026-09-07 20:54:30'),
+(1121, 'index.php', NULL, '2026-09-07 20:54:40'),
+(1122, 'index.php', NULL, '2026-09-07 20:55:02'),
+(1123, 'index.php', NULL, '2026-09-07 20:56:40'),
+(1124, 'index.php', NULL, '2026-09-07 21:01:38'),
+(1125, 'index.php', NULL, '2026-09-07 21:03:40'),
+(1126, 'login.php', NULL, '2026-09-07 21:04:21'),
+(1127, 'enseignants.php', 3, '2026-09-07 21:17:59'),
+(1128, 'enseignants.php', 3, '2026-09-07 21:19:09'),
+(1129, 'enseignants.php', 3, '2026-09-07 21:25:15'),
+(1130, 'enseignants.php', 3, '2026-09-07 21:25:58'),
+(1131, 'enseignants.php', 3, '2026-09-07 21:28:17'),
+(1132, 'enseignants.php', 3, '2026-09-07 21:28:51'),
+(1133, 'index.php', 3, '2026-09-07 21:32:18'),
+(1134, 'communaute.php', 3, '2026-09-07 21:32:23'),
+(1135, 'index.php', 3, '2026-09-07 21:32:28'),
+(1136, 'actualite.php', 3, '2026-09-07 21:32:42'),
+(1137, 'index.php', 3, '2026-09-07 21:32:48'),
+(1138, 'enseignants.php', 3, '2026-09-07 21:34:39'),
+(1139, 'enseignants.php', 3, '2026-09-07 21:35:51'),
+(1140, 'enseignants.php', 3, '2026-09-07 21:39:06'),
+(1141, 'enseignants.php', 3, '2026-09-07 21:46:13'),
+(1142, 'enseignants.php', 3, '2026-09-07 21:46:24'),
+(1143, 'enseignants.php', 3, '2026-09-07 21:46:43'),
+(1144, 'enseignants.php', 3, '2026-09-07 22:14:29'),
+(1145, 'enseignants.php', 3, '2026-09-07 22:14:46'),
+(1146, 'equipe.php', NULL, '2026-09-07 22:17:19'),
+(1147, 'enseignants.php', 3, '2026-09-07 22:17:30'),
+(1148, 'index.php', NULL, '2026-09-07 22:17:35'),
+(1149, 'equipe.php', 3, '2026-09-07 22:17:38'),
+(1150, 'equipe.php', 3, '2026-09-07 22:18:03'),
+(1151, 'equipe.php', 3, '2026-09-07 22:19:16'),
+(1152, 'equipe.php', 3, '2026-09-07 22:19:21'),
+(1153, 'equipe.php', 3, '2026-09-07 22:22:15'),
+(1154, 'equipe.php', 3, '2026-09-07 22:24:36'),
+(1155, 'equipe.php', 3, '2026-09-07 22:24:54'),
+(1156, 'equipe.php', 3, '2026-09-07 22:25:28'),
+(1157, 'equipe.php', NULL, '2026-09-07 22:25:53'),
+(1158, 'equipe.php', NULL, '2026-09-07 22:31:30'),
+(1159, 'equipe.php', 3, '2026-09-07 22:34:53'),
+(1160, 'equipe.php', 3, '2026-09-07 22:36:12'),
+(1161, 'equipe.php', NULL, '2026-09-07 22:36:15'),
+(1162, 'equipe.php', NULL, '2026-09-07 22:38:40'),
+(1163, 'equipe.php', NULL, '2026-09-07 22:38:54'),
+(1164, 'equipe.php', 3, '2026-09-07 22:39:30'),
+(1165, 'equipe.php', NULL, '2026-09-07 22:39:59'),
+(1166, 'equipe.php', 3, '2026-09-07 22:40:05'),
+(1167, 'equipe.php', 3, '2026-09-07 22:40:08'),
+(1168, 'equipe.php', 3, '2026-09-07 22:40:15'),
+(1169, 'equipe.php', 3, '2026-09-07 22:41:34'),
+(1170, 'equipe.php', 3, '2026-09-07 22:41:46'),
+(1171, 'equipe.php', 3, '2026-09-07 22:41:55'),
+(1172, 'equipe.php', NULL, '2026-09-07 22:42:22'),
+(1173, 'equipe.php', 3, '2026-09-07 22:42:25'),
+(1174, 'index.php', 3, '2026-09-07 22:42:48'),
+(1175, 'equipe.php', 3, '2026-09-07 22:46:52'),
+(1176, 'communaute.php', 3, '2026-09-07 22:47:09'),
+(1177, 'messagerie.php', 3, '2026-09-07 22:47:14'),
+(1178, 'index.php', 3, '2026-09-07 22:47:19'),
+(1179, 'messagerie.php', 3, '2026-09-07 22:47:21'),
+(1180, 'index.php', NULL, '2026-09-07 22:47:26'),
+(1181, 'login.php', NULL, '2026-09-07 22:47:29'),
+(1182, 'profil.php', 10, '2026-09-07 22:47:42'),
+(1183, 'profil.php', 10, '2026-09-07 22:47:57'),
+(1184, 'communaute.php', 10, '2026-09-07 22:48:07'),
+(1185, 'messages_prives.php', 10, '2026-09-07 22:48:14'),
+(1186, 'mes_groupes.php', 10, '2026-09-07 22:48:18'),
+(1187, 'groupe_chat.php', 10, '2026-09-07 22:48:21'),
+(1188, 'communaute.php', 10, '2026-09-07 22:48:35'),
+(1189, 'messages_prives.php', 10, '2026-09-07 22:48:40'),
+(1190, 'documents.php', 10, '2026-09-07 22:49:06'),
+(1191, 'equipe.php', 10, '2026-09-07 22:49:12'),
+(1192, 'index.php', 10, '2026-09-07 22:49:17'),
+(1193, 'communaute.php', 10, '2026-09-07 22:49:25'),
+(1194, 'profil_public.php', 10, '2026-09-07 22:49:47'),
+(1195, 'index.php', NULL, '2026-09-07 22:49:53'),
+(1196, 'login.php', NULL, '2026-09-07 22:49:55'),
+(1197, 'messagerie.php', 3, '2026-09-07 22:50:09'),
+(1198, 'actualite.php', 3, '2026-09-07 22:50:17'),
+(1199, 'communaute.php', 3, '2026-09-07 22:50:20'),
+(1200, 'profil.php', 3, '2026-09-07 22:50:35'),
+(1201, 'mes_amis.php', 3, '2026-09-07 22:50:37'),
+(1202, 'mes_amis.php', 3, '2026-09-07 22:50:40'),
+(1203, 'mes_amis.php', 3, '2026-09-07 22:50:44'),
+(1204, 'mes_amis.php', 3, '2026-09-07 22:50:47'),
+(1205, 'messages_prives.php', 3, '2026-09-07 22:50:49'),
+(1206, 'communaute.php', 3, '2026-09-07 22:51:08'),
+(1207, 'index.php', 3, '2026-09-07 22:51:31'),
+(1208, 'index.php', 3, '2026-09-07 22:54:21'),
+(1209, 'campus.php', 3, '2026-09-07 22:54:33'),
+(1210, 'vie_etudiante.php', 3, '2026-09-07 22:54:51'),
+(1211, 'index.php', 3, '2026-09-07 22:54:58'),
+(1212, 'communaute.php', 3, '2026-09-07 22:55:48'),
+(1213, 'messagerie.php', 3, '2026-09-07 22:55:52'),
+(1214, 'communaute.php', 3, '2026-09-07 22:56:03'),
+(1215, 'profil.php', 3, '2026-09-07 22:56:07'),
+(1216, 'mes_amis.php', 3, '2026-09-07 22:56:09'),
+(1217, 'profil_public.php', 3, '2026-09-07 22:56:12'),
+(1218, 'messages_prives.php', 3, '2026-09-07 22:56:16'),
+(1219, 'index.php', 3, '2026-09-07 22:56:43'),
+(1220, 'communaute.php', 3, '2026-09-07 22:56:47'),
+(1221, 'dashboard.php', 3, '2026-09-07 22:59:18'),
+(1222, '404.php', 3, '2026-09-07 22:59:18'),
+(1223, '404.php', 3, '2026-09-07 22:59:18'),
+(1224, 'profil.php', 3, '2026-09-07 22:59:26'),
+(1225, '404.php', 3, '2026-09-07 22:59:26'),
+(1226, '404.php', 3, '2026-09-07 22:59:26'),
+(1227, 'index.php', 3, '2026-09-07 23:00:02'),
+(1228, '404.php', 3, '2026-09-07 23:00:02'),
+(1229, '404.php', 3, '2026-09-07 23:00:02'),
+(1230, '404.php', 3, '2026-09-07 23:00:04'),
+(1231, '404.php', 3, '2026-09-07 23:00:05'),
+(1232, 'index.php', 3, '2026-09-07 23:07:54'),
+(1233, 'actualite.php', 3, '2026-09-07 23:09:06'),
+(1234, 'bourse.php', 3, '2026-09-07 23:09:31'),
+(1235, 'index.php', 3, '2026-09-07 23:09:35'),
+(1236, '404.php', 3, '2026-09-07 23:09:35'),
+(1237, '404.php', 3, '2026-09-07 23:09:36'),
+(1238, 'memoires.php', 3, '2026-09-07 23:09:46'),
+(1239, '404.php', 3, '2026-09-07 23:09:46'),
+(1240, '404.php', 3, '2026-09-07 23:09:46'),
+(1241, 'index.php', 3, '2026-09-07 23:09:55'),
+(1242, 'profil.php', 3, '2026-09-07 23:11:43'),
+(1243, 'index.php', 3, '2026-09-07 23:12:19'),
+(1244, 'evenements.php', 3, '2026-09-07 23:13:08'),
+(1245, 'enseignants.php', 3, '2026-09-07 23:13:19'),
+(1246, 'index.php', 3, '2026-09-07 23:13:52'),
+(1247, 'messagerie.php', 3, '2026-09-07 23:25:35'),
+(1248, 'bourse.php', 3, '2026-09-07 23:25:39'),
+(1249, 'index.php', 3, '2026-09-07 23:25:41'),
+(1250, '404.php', 3, '2026-09-07 23:25:41'),
+(1251, '404.php', 3, '2026-09-07 23:25:41'),
+(1252, 'documents.php', 3, '2026-09-07 23:25:43'),
+(1253, 'parcours.php', 3, '2026-09-07 23:27:04'),
+(1254, 'index.php', 3, '2026-09-07 23:27:09'),
+(1255, 'profil.php', 3, '2026-09-07 23:27:13'),
+(1256, 'bourse.php', 3, '2026-09-07 23:34:18'),
+(1257, 'messagerie.php', 3, '2026-09-07 23:42:20'),
+(1258, 'profil.php', 3, '2026-09-07 23:42:23'),
+(1259, 'historique.php', 3, '2026-09-07 23:42:32'),
+(1260, 'inscription.php', 3, '2026-09-07 23:42:37'),
+(1261, 'documents.php', 3, '2026-09-07 23:42:39'),
+(1262, 'vie_etudiante.php', 3, '2026-09-07 23:42:42'),
+(1263, 'bourse.php', 3, '2026-09-07 23:42:46'),
+(1264, 'galerie.php', 3, '2026-09-07 23:42:48'),
+(1265, 'evenements.php', 3, '2026-09-07 23:42:50'),
+(1266, 'index.php', 3, '2026-09-07 23:42:54'),
+(1267, '404.php', 3, '2026-09-07 23:42:54'),
+(1268, '404.php', 3, '2026-09-07 23:42:55'),
+(1269, 'documents.php', 3, '2026-09-07 23:42:57'),
+(1270, 'confidentialite.php', NULL, '2026-09-07 23:46:46'),
+(1271, 'recherche.php', NULL, '2026-09-07 23:46:55'),
+(1272, 'equipe.php', NULL, '2026-09-07 23:46:56'),
+(1273, 'documents.php', 3, '2026-09-07 23:48:26'),
+(1274, 'index.php', 3, '2026-09-07 23:49:18'),
+(1275, 'documents.php', 3, '2026-09-07 23:49:51'),
+(1276, 'equipe.php', NULL, '2026-09-07 23:51:11'),
+(1277, 'index.php', 3, '2026-09-07 23:51:57'),
+(1278, 'documents.php', 3, '2026-09-07 23:52:08'),
+(1279, 'index.php', 3, '2026-09-07 23:52:29'),
+(1280, 'inscription.php', 3, '2026-09-07 23:54:15'),
+(1281, 'documents.php', 3, '2026-09-07 23:54:33'),
+(1282, 'index.php', 3, '2026-09-07 23:54:45'),
+(1283, '404.php', 3, '2026-09-07 23:54:46'),
+(1284, '404.php', 3, '2026-09-07 23:54:46'),
+(1285, 'evenements.php', 3, '2026-09-07 23:55:23'),
+(1286, 'galerie.php', 3, '2026-09-07 23:55:28'),
+(1287, 'parcours.php', 3, '2026-09-07 23:55:34'),
+(1288, 'historique.php', 3, '2026-09-07 23:55:45'),
+(1289, 'index.php', NULL, '2026-09-08 18:02:13'),
+(1290, 'parcours.php', NULL, '2026-09-08 18:21:25'),
+(1291, 'index.php', NULL, '2026-09-08 18:21:29'),
+(1292, 'login.php', NULL, '2026-09-08 18:21:34'),
+(1293, 'communaute.php', 3, '2026-09-08 18:21:44'),
+(1294, 'communaute.php', 3, '2026-09-08 18:22:57'),
+(1295, 'messages_prives.php', 3, '2026-09-08 18:23:03'),
+(1296, 'communaute.php', 3, '2026-09-08 18:47:03'),
+(1297, 'index.php', 3, '2026-09-08 18:47:37'),
+(1298, 'index.php', 3, '2026-09-08 19:00:42'),
+(1299, 'index.php', 3, '2026-09-08 19:00:49'),
+(1300, 'index.php', 3, '2026-09-08 19:00:59'),
+(1301, 'equipe.php', 3, '2026-09-08 19:01:22'),
+(1302, 'index.php', 3, '2026-09-08 19:40:45'),
+(1303, 'index.php', 3, '2026-09-08 19:42:47'),
+(1304, 'index.php', 3, '2026-09-08 19:43:32'),
+(1305, 'actualite.php', 3, '2026-09-08 19:46:49'),
+(1306, 'filieres.php', 3, '2026-09-08 19:46:53'),
+(1307, 'index.php', 3, '2026-09-08 19:52:09'),
+(1308, 'index.php', NULL, '2026-09-08 19:52:14'),
+(1309, 'login.php', NULL, '2026-09-08 19:52:19'),
+(1310, 'mot_de_passe_oublie.php', NULL, '2026-09-08 19:52:26'),
+(1311, 'mot_de_passe_oublie.php', NULL, '2026-09-08 19:52:44'),
+(1312, 'mot_de_passe_oublie.php', NULL, '2026-09-08 19:53:04'),
+(1313, 'mot_de_passe_oublie.php', NULL, '2026-09-08 19:53:10'),
+(1314, 'login.php', NULL, '2026-09-08 19:53:15'),
+(1315, 'index.php', NULL, '2026-09-08 19:54:40'),
+(1316, 'login.php', NULL, '2026-09-08 19:55:43'),
+(1317, 'mot_de_passe_oublie.php', NULL, '2026-09-08 19:55:55'),
+(1318, 'mot_de_passe_oublie.php', NULL, '2026-09-08 19:55:59'),
+(1319, 'mot_de_passe_oublie.php', NULL, '2026-09-08 19:56:06'),
+(1320, 'mot_de_passe_oublie.php', NULL, '2026-09-08 19:56:09'),
+(1321, 'login.php', NULL, '2026-09-08 19:56:29'),
+(1322, 'index.php', NULL, '2026-09-08 20:14:21'),
+(1323, 'index.php', NULL, '2026-09-08 20:14:23'),
+(1324, 'login.php', NULL, '2026-09-08 20:15:05'),
+(1325, 'mot_de_passe_oublie.php', NULL, '2026-09-08 20:15:20'),
+(1326, 'mot_de_passe_oublie.php', NULL, '2026-09-08 20:15:53'),
+(1327, 'mot_de_passe_oublie.php', NULL, '2026-09-08 20:16:28'),
+(1328, 'mot_de_passe_oublie.php', NULL, '2026-09-08 20:17:03'),
+(1329, 'login.php', NULL, '2026-09-08 20:19:29'),
+(1330, 'mot_de_passe_oublie.php', NULL, '2026-09-08 20:34:22'),
+(1331, 'reinitialiser_mdp.php', NULL, '2026-09-08 20:35:08'),
+(1332, 'reinitialiser_mdp.php', NULL, '2026-09-08 20:36:24'),
+(1333, 'mot_de_passe_oublie.php', NULL, '2026-09-08 20:38:02'),
+(1334, 'mot_de_passe_oublie.php', NULL, '2026-09-08 20:38:36'),
+(1335, 'mot_de_passe_oublie.php', NULL, '2026-09-08 20:39:01'),
+(1336, 'mot_de_passe_oublie.php', NULL, '2026-09-08 20:39:17'),
+(1337, 'index.php', 3, '2026-09-08 20:44:17'),
+(1338, 'index.php', NULL, '2026-09-08 20:44:20'),
+(1339, 'inscription.php', NULL, '2026-09-08 20:44:24'),
+(1340, 'preinscription.php', NULL, '2026-09-08 20:44:29'),
+(1341, 'index.php', NULL, '2026-09-08 20:47:03'),
+(1342, 'login.php', NULL, '2026-09-08 20:47:06'),
+(1343, 'login.php', NULL, '2026-09-08 20:48:49'),
+(1344, 'profil.php', 76, '2026-09-08 20:50:36'),
+(1345, 'index.php', 3, '2026-09-08 20:50:40'),
+(1346, 'profil.php', 76, '2026-09-08 20:52:28'),
+(1347, 'profil.php', 76, '2026-09-08 20:52:40'),
+(1348, 'profil.php', 76, '2026-09-08 20:53:22'),
+(1349, 'index.php', NULL, '2026-09-08 20:53:59'),
+(1350, 'login.php', NULL, '2026-09-08 20:55:35'),
+(1351, 'mot_de_passe_oublie.php', NULL, '2026-09-08 20:55:53'),
+(1352, 'mot_de_passe_oublie.php', NULL, '2026-09-08 20:56:07'),
+(1353, 'mot_de_passe_oublie.php', NULL, '2026-09-08 20:56:32'),
+(1354, 'mot_de_passe_oublie.php', NULL, '2026-09-08 20:56:51'),
+(1355, 'login.php', NULL, '2026-09-08 20:57:41'),
+(1356, 'mot_de_passe_oublie.php', NULL, '2026-09-08 21:05:56'),
+(1357, 'index.php', NULL, '2026-09-08 21:06:24'),
+(1358, 'index.php', 3, '2026-09-08 21:07:07'),
+(1359, 'index.php', NULL, '2026-09-08 21:07:14'),
+(1360, 'login.php', NULL, '2026-09-08 21:07:49'),
+(1361, 'communaute.php', 3, '2026-09-08 21:14:41'),
+(1362, 'communaute.php', 3, '2026-09-08 21:16:22'),
+(1363, 'index.php', NULL, '2026-09-08 21:16:51'),
+(1364, 'login.php', NULL, '2026-09-08 21:17:00'),
+(1365, 'mes_groupes.php', 23, '2026-09-08 21:17:19'),
+(1366, 'communaute.php', 23, '2026-09-08 21:17:24'),
+(1367, 'communaute.php', 23, '2026-09-08 21:19:10'),
+(1368, 'communaute.php', 23, '2026-09-08 21:21:52'),
+(1369, 'mes_amis.php', 23, '2026-09-08 21:22:32'),
+(1370, 'mot_de_passe_oublie.php', NULL, '2026-09-08 21:23:11'),
+(1371, 'communaute.php', 23, '2026-09-08 21:23:47'),
+(1372, 'mot_de_passe_oublie.php', NULL, '2026-09-08 21:24:09'),
+(1373, 'documents.php', 23, '2026-09-08 21:25:08'),
+(1374, 'index.php', 23, '2026-09-08 21:25:13'),
+(1375, 'reinitialiser_mdp.php', NULL, '2026-09-08 21:25:13'),
+(1376, 'enseignants.php', 23, '2026-09-08 21:25:40'),
+(1377, 'index.php', 23, '2026-09-08 21:26:15'),
+(1378, 'mot_de_passe_oublie.php', NULL, '2026-09-08 21:26:24'),
+(1379, 'index.php', 23, '2026-09-08 21:51:09'),
+(1380, 'index.php', 23, '2026-09-08 22:27:23'),
+(1381, 'index.php', NULL, '2026-09-08 22:27:31'),
+(1382, 'login.php', NULL, '2026-09-08 22:27:35'),
+(1383, 'mot_de_passe_oublie.php', NULL, '2026-09-08 22:27:38'),
+(1384, 'mot_de_passe_oublie.php', NULL, '2026-09-08 22:27:50'),
+(1385, 'reinitialiser_mdp.php', NULL, '2026-09-08 22:28:14'),
+(1386, 'reinitialiser_mdp.php', NULL, '2026-09-08 22:28:41'),
+(1387, 'reinitialiser_mdp.php', NULL, '2026-09-08 22:29:12'),
+(1388, 'login.php', NULL, '2026-09-08 22:29:15'),
+(1389, 'profil.php', 76, '2026-09-08 22:29:32'),
+(1390, 'index.php', NULL, '2026-09-08 22:29:49'),
+(1391, 'login.php', NULL, '2026-09-08 22:29:57'),
+(1392, 'login.php', 3, '2026-09-08 22:42:58'),
+(1393, 'index.php', 3, '2026-09-08 22:43:06'),
+(1394, 'messagerie.php', 3, '2026-09-08 22:43:16'),
+(1395, 'communaute.php', 3, '2026-09-08 22:43:23'),
+(1396, 'index.php', NULL, '2026-09-08 22:44:31'),
+(1397, 'login.php', NULL, '2026-09-08 22:44:37'),
+(1398, 'login.php', NULL, '2026-09-08 22:44:50'),
+(1399, 'login.php', NULL, '2026-09-08 22:45:10'),
+(1400, 'index.php', NULL, '2026-09-08 22:46:26'),
+(1401, 'login.php', NULL, '2026-09-08 22:46:29'),
+(1402, 'profil.php', 10, '2026-09-08 22:46:40'),
+(1403, 'mes_amis.php', 10, '2026-09-08 22:47:08'),
+(1404, 'communaute.php', 10, '2026-09-08 22:47:17'),
+(1405, 'mes_amis.php', 10, '2026-09-08 22:47:24'),
+(1406, 'index.php', NULL, '2026-09-08 22:47:29'),
+(1407, 'equipe.php', NULL, '2026-09-08 22:57:38'),
+(1408, 'index.php', NULL, '2026-09-08 22:57:52'),
+(1409, 'documents.php', NULL, '2026-09-08 22:59:01'),
+(1410, 'evenements.php', NULL, '2026-09-08 22:59:07'),
+(1411, 'documents.php', NULL, '2026-09-08 22:59:10'),
+(1412, 'vie_etudiante.php', NULL, '2026-09-08 22:59:13'),
+(1413, 'campus.php', NULL, '2026-09-08 22:59:20'),
+(1414, 'vie_etudiante.php', NULL, '2026-09-08 22:59:26'),
+(1415, 'index.php', NULL, '2026-09-08 22:59:28'),
+(1416, 'recherche.php', NULL, '2026-09-08 23:00:20'),
+(1417, 'recherche.php', NULL, '2026-09-08 23:00:26'),
+(1418, 'documents.php', NULL, '2026-09-08 23:00:48'),
+(1419, 'index.php', NULL, '2026-09-08 23:00:53'),
+(1420, 'index.php', NULL, '2026-09-08 23:01:26'),
+(1421, 'login.php', NULL, '2026-09-08 23:01:41'),
+(1422, 'index.php', NULL, '2026-09-08 23:11:16'),
+(1423, 'login.php', NULL, '2026-09-08 23:11:38'),
+(1424, 'profil.php', 77, '2026-09-08 23:18:14'),
+(1425, 'profil.php', 77, '2026-09-08 23:18:42'),
+(1426, 'index.php', 77, '2026-09-08 23:18:48'),
+(1427, 'index.php', 77, '2026-09-09 00:22:29');
 
 -- --------------------------------------------------------
 
@@ -2796,7 +3587,8 @@ INSERT INTO `partenaires` (`id`, `nom`, `logo_path`, `site_url`, `display_order`
 (7, 'Centre Don Bosco Mahajanga', 'images/partenariat/bosco.png', 'https://evbb.eu/members/centre-de-formation-professionnelle-don-bosco-antanimasaja-mahajanga/', 7, '2026-08-10 23:06:30'),
 (8, 'Chambre de Commerce International de Mahajanga', 'images/partenariat/industrie.png', 'https://cpccaf.org/cci-de-mahajanga/', 8, '2026-08-10 23:06:30'),
 (10, 'Université de Mahajanga', 'uploads/partenaire_6a7cf6995306a.png', 'https://www.mahajanga-univ.mg/', 9, '2026-08-12 22:41:29'),
-(11, 'Direction Générale du trésor', 'uploads/partenaire_6a7d0659d76a8.png', 'http://www.tresorpublic.mg/', 10, '2026-08-12 23:48:41');
+(11, 'Direction Générale du trésor', 'uploads/partenaire_6a7d0659d76a8.png', 'http://www.tresorpublic.mg/', 10, '2026-08-12 23:48:41'),
+(12, 'INRIA LILLE FRANCE', 'uploads/partenaire_6a9f12425ec3b.png', 'https://www.inria.fr/fr', 11, '2026-09-07 19:36:34');
 
 -- --------------------------------------------------------
 
@@ -2862,8 +3654,9 @@ CREATE TABLE `preinscriptions` (
 --
 
 INSERT INTO `preinscriptions` (`id`, `nom`, `prenoms`, `sexe`, `date_naissance`, `lieu_naissance`, `cin`, `nationalite`, `annee_bacc`, `serie_bacc`, `serie_bacc_autre`, `mention_bacc`, `code_redoublement`, `adresse`, `telephone`, `email`, `nom_pere`, `profession_pere`, `nom_mere`, `profession_mere`, `adresse_parents`, `contact_parents`, `contact_parents_2`, `pays`, `filiere_id`, `niveau`, `photo_path`, `status`, `user_id`, `dernier_mdp_genere`, `created_at`) VALUES
-(5, 'RAMANANA', 'Mirindra Michel', 'M', '2005-04-12', 'Moramanga', '31407794563127', 'Malgache', '2022', 'S', '', 'Assez Bien', 'N', '32 E1 Sect III Mahavoy Atsimo', '0380746987', 'mirindraramanana2@gmail.com', 'RAMANANA Nirina Michel', 'Infirmier', 'JOHARILALAINA Nirina', 'Boucher', 'Lot A 160 Camps des mariées', '0348277763', '', 'Madagascar', 1, 'L1', 'uploads/preinscriptions/photo_6a8a6c4369dc7.jpeg', 'approuve', 10, NULL, '2026-08-23 06:42:59'),
-(7, 'RAZAFINDRABARY', 'Doleen Heather Jameelah', 'F', '2006-05-13', 'Mahajanga', '654233215623256', 'Malgache', '2022', 'S', 'S', 'Passable', 'N', 'amalavao', '0331255588', 'jamee@gmail.com', 'BARY', 'Avocat', 'Dollen', 'Institutrice', 'mahajanga', '0332211178', '', 'Madagascar', 3, 'L1', 'uploads/preinscriptions/photo_6a8ac55aa3c20.jpg', 'approuve', 14, 'zgxBBd2gNP', '2026-08-23 13:03:06');
+(5, 'RAMANANA', 'Mirindra Michel', 'M', '2005-04-12', 'Moramanga', '31407794563127', 'Malgache', '2022', 'S', '', 'Assez Bien', 'N', '32 E1 Sect III Mahavoy Atsimo', '0380746987', 'mirindraramanana2@gmail.com', 'RAMANANA Nirina Michel', 'Infirmier', 'JOHARILALAINA Nirina', 'Boucher', 'Lot A 160 Camps des mariées', '0348277763', '', 'Madagascar', 1, 'L1', 'uploads/preinscriptions/photo_6a8a6c4369dc7.jpeg', 'approuve', 10, 'mirindra123', '2026-08-23 06:42:59'),
+(7, 'RAZAFINDRABARY', 'Doleen Heather Jameelah', 'F', '2006-05-13', 'Mahajanga', '654233215623256', 'Malgache', '2022', 'S', 'S', 'Passable', 'N', 'amalavao', '0331255588', 'jamee@gmail.com', 'BARY', 'Avocat', 'Dollen', 'Institutrice', 'mahajanga', '0332211178', '', 'Madagascar', 3, 'L1', 'uploads/preinscriptions/photo_6a8ac55aa3c20.jpg', 'approuve', 14, 'zgxBBd2gNP', '2026-08-23 13:03:06'),
+(12, 'JAOSOA', 'Tanael Faustin', 'M', '2026-09-08', 'Mahajanga', '', 'Malgache', '2022', 'S', '', 'Passable', 'N', '314 E1 Sect III Mahavoy Atsimo', '0380746986', 'mirindraramanana2@gmail.com', 'Lazy Ramanana', 'Infirmier', 'Lazy Ramanana', 'Institutrice', 'Lot A 160 Camps des mariées', '0332211178', '', 'Madagascar', 1, 'L3', 'uploads/preinscriptions/photo_6aa0743942235.jpg', 'approuve', 76, '8VM4E8pNb8', '2026-09-08 23:46:49');
 
 -- --------------------------------------------------------
 
@@ -2906,7 +3699,9 @@ CREATE TABLE `security_log` (
 --
 
 INSERT INTO `security_log` (`id`, `event_type`, `identifiant`, `ip_address`, `details`, `created_at`) VALUES
-(15, 'otp_mismatch', 'mirindraramanana2@gmail.com', '::1', '', '2026-08-26 01:11:01');
+(26, 'reset_link_sent', 'mirindraramanana2@gmail.com', '::1', '', '2026-09-08 22:27:50'),
+(27, 'pwd_criteria_fail', 'mirindraramanana2@gmail.com', '::1', '', '2026-09-08 22:28:41'),
+(28, 'pwd_reset_success', 'mirindraramanana2@gmail.com', '::1', '', '2026-09-08 22:29:06');
 
 -- --------------------------------------------------------
 
@@ -2935,8 +3730,8 @@ INSERT INTO `site_banners` (`id`, `page_key`, `media_type`, `media_path`, `title
 (7, 'profil.php', 'image', 'uploads/banner_img_6a88db2c6730e_0.png', '1224149', 1, 1, '2026-08-21 23:11:40'),
 (8, 'login.php', 'image', 'uploads/banner_img_6a88db878ef05_0.gif', '224314', 0, 1, '2026-08-21 23:13:11'),
 (9, 'recherche.php', 'video', 'uploads/banner_video_6a88dbbbd065b_0.mp4', '223071', 1, 1, '2026-08-21 23:14:03'),
-(11, 'administrateur.php', 'image', 'uploads/banner_img_6a8a221d64448_0.gif', '222700', 1, 2, '2026-08-22 22:26:37'),
-(12, 'admin_documents.php', 'image', 'uploads/banner_img_6a8df8fb3190c_0.jpg', '1190968', 1, 1, '2026-08-25 20:20:11');
+(12, 'admin_documents.php', 'image', 'uploads/banner_img_6a8df8fb3190c_0.jpg', '1190968', 1, 1, '2026-08-25 20:20:11'),
+(13, 'administrateur.php', 'image', 'uploads/banner_img_6a9f4a43c08e1_0.gif', '222700', 1, 1, '2026-09-07 23:35:31');
 
 -- --------------------------------------------------------
 
@@ -2970,7 +3765,7 @@ INSERT INTO `site_content` (`id`, `content_key`, `content_value_fr`, `content_va
 (14, 'stat_majors', '18', '18', '18'),
 (31, 'footer_horaires', 'Lundi - Vendredi : 8h00 - 17h00', 'Monday - Friday: 8:00 AM - 5:00 PM', 'Alatsinainy - Zoma: 8ora - 17ora'),
 (32, 'header_bg_image_path', 'uploads/header_bg_6a8b6f56c4b0a.PNG', 'uploads/header_bg_6a8b6f56c4b0a.PNG', 'uploads/header_bg_6a8b6f56c4b0a.PNG'),
-(44, 'contact_email', 'isstm.umg@gmail.com', 'isstm.umg@gmail.com', 'isstm.umg@gmail.com'),
+(44, 'contact_email', 'isstm.univ.umg@gmail.com', 'isstm.univ.umg@gmail.com', 'isstm.univ.umg@gmail.com'),
 (45, 'contact_telephone', '+261 38 15 439 77', '+261 38 15 439 77', '+261 38 15 439 77'),
 (46, 'contact_facebook', 'https://web.facebook.com/isstm.umg', 'https://web.facebook.com/isstm.umg', 'https://web.facebook.com/isstm.umg'),
 (47, 'contact_adresse', 'Mahajanga, Madagascar', 'Mahajanga, Madagascar', 'Mahajanga, Madagasikara'),
@@ -3014,7 +3809,7 @@ CREATE TABLE `site_stats` (
 --
 
 INSERT INTO `site_stats` (`stat_key`, `stat_value`) VALUES
-('homepage_views', 50);
+('homepage_views', 73);
 
 -- --------------------------------------------------------
 
@@ -3042,80 +3837,81 @@ CREATE TABLE `teachers` (
 --
 
 INSERT INTO `teachers` (`id`, `nom`, `categorie`, `specialite_fr`, `specialite_en`, `specialite_mg`, `description_fr`, `description_en`, `description_mg`, `photo`, `email`, `display_order`) VALUES
-(1, 'RAKOTOVELO Geoslin', 'permanent', 'Physique', 'Physics', NULL, 'Enseignant(e) permanent(e) spécialisé(e) en Physique, au service de la réussite des étudiants de l\'ISSTM.', 'Permanent teacher specializing in Physics, serving the success of ISSTM students.', NULL, NULL, 'rakotovelo.geoslin@isstm.mg', 1),
-(2, 'AMBEONDAHY', 'permanent', 'Mathématiques appliquées', 'Applied mathematics', NULL, 'Enseignant(e) permanent(e) spécialisé(e) en Mathématiques appliquées, au service de la réussite des étudiants de l\'ISSTM.', 'Permanent teacher specializing in Applied Mathematics, serving the success of ISSTM students.', NULL, NULL, 'ambeondahy@isstm.mg', 2),
-(3, 'JOHANESA Fernand', 'permanent', 'BTP', 'BPW', NULL, 'Enseignant(e) permanent(e) spécialisé(e) en BTP, au service de la réussite des étudiants de l\'ISSTM.', 'Permanent teacher specializing in construction, serving the success of ISSTM students.', NULL, NULL, 'johanesa.fernand@isstm.mg', 3),
-(4, 'MANASINA Ruffin', 'permanent', 'Electricité', 'Electricity', NULL, 'Enseignant(e) permanent(e) spécialisé(e) en Electricité, au service de la réussite des étudiants de l\'ISSTM.', 'Permanent teacher specializing in Electricity, serving the success of ISSTM students.', NULL, NULL, 'manasina.ruffin@isstm.mg', 4),
-(5, 'RAMAROJAONA Hubert', 'permanent', 'Génie nucléaire et automatique', 'Nuclear and automatic engineering', NULL, 'Enseignant(e) permanent(e) spécialisé(e) en Génie nucléaire et automatique, au service de la réussite des étudiants de l\'ISSTM.', 'Permanent teacher specializing in Nuclear and Automatic Engineering, serving the success of ISSTM students.', NULL, NULL, 'ramarojaona.hubert@isstm.mg', 5),
-(6, 'RAVOHITRA Juvence', 'permanent', 'Mécanique', 'Mechanics', NULL, 'Enseignant(e) permanent(e) spécialisé(e) en Mécanique, au service de la réussite des étudiants de l\'ISSTM.', 'Permanent teacher specializing in Mechanics, serving the success of ISSTM students.', NULL, NULL, 'ravohitra.juvence@isstm.mg', 6),
-(7, 'MAXWELL Djaffard', 'permanent', 'Physique', 'Physics', NULL, 'Enseignant(e) permanent(e) spécialisé(e) en Physique, au service de la réussite des étudiants de l\'ISSTM.', 'Permanent teacher specializing in Physics, serving the success of ISSTM students.', NULL, NULL, 'maxwell.djaffard@isstm.mg', 7),
-(8, 'HARY Jean', 'permanent', 'Physique', 'Physics', NULL, 'Enseignant(e) permanent(e) spécialisé(e) en Physique, au service de la réussite des étudiants de l\'ISSTM.', 'Permanent teacher specializing in Physics, serving the success of ISSTM students.', NULL, NULL, 'hary.jean@isstm.mg', 8),
-(9, 'RANDRIAMAITSO Télesphore', 'permanent', 'Energétique', 'Energising', NULL, 'Enseignant(e) permanent(e) spécialisé(e) en Energétique, au service de la réussite des étudiants de l\'ISSTM.', 'Permanent teacher specializing in Energy, at the service of the success of ISSTM students.', NULL, NULL, 'randriamaitso.telesphore@isstm.mg', 9),
-(10, 'TSANGANDRAZANA Annicet Judicael', 'permanent', 'Physique', NULL, NULL, 'Enseignant(e) permanent(e) spécialisé(e) en Physique, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'tsangandrazana.annicet.judicael@isstm.mg', 10),
-(11, 'RAJAONASY Iantara', 'permanent', 'Génie Civil', NULL, NULL, 'Enseignant(e) permanent(e) spécialisé(e) en Génie Civil, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'rajaonasy.iantara@isstm.mg', 11),
-(12, 'RAZAFIARISON Ignace Abel J', 'permanent', 'Energétique', NULL, NULL, 'Enseignant(e) permanent(e) spécialisé(e) en Energétique, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'razafiarison.ignace.abel.j@isstm.mg', 12),
-(13, 'ANDRIANIRINA Charles Bernard', 'permanent', 'Electronique Industrielle', NULL, NULL, 'Enseignant(e) permanent(e) spécialisé(e) en Electronique Industrielle, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'andrianirina.charles.bernard@isstm.mg', 13),
-(14, 'RAKOTOMALALA Noelimihaja S', 'permanent', 'Energétique et Génie Electrique', NULL, NULL, 'Enseignant(e) permanent(e) spécialisé(e) en Energétique et Génie Electrique, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'rakotomalala.noelimihaja.s@isstm.mg', 14),
-(15, 'RALINAVALONA Jhonson Jemi', 'permanent', 'Anglaises/Education', NULL, NULL, 'Enseignant(e) permanent(e) spécialisé(e) en Anglaises/Education, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'ralinavalona.jhonson.jemi@isstm.mg', 15),
-(16, 'ABDULHAMID Asma', 'permanent', 'Réseaux/Télécommunications', NULL, NULL, 'Enseignant(e) permanent(e) spécialisé(e) en Réseaux/Télécommunications, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'abdulhamid.asma@isstm.mg', 16),
-(17, 'ANDRIANANTENAINA Chrysostome', 'permanent', 'Electronique et informatique', NULL, NULL, 'Enseignant(e) permanent(e) spécialisé(e) en Electronique et informatique, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'andrianantenaina.chrysostome@isstm.mg', 17),
-(18, 'HANITRANIRINA Eloddy', 'permanent', 'Conversion des énergies', NULL, NULL, 'Enseignant(e) permanent(e) spécialisé(e) en Conversion des énergies, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'hanitranirina.eloddy@isstm.mg', 18),
-(19, 'HANTA Tina Olga', 'permanent', 'Physique', NULL, NULL, 'Enseignant(e) permanent(e) spécialisé(e) en Physique, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'hanta.tina.olga@isstm.mg', 19),
-(20, 'ANDRIANASOLONIRINA Ravoarimalala Naivosaona', 'vacataire', 'Agro-Management', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Agro-Management, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'andrianasolonirina.ravoarimalala.naivosaona@isstm.mg', 20),
-(21, 'ANDRIANONY Mandimby Vonifandeferana', 'vacataire', 'ISEA', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en ISEA, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'andrianony.mandimby.vonifandeferana@isstm.mg', 21),
-(22, 'ANDRINIRINIAIMALAZA Fanambinantsoa Philibert', 'vacataire', 'Electronique et informatique industrielles', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Electronique et informatique industrielles, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'andriniriniaimalaza.fanambinantsoa.philibert@isstm.mg', 22),
-(23, 'FREDERIC Moise', 'vacataire', 'Génie Logiciel', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Génie Logiciel, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'frederic.moise@isstm.mg', 23),
-(24, 'HABIB Nouraly', 'vacataire', 'Imagerie Médicale', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Imagerie Médicale, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'habib.nouraly@isstm.mg', 24),
-(25, 'BEZARA Florent', 'vacataire', 'Informatique', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Informatique, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'bezara.florent@isstm.mg', 25),
-(26, 'HERIPINOANARIMANANA Fenomora Evariste', 'vacataire', 'Aménagement et Génie urbain', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Aménagement et Génie urbain, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'heripinoanarimanana.fenomora.evariste@isstm.mg', 26),
-(27, 'HOUSSEN Fils Auguste', 'vacataire', 'Energie', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Energie, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'houssen.fils.auguste@isstm.mg', 27),
-(28, 'JAONA Romain', 'vacataire', 'Bâtiment et Travaux publics', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Bâtiment et Travaux publics, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'jaona.romain@isstm.mg', 28),
-(29, 'JAONARANA Eric', 'vacataire', 'Ingénierie des matériaux et des matières premières', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Ingénierie des matériaux et des matières premières, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'jaonarana.eric@isstm.mg', 29),
-(30, 'LUCIEN FIDELE François d\'Assise', 'vacataire', 'Electronique Médicale', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Electronique Médicale, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'lucien.fidele.francois.d.assise@isstm.mg', 30),
-(31, 'MANANTSAINA Antoine Frédo', 'vacataire', 'Physique', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Physique, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'manantsaina.antoine.fredo@isstm.mg', 31),
-(32, 'MANIGNIAVY Sergio Andrew', 'vacataire', 'Génie Civil', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Génie Civil, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'manigniavy.sergio.andrew@isstm.mg', 32),
-(33, 'MELRAK Nykaise', 'vacataire', 'Biomédical', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Biomédical, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'melrak.nykaise@isstm.mg', 33),
-(34, 'PETERA Benjamin', 'vacataire', 'Chimie des Substances Naturelles', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Chimie des Substances Naturelles, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'petera.benjamin@isstm.mg', 34),
-(35, 'RABENIAINA Anjara Davio Ulrick', 'vacataire', 'Physique du Globe', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Physique du Globe, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'rabeniaina.anjara.davio.ulrick@isstm.mg', 35),
-(36, 'RAHARIVOLOLONA Ando Lalaina', 'vacataire', 'Bâtiment et Travaux publics', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Bâtiment et Travaux publics, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'raharivololona.ando.lalaina@isstm.mg', 36),
-(37, 'RAJAONASY Prosperia Riwoldek', 'vacataire', 'Droit', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Droit, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'rajaonasy.prosperia.riwoldek@isstm.mg', 37),
-(38, 'RAKOTONDRAZAFY Florent', 'vacataire', 'Génie Mécanique', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Génie Mécanique, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'rakotondrazafy.florent@isstm.mg', 38),
-(39, 'RALAINANDRASANA Heri-Zo', 'vacataire', 'Electromécanique et Informatique industriel', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Electromécanique et Informatique industriel, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'ralainandrasana.heri.zo@isstm.mg', 39),
-(40, 'RAMANAMPAMONJY Jean Claude', 'vacataire', 'Architecte', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Architecte, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'ramanampamonjy.jean.claude@isstm.mg', 40),
-(41, 'RAMIANDRA Aina Clarc', 'vacataire', 'Physique', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Physique, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'ramiandra.aina.clarc@isstm.mg', 41),
-(42, 'RANAIVOSON Tahirisoa', 'vacataire', 'Hydrogéologie', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Hydrogéologie, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'ranaivoson.tahirisoa@isstm.mg', 42),
-(43, 'RANDRIAMANAFANA Alain', 'vacataire', 'ISEA', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en ISEA, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'randriamanafana.alain@isstm.mg', 43),
-(44, 'RANDRIANA Laurence Vanina', 'vacataire', 'Finance et Comptabilité', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Finance et Comptabilité, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'randriana.laurence.vanina@isstm.mg', 44),
-(45, 'RANDRIANANDRASANARIVO Raphaëlson Jacques', 'vacataire', 'Physique', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Physique, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'randrianandrasanarivo.raphaelson.jacques@isstm.mg', 45),
-(46, 'RANDRIANANTENAINA Todihasina Roselin', 'vacataire', 'Physique et applications', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Physique et applications, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'randrianantenaina.todihasina.roselin@isstm.mg', 46),
-(47, 'RANDRIANARISOA Ernest', 'vacataire', 'ISEA', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en ISEA, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'randrianarisoa.ernest@isstm.mg', 47),
-(48, 'RANDRIANARIVELO Eddy Flocaudel', 'vacataire', 'Physique', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Physique, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'randrianarivelo.eddy.flocaudel@isstm.mg', 48),
-(49, 'RAPATSALAHY Miary Andrianjaka', 'vacataire', 'Ingénierie logicielle', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Ingénierie logicielle, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'rapatsalahy.miary.andrianjaka@isstm.mg', 49),
-(50, 'RASOAHANITRINIAINA Théphile', 'vacataire', 'Economico-Gestion', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Economico-Gestion, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'rasoahanitriniaina.thephile@isstm.mg', 50),
-(51, 'RASOANANDRASANA Marizia Roberta', 'vacataire', 'Physique', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Physique, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'rasoanandrasana.marizia.roberta@isstm.mg', 51),
-(52, 'RASOLOHARISOA Marie Claudia', 'vacataire', 'Gestion', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Gestion, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'rasoloharisoa.marie.claudia@isstm.mg', 52),
-(53, 'RAVELOMIARINA François', 'vacataire', 'Conversion d\'Energie', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Conversion d\'Energie, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'ravelomiarina.francois@isstm.mg', 53),
-(54, 'RAZAFIMEVA Marie Odine', 'vacataire', 'Science de la Gestion', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Science de la Gestion, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'razafimeva.marie.odine@isstm.mg', 54),
-(55, 'RAZAFINDRABEHITA Lwanga Albert', 'vacataire', 'Mathématiques informatiques', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Mathématiques informatiques, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'razafindrabehita.lwanga.albert@isstm.mg', 55),
-(56, 'RHEVIHAJA Solo Njara', 'vacataire', 'Conversion d\'Energie', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Conversion d\'Energie, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'rhevihaja.solo.njara@isstm.mg', 56),
-(57, 'ROGER Andriantsitoha Romuald', 'vacataire', 'Physique du Globe', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Physique du Globe, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'roger.andriantsitoha.romuald@isstm.mg', 57),
-(58, 'RUINO Randriamihaja', 'vacataire', 'Physique et applications', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Physique et applications, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'ruino.randriamihaja@isstm.mg', 58),
-(59, 'SOAFARA Erilà Franclin', 'vacataire', 'Mécanique Productique', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Mécanique Productique, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'soafara.erila.franclin@isstm.mg', 59),
-(60, 'TOTOZAFINY Théodore', 'vacataire', 'Informatique et Electronique', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Informatique et Electronique, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'totozafiny.theodore@isstm.mg', 60),
-(61, 'VAVIZARA Sylvie', 'vacataire', 'Energétique', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Energétique, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'vavizara.sylvie@isstm.mg', 61),
-(62, 'ZAFINTSALAMA Manohinaina Minontsoa Gabriel', 'vacataire', 'Electronique Médicale', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Electronique Médicale, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'zafintsalama.manohinaina.minontsoa.gabriel@isstm.mg', 62),
-(63, 'ZANAMASY Avatiana Augustin', 'vacataire', 'Bâtiment et Travaux publics', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Bâtiment et Travaux publics, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'zanamasy.avatiana.augustin@isstm.mg', 63),
-(64, 'RAPATSALAHY Miary', 'vacataire', 'Génie Logiciel', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Génie Logiciel, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'rapatsalahy.miary@isstm.mg', 64),
-(65, 'RAZANAMANITRA Ranjasoanandrianina', 'vacataire', 'Gestion', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Gestion, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'razanamanitra.ranjasoanandrianina@isstm.mg', 65),
-(66, 'RANDRIANALY Fetra', 'vacataire', 'Génie Electrique', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Génie Electrique, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'randrianaly.fetra@isstm.mg', 66),
-(67, 'RANDRIANASOLOMANGA N. R. Aurélie', 'vacataire', 'Langue', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Langue, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'randrianasolomanga.n.r.aurelie@isstm.mg', 67),
-(68, 'RAKOTOMANGA Anjatiana', 'vacataire', 'Langue', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Langue, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'rakotomanga.anjatiana@isstm.mg', 68),
-(69, 'TOTOZANDRY Jacquot', 'vacataire', 'Télécommunications et Réseaux', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Télécommunications et Réseaux, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'totozandry.jacquot@isstm.mg', 69),
-(70, 'RANDRIAMAHEFA Alido Soidry', 'vacataire', 'Génie Electrique', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Génie Electrique, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'randriamahefa.alido.soidry@isstm.mg', 70),
-(71, 'RANDRIA Amédé William', 'vacataire', 'Electronique et Informatique Industrielle', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Electronique et Informatique Industrielle, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'randria.amede.william@isstm.mg', 71),
-(72, 'RANDIMBISON Herizo', 'vacataire', 'Génie Civil', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Génie Civil, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'randimbison.herizo@isstm.mg', 72),
-(73, 'RAMAHALAZA Hardis', 'vacataire', 'Génie Electrique', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Génie Electrique, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'ramahalaza.hardis@isstm.mg', 73),
-(74, 'DONAZY Fanomezantsoa Trésor', 'vacataire', 'Génie Logiciel et Base de données', NULL, NULL, 'Enseignant(e) vacataire spécialisé(e) en Génie Logiciel et Base de données, au service de la réussite des étudiants de l\'ISSTM.', NULL, NULL, NULL, 'donazy.fanomezantsoa.tresor@isstm.mg', 74);
+(1, 'RAKOTOVELO Geoslin', 'permanent', 'Physique', 'Physical', 'BATANA', 'Enseignant(e) permanent(e) spécialisé(e) en Physique, au service de la réussite des étudiants de l\'ISSTM.', 'Permanent teacher specializing in Physics, serving the success of ISSTM students.', 'Mpampianatra maharitra manampahaizana manokana amin\'ny fizika, manompo ny fahombiazan\'ny mpianatra ISSTM.', 'teacher_6a9f29fa4253f.jpg', 'rakotovelo.geoslin@isstm.mg', 1),
+(2, 'AMBEONDAHY', 'permanent', 'Mathématiques appliquées', 'Applied mathematics', 'Matematika ampiharina', 'Enseignant(e) permanent(e) spécialisé(e) en Mathématiques appliquées, au service de la réussite des étudiants de l\'ISSTM.', 'Permanent teacher specializing in Applied Mathematics, serving the success of ISSTM students.', 'Mpampianatra maharitra manampahaizana manokana amin\'ny Matematika Applied, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'ambeondahy@isstm.mg', 2),
+(3, 'JOHANESA Fernand', 'permanent', 'BTP', 'BPW', 'construction', 'Enseignant(e) permanent(e) spécialisé(e) en BTP, au service de la réussite des étudiants de l\'ISSTM.', 'Permanent teacher specializing in construction, serving the success of ISSTM students.', 'Mpampianatra maharitra manampahaizana manokana amin\'ny fanorenana, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'johanesa.fernand@isstm.mg', 3),
+(4, 'MANASINA Ruffin', 'permanent', 'Electricité', 'Electricity', 'HERINATRATRA', 'Enseignant(e) permanent(e) spécialisé(e) en Electricité, au service de la réussite des étudiants de l\'ISSTM.', 'Permanent teacher specializing in Electricity, serving the success of ISSTM students.', 'Mpampianatra maharitra manampahaizana manokana momba ny Jiro, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'manasina.ruffin@isstm.mg', 4),
+(5, 'RAMAROJAONA Hubert', 'permanent', 'Génie nucléaire et automatique', 'Nuclear and automatic engineering', 'Engineering nokleary sy mandeha ho azy', 'Enseignant(e) permanent(e) spécialisé(e) en Génie nucléaire et automatique, au service de la réussite des étudiants de l\'ISSTM.', 'Permanent teacher specializing in Nuclear and Automatic Engineering, serving the success of ISSTM students.', 'Mpampianatra maharitra manampahaizana manokana amin\'ny Engineering Nuclear sy Automatic, manompo ny fahombiazan\'ny mpianatra ISSTM.', 'teacher_6a9f29a213188.jpg', 'ramarojaona.hubert@isstm.mg', 5),
+(6, 'RAVOHITRA Juvence', 'permanent', 'Mécanique', 'Mechanics', 'Mekanika', 'Enseignant(e) permanent(e) spécialisé(e) en Mécanique, au service de la réussite des étudiants de l\'ISSTM.', 'Permanent teacher specializing in Mechanics, serving the success of ISSTM students.', 'Mpampianatra maharitra manampahaizana manokana momba ny Mekanika, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'ravohitra.juvence@isstm.mg', 6),
+(7, 'MAXWELL Djaffard', 'permanent', 'Physique', 'Physical', 'BATANA', 'Enseignant(e) permanent(e) spécialisé(e) en Physique, au service de la réussite des étudiants de l\'ISSTM.', 'Permanent teacher specializing in Physics, serving the success of ISSTM students.', 'Mpampianatra maharitra manampahaizana manokana amin\'ny fizika, manompo ny fahombiazan\'ny mpianatra ISSTM.', 'teacher_6a9f275a9b1c4.jpg', 'maxwell.djaffard@isstm.mg', 7),
+(8, 'HARY Jean', 'permanent', 'Physique', 'Physical', 'BATANA', 'Enseignant(e) permanent(e) spécialisé(e) en Physique, au service de la réussite des étudiants de l\'ISSTM.', 'Permanent teacher specializing in Physics, serving the success of ISSTM students.', 'Mpampianatra maharitra manampahaizana manokana amin\'ny fizika, manompo ny fahombiazan\'ny mpianatra ISSTM.', 'teacher_6a9f272429f70.jpg', 'hary.jean@isstm.mg', 8),
+(9, 'RANDRIAMAITSO Télesphore', 'permanent', 'Energétique', 'Energy', 'ANGOVO', 'Enseignant(e) permanent(e) spécialisé(e) en Energétique, au service de la réussite des étudiants de l\'ISSTM.', 'Permanent teacher specializing in Energy, serving the success of ISSTM students.', 'Mpampianatra maharitra manampahaizana manokana momba ny angovo, manompo ny fahombiazan\'ny mpianatra ISSTM.', 'teacher_6a9f27363b1f0.jpg', 'randriamaitso.telesphore@isstm.mg', 9),
+(10, 'TSANGANDRAZANA Annicet Judicael', 'permanent', 'Physique', 'Physical', 'BATANA', 'Enseignant(e) permanent(e) spécialisé(e) en Physique, au service de la réussite des étudiants de l\'ISSTM.', 'Permanent teacher specializing in Physics, serving the success of ISSTM students.', 'Mpampianatra maharitra manampahaizana manokana amin\'ny fizika, manompo ny fahombiazan\'ny mpianatra ISSTM.', 'teacher_6a9f2747313f7.jpg', 'tsangandrazana.annicet.judicael@isstm.mg', 10),
+(11, 'RAJAONASY Iantara', 'permanent', 'Génie Civil', 'Civil Engineering', 'Injeniera sivily', 'Enseignant(e) permanent(e) spécialisé(e) en Génie Civil, au service de la réussite des étudiants de l\'ISSTM.', 'Permanent teacher specializing in Civil Engineering, serving the success of ISSTM students.', 'Mpampianatra maharitra manampahaizana manokana momba ny Injeniera sivily, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'rajaonasy.iantara@isstm.mg', 11),
+(12, 'RAZAFIARISON Ignace Abel J', 'permanent', 'Energétique', 'Energy', 'ANGOVO', 'Enseignant(e) permanent(e) spécialisé(e) en Energétique, au service de la réussite des étudiants de l\'ISSTM.', 'Permanent teacher specializing in Energy, serving the success of ISSTM students.', 'Mpampianatra maharitra manampahaizana manokana momba ny angovo, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'razafiarison.ignace.abel.j@isstm.mg', 12),
+(13, 'ANDRIANIRINA Charles Bernard', 'permanent', 'Electronique Industrielle', 'Industrial Electronics', 'Industrial Electronics', 'Enseignant(e) permanent(e) spécialisé(e) en Electronique Industrielle, au service de la réussite des étudiants de l\'ISSTM.', 'Permanent teacher specializing in Industrial Electronics, serving the success of ISSTM students.', 'Mpampianatra maharitra manampahaizana manokana amin\'ny Industrial Electronics, manompo ny fahombiazan\'ny mpianatra ISSTM.', 'teacher_6a9f276bda5d5.jpg', 'andrianirina.charles.bernard@isstm.mg', 13),
+(14, 'RAKOTOMALALA Noelimihaja S', 'permanent', 'Energétique et Génie Electrique', 'Energy and Electrical Engineering', 'Energy and Electrical Engineering', 'Enseignant(e) permanent(e) spécialisé(e) en Energétique et Génie Electrique, au service de la réussite des étudiants de l\'ISSTM.', 'Permanent teacher specializing in Energy and Electrical Engineering, serving the success of ISSTM students.', 'Mpampianatra raikitra manampahaizana manokana momba ny Angovo sy Injeniera elektrônika, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'rakotomalala.noelimihaja.s@isstm.mg', 14),
+(15, 'RALINAVALONA Jhonson Jemi', 'permanent', 'Anglaises/Education', 'English/Education', 'Anglisy/Fanabeazana', 'Enseignant(e) permanent(e) spécialisé(e) en Anglaises/Education, au service de la réussite des étudiants de l\'ISSTM.', 'Permanent teacher specializing in English/Education, serving the success of ISSTM students.', 'Mpampianatra maharitra manampahaizana manokana amin\'ny teny Anglisy/Fanabeazana, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'ralinavalona.jhonson.jemi@isstm.mg', 15),
+(16, 'ABDULHAMID Asma', 'permanent', 'Réseaux/Télécommunications', 'Networks/Telecommunications', 'Tambajotra/Fifandraisan-davitra', 'Enseignant(e) permanent(e) spécialisé(e) en Réseaux/Télécommunications, au service de la réussite des étudiants de l\'ISSTM.', 'Permanent teacher specializing in Networks/Telecommunications, serving the success of ISSTM students.', 'Mpampianatra maharitra manampahaizana manokana amin\'ny Tambajotra/Fifandraisandavitra, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'abdulhamid.asma@isstm.mg', 16),
+(17, 'ANDRIANANTENAINA Chrysostome', 'permanent', 'Electronique et informatique', 'Electronics and computing', 'Elektronika sy informatika', 'Enseignant(e) permanent(e) spécialisé(e) en Electronique et informatique, au service de la réussite des étudiants de l\'ISSTM.', 'Permanent teacher specializing in Electronics and IT, serving the success of ISSTM students.', 'Mpampianatra maharitra manampahaizana manokana amin\'ny Electronics sy IT, manompo ny fahombiazan\'ny mpianatra ISSTM.', 'teacher_6a9f2a47c42ef.jpg', 'andrianantenaina.chrysostome@isstm.mg', 17),
+(18, 'HANITRANIRINA Eloddy', 'permanent', 'Conversion des énergies', 'Energy conversion', 'Ny fiovan\'ny angovo', 'Enseignant(e) permanent(e) spécialisé(e) en Conversion des énergies, au service de la réussite des étudiants de l\'ISSTM.', 'Permanent teacher specializing in Energy Conversion, serving the success of ISSTM students.', 'Mpampianatra maharitra manampahaizana manokana momba ny Energy Conversion, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'hanitranirina.eloddy@isstm.mg', 18),
+(19, 'HANTA Tina Olga', 'permanent', 'Physique', 'Physical', 'BATANA', 'Enseignant(e) permanent(e) spécialisé(e) en Physique, au service de la réussite des étudiants de l\'ISSTM.', 'Permanent teacher specializing in Physics, serving the success of ISSTM students.', 'Mpampianatra maharitra manampahaizana manokana amin\'ny fizika, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'hanta.tina.olga@isstm.mg', 19),
+(20, 'ANDRIANASOLONIRINA Ravoarimalala Naivosaona', 'vacataire', 'Agro-Management', 'Agro-Management', 'Fitantanana ny fambolena', 'Enseignant(e) vacataire spécialisé(e) en Agro-Management, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Agro-Management, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana amin\'ny Fitantanana fambolena, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'andrianasolonirina.ravoarimalala.naivosaona@isstm.mg', 20),
+(21, 'ANDRIANONY Mandimby Vonifandeferana', 'vacataire', 'ISEA', 'ISEA', 'ISEA', 'Enseignant(e) vacataire spécialisé(e) en ISEA, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in ISEA, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny ISEA, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'andrianony.mandimby.vonifandeferana@isstm.mg', 21),
+(22, 'ANDRINIRINIAIMALAZA Fanambinantsoa Philibert', 'vacataire', 'Electronique et informatique industrielles', 'Industrial electronics and computing', 'Elektronika indostrialy sy informatika', 'Enseignant(e) vacataire spécialisé(e) en Electronique et informatique industrielles, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in industrial electronics and computing, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny elektronika indostrialy sy ny informatika, manompo ny fahombiazan\'ny mpianatra ISSTM.', 'teacher_6a9f287e4b881.jpg', 'andriniriniaimalaza.fanambinantsoa.philibert@isstm.mg', 22),
+(23, 'FREDERIC Moise', 'vacataire', 'Génie Logiciel', 'Software Engineering', 'Software Engineering', 'Enseignant(e) vacataire spécialisé(e) en Génie Logiciel, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Software Engineering, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny Software Engineering, manompo ny fahombiazan\'ny mpianatra ISSTM.', 'teacher_6a9f279724fa0.jpg', 'frederic.moise@isstm.mg', 23),
+(24, 'HABIB Nouraly', 'vacataire', 'Imagerie Médicale', 'Medical Imaging', 'Medical Imaging', 'Enseignant(e) vacataire spécialisé(e) en Imagerie Médicale, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Medical Imaging, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny Imaging Medical, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'habib.nouraly@isstm.mg', 24),
+(25, 'BEZARA Florent', 'vacataire', 'Informatique', 'Computer science', 'Informatika', 'Enseignant(e) vacataire spécialisé(e) en Informatique, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Computer Science, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny Siansa Informatika, manompo ny fahombiazan\'ny mpianatra ISSTM.', 'teacher_6a9f27de6b3d3.jpg', 'bezara.florent@isstm.mg', 25),
+(26, 'HERIPINOANARIMANANA Fenomora Evariste', 'vacataire', 'Aménagement et Génie urbain', 'Urban planning and engineering', 'Fandrafetana tanàna sy injeniera', 'Enseignant(e) vacataire spécialisé(e) en Aménagement et Génie urbain, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Urban Planning and Engineering, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana amin\'ny Fandrindrana sy Injeniera an-tanàn-dehibe, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'heripinoanarimanana.fenomora.evariste@isstm.mg', 26),
+(27, 'HOUSSEN Fils Auguste', 'vacataire', 'Energie', 'Energy', 'ANGOVO', 'Enseignant(e) vacataire spécialisé(e) en Energie, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Energy, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny angovo, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'houssen.fils.auguste@isstm.mg', 27),
+(28, 'JAONA Romain', 'vacataire', 'Bâtiment et Travaux publics', 'Building and Public Works', 'Trano sy Asam-panjakana', 'Enseignant(e) vacataire spécialisé(e) en Bâtiment et Travaux publics, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Building and Public Works, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny Fanorenana sy ny Asa vaventy, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'jaona.romain@isstm.mg', 28),
+(29, 'JAONARANA Eric', 'vacataire', 'Ingénierie des matériaux et des matières premières', 'Materials and raw materials engineering', 'Injeniera akora sy akora fototra', 'Enseignant(e) vacataire spécialisé(e) en Ingénierie des matériaux et des matières premières, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in materials and raw materials engineering, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana amin\'ny injeniera akora sy akora, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'jaonarana.eric@isstm.mg', 29),
+(30, 'LUCIEN FIDELE François d\'Assise', 'vacataire', 'Electronique Médicale', 'Medical Electronics', 'Medical Electronics', 'Enseignant(e) vacataire spécialisé(e) en Electronique Médicale, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Medical Electronics, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny Medical Electronics, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'lucien.fidele.francois.d.assise@isstm.mg', 30),
+(31, 'MANANTSAINA Antoine Frédo', 'vacataire', 'Physique', 'Physical', 'BATANA', 'Enseignant(e) vacataire spécialisé(e) en Physique, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Physics, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny fizika, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'manantsaina.antoine.fredo@isstm.mg', 31),
+(32, 'MANIGNIAVY Sergio Andrew', 'vacataire', 'Génie Civil', 'Civil Engineering', 'Injeniera sivily', 'Enseignant(e) vacataire spécialisé(e) en Génie Civil, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Civil Engineering, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny Injeniera sivily, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'manigniavy.sergio.andrew@isstm.mg', 32),
+(33, 'MELRAK Nykaise', 'vacataire', 'Biomédical', 'Biomedical', 'Biomedical', 'Enseignant(e) vacataire spécialisé(e) en Biomédical, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Biomedical, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny Biomedical, manompo ny fahombiazan\'ny mpianatra ISSTM.', 'teacher_6a9f28ad92351.jpg', 'melrak.nykaise@isstm.mg', 33),
+(34, 'PETERA Benjamin', 'vacataire', 'Chimie des Substances Naturelles', 'Chemistry of Natural Substances', 'Chemistry ny zavaboary voajanahary', 'Enseignant(e) vacataire spécialisé(e) en Chimie des Substances Naturelles, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Chemistry of Natural Substances, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny Chemistry of Natural Substances, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'petera.benjamin@isstm.mg', 34),
+(35, 'RABENIAINA Anjara Davio Ulrick', 'vacataire', 'Physique du Globe', 'Globe Physics', 'Globe Physics', 'Enseignant(e) vacataire spécialisé(e) en Physique du Globe, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Globe Physics, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana amin\'ny Globe Physics, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'rabeniaina.anjara.davio.ulrick@isstm.mg', 35),
+(36, 'RAHARIVOLOLONA Ando Lalaina', 'vacataire', 'Bâtiment et Travaux publics', 'Building and Public Works', 'Trano sy Asam-panjakana', 'Enseignant(e) vacataire spécialisé(e) en Bâtiment et Travaux publics, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Building and Public Works, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny Fanorenana sy ny Asa vaventy, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'raharivololona.ando.lalaina@isstm.mg', 36),
+(37, 'RAJAONASY Prosperia Riwoldek', 'vacataire', 'Droit', 'Right', 'TSARA', 'Enseignant(e) vacataire spécialisé(e) en Droit, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Law, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny Lalàna, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'rajaonasy.prosperia.riwoldek@isstm.mg', 37),
+(38, 'RAKOTONDRAZAFY Florent', 'vacataire', 'Génie Mécanique', 'Mechanical Engineering', 'Taozava-baventy mekanika', 'Enseignant(e) vacataire spécialisé(e) en Génie Mécanique, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Mechanical Engineering, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana amin\'ny Engineering Mechanical, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'rakotondrazafy.florent@isstm.mg', 38),
+(39, 'RALAINANDRASANA Heri-Zo', 'vacataire', 'Electromécanique et Informatique industriel', 'Electromechanics and Industrial IT', 'Elektromekanika sy IT indostrialy', 'Enseignant(e) vacataire spécialisé(e) en Electromécanique et Informatique industriel, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Electromechanics and Industrial IT, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana amin\'ny Electromechanics sy Industrial IT, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'ralainandrasana.heri.zo@isstm.mg', 39),
+(40, 'RAMANAMPAMONJY Jean Claude', 'vacataire', 'Architecte', 'Architect', 'mpanao mari-trano', 'Enseignant(e) vacataire spécialisé(e) en Architecte, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Architect, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana amin\'ny Architect, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'ramanampamonjy.jean.claude@isstm.mg', 40),
+(41, 'RAMIANDRA Aina Clarc', 'vacataire', 'Physique', 'Physical', 'BATANA', 'Enseignant(e) vacataire spécialisé(e) en Physique, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Physics, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny fizika, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'ramiandra.aina.clarc@isstm.mg', 41),
+(42, 'RANAIVOSON Tahirisoa', 'vacataire', 'Hydrogéologie', 'Hydrogeology', 'Hydrogeology', 'Enseignant(e) vacataire spécialisé(e) en Hydrogéologie, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Hydrogeology, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny Hydrogeology, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'ranaivoson.tahirisoa@isstm.mg', 42),
+(43, 'RANDRIAMANAFANA Alain', 'vacataire', 'ISEA', 'ISEA', 'ISEA', 'Enseignant(e) vacataire spécialisé(e) en ISEA, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in ISEA, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny ISEA, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'randriamanafana.alain@isstm.mg', 43),
+(44, 'RANDRIANA Laurence Vanina', 'vacataire', 'Finance et Comptabilité', 'Finance and Accounting', 'Fitantanam-bola sy kaonty', 'Enseignant(e) vacataire spécialisé(e) en Finance et Comptabilité, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Finance and Accounting, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny Fitantanam-bola sy ny kaonty, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'randriana.laurence.vanina@isstm.mg', 44),
+(45, 'RANDRIANANDRASANARIVO Raphaëlson Jacques', 'vacataire', 'Physique', 'Physical', 'BATANA', 'Enseignant(e) vacataire spécialisé(e) en Physique, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Physics, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny fizika, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'randrianandrasanarivo.raphaelson.jacques@isstm.mg', 45),
+(46, 'RANDRIANANTENAINA Todihasina Roselin', 'vacataire', 'Physique et applications', 'Physics and applications', 'Fizika sy fampiharana', 'Enseignant(e) vacataire spécialisé(e) en Physique et applications, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Physics and applications, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny fizika sy fampiharana, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'randrianantenaina.todihasina.roselin@isstm.mg', 46),
+(47, 'RANDRIANARISOA Ernest', 'vacataire', 'ISEA', 'ISEA', 'ISEA', 'Enseignant(e) vacataire spécialisé(e) en ISEA, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in ISEA, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny ISEA, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'randrianarisoa.ernest@isstm.mg', 47),
+(48, 'RANDRIANARIVELO Eddy Flocaudel', 'vacataire', 'Physique', 'Physical', 'BATANA', 'Enseignant(e) vacataire spécialisé(e) en Physique, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Physics, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny fizika, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'randrianarivelo.eddy.flocaudel@isstm.mg', 48),
+(49, 'RAPATSALAHY Miary Andrianjaka', 'vacataire', 'Ingénierie logicielle', 'Software engineering', 'Software engineering', 'Enseignant(e) vacataire spécialisé(e) en Ingénierie logicielle, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Software Engineering, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny Software Engineering, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'rapatsalahy.miary.andrianjaka@isstm.mg', 49),
+(50, 'RASOAHANITRINIAINA Théphile', 'vacataire', 'Economico-Gestion', 'Economico-Management', 'Economico-Management', 'Enseignant(e) vacataire spécialisé(e) en Economico-Gestion, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Economic Management, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny fitantanana ara-toekarena, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'rasoahanitriniaina.thephile@isstm.mg', 50),
+(51, 'RASOANANDRASANA Marizia Roberta', 'vacataire', 'Physique', 'Physical', 'BATANA', 'Enseignant(e) vacataire spécialisé(e) en Physique, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Physics, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny fizika, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'rasoanandrasana.marizia.roberta@isstm.mg', 51),
+(52, 'RASOLOHARISOA Marie Claudia', 'vacataire', 'Gestion', 'Management', 'MANAGEMENT', 'Enseignant(e) vacataire spécialisé(e) en Gestion, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Management, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana amin\'ny Fitantanana, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'rasoloharisoa.marie.claudia@isstm.mg', 52),
+(53, 'RAVELOMIARINA François', 'vacataire', 'Conversion d\'Energie', 'Energy Conversion', 'Energy Conversion', 'Enseignant(e) vacataire spécialisé(e) en Conversion d\'Energie, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Energy Conversion, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny Energy Conversion, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'ravelomiarina.francois@isstm.mg', 53),
+(54, 'RAZAFIMEVA Marie Odine', 'vacataire', 'Science de la Gestion', 'Management Science', 'Siansa fitantanana', 'Enseignant(e) vacataire spécialisé(e) en Science de la Gestion, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Management Science, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny Siansa fitantanana, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'razafimeva.marie.odine@isstm.mg', 54),
+(55, 'RAZAFINDRABEHITA Lwanga Albert', 'vacataire', 'Mathématiques informatiques', 'Computer Mathematics', 'Matematika informatika', 'Enseignant(e) vacataire spécialisé(e) en Mathématiques informatiques, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Computer Mathematics, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana amin\'ny Matematika informatika, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'razafindrabehita.lwanga.albert@isstm.mg', 55),
+(56, 'RHEVIHAJA Solo Njara', 'vacataire', 'Conversion d\'Energie', 'Energy Conversion', 'Energy Conversion', 'Enseignant(e) vacataire spécialisé(e) en Conversion d\'Energie, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Energy Conversion, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny Energy Conversion, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'rhevihaja.solo.njara@isstm.mg', 56),
+(57, 'ROGER Andriantsitoha Romuald', 'vacataire', 'Physique du Globe', 'Globe Physics', 'Globe Physics', 'Enseignant(e) vacataire spécialisé(e) en Physique du Globe, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Globe Physics, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana amin\'ny Globe Physics, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'roger.andriantsitoha.romuald@isstm.mg', 57),
+(58, 'RUINO Randriamihaja', 'vacataire', 'Physique et applications', 'Physics and applications', 'Fizika sy fampiharana', 'Enseignant(e) vacataire spécialisé(e) en Physique et applications, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Physics and applications, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny fizika sy fampiharana, manompo ny fahombiazan\'ny mpianatra ISSTM.', 'teacher_6a9f29684ca2e.jpg', 'ruino.randriamihaja@isstm.mg', 58),
+(59, 'SOAFARA Erilà Franclin', 'vacataire', 'Mécanique Productique', 'Production Mechanics', 'Mekanika famokarana', 'Enseignant(e) vacataire spécialisé(e) en Mécanique Productique, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Industrial Mechanics, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny mekanika indostrialy, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'soafara.erila.franclin@isstm.mg', 59),
+(60, 'TOTOZAFINY Théodore', 'vacataire', 'Informatique et Electronique', 'Computers and Electronics', 'Solosaina sy Elektronika', 'Enseignant(e) vacataire spécialisé(e) en Informatique et Electronique, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Computer Science and Electronics, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny Siansa Informatika sy Elektronika, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'totozafiny.theodore@isstm.mg', 60),
+(61, 'VAVIZARA Sylvie', 'vacataire', 'Energétique', 'Energy', 'ANGOVO', 'Enseignant(e) vacataire spécialisé(e) en Energétique, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Energy, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny angovo, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'vavizara.sylvie@isstm.mg', 61),
+(62, 'ZAFINTSALAMA Manohinaina Minontsoa Gabriel', 'vacataire', 'Electronique Médicale', 'Medical Electronics', 'Medical Electronics', 'Enseignant(e) vacataire spécialisé(e) en Electronique Médicale, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Medical Electronics, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny Medical Electronics, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'zafintsalama.manohinaina.minontsoa.gabriel@isstm.mg', 62),
+(63, 'ZANAMASY Avatiana Augustin', 'vacataire', 'Bâtiment et Travaux publics', 'Building and Public Works', 'Trano sy Asam-panjakana', 'Enseignant(e) vacataire spécialisé(e) en Bâtiment et Travaux publics, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Building and Public Works, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny Fanorenana sy ny Asa vaventy, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'zanamasy.avatiana.augustin@isstm.mg', 63),
+(64, 'RAPATSALAHY Miary', 'vacataire', 'Génie Logiciel', 'Software Engineering', 'Software Engineering', 'Enseignant(e) vacataire spécialisé(e) en Génie Logiciel, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Software Engineering, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny Software Engineering, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'rapatsalahy.miary@isstm.mg', 64),
+(65, 'RAZANAMANITRA Ranjasoanandrianina', 'vacataire', 'Gestion', 'Management', 'MANAGEMENT', 'Enseignant(e) vacataire spécialisé(e) en Gestion, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Management, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana amin\'ny Fitantanana, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'razanamanitra.ranjasoanandrianina@isstm.mg', 65),
+(66, 'RANDRIANALY Fetra', 'vacataire', 'Génie Electrique', 'Electrical Engineering', 'Injeniera elektrônika', 'Enseignant(e) vacataire spécialisé(e) en Génie Electrique, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Electrical Engineering, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny Injeniera Elektrônika, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'randrianaly.fetra@isstm.mg', 66),
+(67, 'RANDRIANASOLOMANGA N. R. Aurélie', 'vacataire', 'Langue', 'Language', 'Fiteny', 'Enseignant(e) vacataire spécialisé(e) en Langue, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Language, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana amin\'ny Fiteny, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'randrianasolomanga.n.r.aurelie@isstm.mg', 67),
+(68, 'RAKOTOMANGA Anjatiana', 'vacataire', 'Langue', 'Language', 'Fiteny', 'Enseignant(e) vacataire spécialisé(e) en Langue, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Language, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana amin\'ny Fiteny, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'rakotomanga.anjatiana@isstm.mg', 68),
+(69, 'TOTOZANDRY Jacquot', 'vacataire', 'Télécommunications et Réseaux', 'Telecommunications and Networks', 'Fifandraisana sy Tambajotra', 'Enseignant(e) vacataire spécialisé(e) en Télécommunications et Réseaux, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Telecommunications and Networks, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny Fifandraisandavitra sy Tambajotra, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'totozandry.jacquot@isstm.mg', 69),
+(70, 'RANDRIAMAHEFA Alido Soidry', 'vacataire', 'Génie Electrique', 'Electrical Engineering', 'Injeniera elektrônika', 'Enseignant(e) vacataire spécialisé(e) en Génie Electrique, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Electrical Engineering, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny Injeniera Elektrônika, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'randriamahefa.alido.soidry@isstm.mg', 70),
+(71, 'RANDRIA Amédé William', 'vacataire', 'Electronique et Informatique Industrielle', 'Electronics and Industrial Computing', 'Electronics sy Industrial Computing', 'Enseignant(e) vacataire spécialisé(e) en Electronique et Informatique Industrielle, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Electronics and Industrial Computing, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny Elektronika sy ny informatika indostrialy, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'randria.amede.william@isstm.mg', 71),
+(72, 'RANDIMBISON Herizo', 'vacataire', 'Génie Civil', 'Civil Engineering', 'Injeniera sivily', 'Enseignant(e) vacataire spécialisé(e) en Génie Civil, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Civil Engineering, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny Injeniera sivily, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'randimbison.herizo@isstm.mg', 72),
+(73, 'RAMAHALAZA Hardis', 'vacataire', 'Génie Electrique', 'Electrical Engineering', 'Injeniera elektrônika', 'Enseignant(e) vacataire spécialisé(e) en Génie Electrique, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Electrical Engineering, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny Injeniera Elektrônika, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'ramahalaza.hardis@isstm.mg', 73),
+(74, 'DONAZY Fanomezantsoa Trésor', 'vacataire', 'Génie Logiciel et Base de données', 'Software and Database Engineering', 'Software and Database Engineering', 'Enseignant(e) vacataire spécialisé(e) en Génie Logiciel et Base de données, au service de la réussite des étudiants de l\'ISSTM.', 'Part-time teacher specializing in Software and Database Engineering, serving the success of ISSTM students.', 'Mpampianatra tapa-potoana manokana momba ny Software and Database Engineering, manompo ny fahombiazan\'ny mpianatra ISSTM.', NULL, 'donazy.fanomezantsoa.tresor@isstm.mg', 74),
+(75, 'RAKOTOMALALA Lovasoa', 'permanent', 'Physiques et Automatisme', 'Physics and Automation', 'Fizika sy Automation', 'Enseignant(e) permanent(e) spécialisé(e) en Physiques et Automatisme, au service de la réussite des étudiants de l\'ISSTM.', 'Permanent teacher specializing in Physics and Automation, serving the success of ISSTM students.', 'Mpampianatra maharitra manampahaizana manokana amin\'ny Fizika sy Automation, manompo ny fahombiazan\'ny mpianatra ISSTM.', 'teacher_6a9f2bb6c1006.jpg', 'ralovas@gmail.com', 75);
 
 -- --------------------------------------------------------
 
@@ -3157,7 +3953,7 @@ CREATE TABLE `utilisateurs` (
   `mot_de_passe` varchar(255) NOT NULL,
   `dernier_mdp_genere` varchar(20) DEFAULT NULL,
   `avatar_path` varchar(255) DEFAULT NULL,
-  `role` enum('admin','user','etudiant','enseignant','bibliotheque') DEFAULT 'user',
+  `role` enum('admin','user','etudiant','enseignant','bibliotheque','materiel') DEFAULT 'user',
   `date_creation` timestamp NOT NULL DEFAULT current_timestamp(),
   `is_messagerie` tinyint(1) NOT NULL DEFAULT 0,
   `is_scolarite` tinyint(1) NOT NULL DEFAULT 0,
@@ -3185,13 +3981,15 @@ CREATE TABLE `utilisateurs` (
 --
 
 INSERT INTO `utilisateurs` (`id`, `nom`, `email`, `mot_de_passe`, `dernier_mdp_genere`, `avatar_path`, `role`, `date_creation`, `is_messagerie`, `is_scolarite`, `is_bibliotheque`, `last_activity`, `reset_token`, `reset_token_expires`, `telephone`, `otp_code`, `otp_expires`, `otp_attempts`, `otp_requested_at`, `otp_request_count`, `bio`, `date_naissance`, `ville`, `centres_interet`, `lien_facebook`, `lien_linkedin`, `site_web`) VALUES
-(3, 'Mirindra RAMANANA', 'mirindra@gmail.com', '$2y$10$xnOVEMvHhwiQmmUwX34QMOo3pYAZBpNJjx0HNmUgjQN2hUOxuWihO', NULL, 'uploads/avatar_3_6a7a46ce2bdb2.jpg', 'admin', '2026-07-17 10:04:02', 1, 0, 0, '2026-09-07 11:57:35', NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(6, 'Kakal', 'kakal', '$2y$10$M8VyhBEBHYYjo/3GIXdVJ.lnvgxmxijhnQD4kJK6R7c3skCQinOs2', NULL, 'uploads/avatar_6_6a8a2e9d5d87a.jpg', 'user', '2026-08-22 23:03:14', 1, 0, 0, '2026-09-07 12:05:45', NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 'Mirindra RAMANANA', 'mirindra@gmail.com', '$2y$10$xnOVEMvHhwiQmmUwX34QMOo3pYAZBpNJjx0HNmUgjQN2hUOxuWihO', NULL, 'uploads/avatar_3_6a7a46ce2bdb2.jpg', 'admin', '2026-07-17 10:04:02', 1, 0, 0, '2026-09-09 02:11:11', NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(6, 'Kakal', 'kakal', '$2y$10$M8VyhBEBHYYjo/3GIXdVJ.lnvgxmxijhnQD4kJK6R7c3skCQinOs2', NULL, 'uploads/avatar_6_6a8a2e9d5d87a.jpg', 'user', '2026-08-22 23:03:14', 1, 0, 0, '2026-09-07 22:59:00', NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (7, 'Scolarité', 'scolarite', '$2y$10$UIf0uuahoKSyQNXFBadgYeKfSTbvUjQUh8tMxGI.QNruHV6fcRoD6', NULL, 'uploads/avatar_7_6a8a2d774da20.jpg', 'user', '2026-08-22 23:03:14', 1, 1, 0, '2026-09-04 10:36:49', NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(10, 'RAMANANA Mirindra Michel', 'MIRINDRA', '$2y$10$NzvEF2RCFC62Qkvm7VBC3OzSAE35SuuOOm0m0ImFKWAcllPTKY2pS', NULL, 'uploads/preinscriptions/photo_6a8a6c4369dc7.jpeg', 'etudiant', '2026-08-23 03:44:41', 0, 0, 0, '2026-09-04 14:16:35', '7ee23ab9cc1f5ccaf61345645921583daadc97b897c25454a649b5ad9de85933', '2026-08-26 04:04:47', NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(10, 'RAMANANA Mirindra Michel', 'MIRINDRA', '$2y$10$P90pilVOi7aU7yI62yTKnuBnNQO8heP4LUXUJh08iX.9Uhl6zLtgC', 'i3u7gbJ5fp', 'uploads/preinscriptions/photo_6a8a6c4369dc7.jpeg', 'etudiant', '2026-08-23 03:44:41', 0, 0, 0, '2026-09-09 01:47:24', NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (14, 'RAZAFINDRABARY Doleen Heather Jameelah', 'USER_ISSTM_7', '$2y$10$681Q3UDC/TAOw.FLZPr9QuBc8RuzcvrAT/W4wQUZH1gy9EV1UxMTK', NULL, 'uploads/preinscriptions/photo_6a8ac55aa3c20.jpg', 'etudiant', '2026-08-23 10:04:01', 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(23, 'FREDERIC Moise', 'moise@gmail.com', '$2y$10$AgVSAnLt8jcfsWESCdxdFuQ.UVW5Qb.MS2WAqSSyJseXmIAi0iUsO', '8AyKBp2gFr', 'uploads/avatar_23_6a8ae920ba229.jpg', 'enseignant', '2026-08-23 12:34:32', 0, 0, 0, '2026-09-07 12:01:02', NULL, NULL, '0380746984', NULL, NULL, 0, NULL, 0, 'MMMM', NULL, NULL, NULL, NULL, NULL, NULL),
-(63, 'MANASINA Ruffin', 'Directeur', '$2y$10$HJbnt.ngHNvMMqXIx7RH0.talnqZA/dzoInnWd0mJONu2FHmJjF.2', NULL, 'uploads/avatar_63_6a8e3b0759ac8.jpg', 'admin', '2026-08-26 00:59:27', 1, 1, 1, '2026-09-04 14:17:41', NULL, NULL, '032 05 579 95', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(23, 'FREDERIC Moise', 'moise@gmail.com', '$2y$10$AgVSAnLt8jcfsWESCdxdFuQ.UVW5Qb.MS2WAqSSyJseXmIAi0iUsO', '8AyKBp2gFr', 'uploads/avatar_23_6a8ae920ba229.jpg', 'enseignant', '2026-08-23 12:34:32', 0, 0, 0, '2026-09-09 01:27:23', NULL, NULL, '0380746984', NULL, NULL, 0, NULL, 0, 'MMMM', NULL, NULL, NULL, NULL, NULL, NULL),
+(63, 'MANASINA Ruffin', 'Directeur', '$2y$10$HJbnt.ngHNvMMqXIx7RH0.talnqZA/dzoInnWd0mJONu2FHmJjF.2', NULL, 'uploads/avatar_63_6a8e3b0759ac8.jpg', 'admin', '2026-08-26 00:59:27', 1, 1, 1, '2026-09-04 14:17:41', NULL, NULL, '032 05 579 95', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(76, 'JAOSOA Tanael Faustin', 'mirindraramanana2@gmail.com', '$2y$10$.Hi8kcfIGIAPjSxKyggHg.xUzKUjSdUJPBXZeJ.q8Ijc8aW45sm6i', 'Bpyd2XmgTD', 'uploads/preinscriptions/photo_6aa0743942235.jpg', 'etudiant', '2026-09-08 20:47:33', 0, 0, 0, '2026-09-09 01:29:32', NULL, NULL, '', NULL, NULL, 0, NULL, 0, '', NULL, '', '', '', '', ''),
+(77, 'materiel', 'materiel', '$2y$10$1YFZcdHokDechz348BCCXe/WHBLr6pqPXRscS8zRm4PCDaYdrb9la', NULL, 'uploads/avatar_77_6aa097d2a1431.jpg', 'materiel', '2026-09-08 22:57:04', 0, 0, 0, '2026-09-09 03:55:02', NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Index pour les tables déchargées
@@ -3437,6 +4235,28 @@ ALTER TABLE `hero_slides`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `materiels`
+--
+ALTER TABLE `materiels`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_lieu` (`lieu`),
+  ADD KEY `idx_etat` (`etat`);
+
+--
+-- Index pour la table `materiel_deplacements`
+--
+ALTER TABLE `materiel_deplacements`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_materiel_statut` (`materiel_id`,`statut`);
+
+--
+-- Index pour la table `materiel_maintenance`
+--
+ALTER TABLE `materiel_maintenance`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `materiel_id` (`materiel_id`);
+
+--
 -- Index pour la table `messagerie_attachments`
 --
 ALTER TABLE `messagerie_attachments`
@@ -3598,7 +4418,7 @@ ALTER TABLE `utilisateurs`
 -- AUTO_INCREMENT pour la table `amis_demandes`
 --
 ALTER TABLE `amis_demandes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT pour la table `campus_blocs`
@@ -3610,31 +4430,31 @@ ALTER TABLE `campus_blocs`
 -- AUTO_INCREMENT pour la table `communaute_comments`
 --
 ALTER TABLE `communaute_comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT pour la table `communaute_notifications`
 --
 ALTER TABLE `communaute_notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 
 --
 -- AUTO_INCREMENT pour la table `communaute_posts`
 --
 ALTER TABLE `communaute_posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT pour la table `communaute_post_media`
 --
 ALTER TABLE `communaute_post_media`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT pour la table `communaute_reactions`
 --
 ALTER TABLE `communaute_reactions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT pour la table `dm_attachments`
@@ -3646,13 +4466,13 @@ ALTER TABLE `dm_attachments`
 -- AUTO_INCREMENT pour la table `dm_conversations`
 --
 ALTER TABLE `dm_conversations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `dm_messages`
 --
 ALTER TABLE `dm_messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT pour la table `documents`
@@ -3757,6 +4577,24 @@ ALTER TABLE `hero_slides`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
+-- AUTO_INCREMENT pour la table `materiels`
+--
+ALTER TABLE `materiels`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=366;
+
+--
+-- AUTO_INCREMENT pour la table `materiel_deplacements`
+--
+ALTER TABLE `materiel_deplacements`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT pour la table `materiel_maintenance`
+--
+ALTER TABLE `materiel_maintenance`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT pour la table `messagerie_attachments`
 --
 ALTER TABLE `messagerie_attachments`
@@ -3814,13 +4652,13 @@ ALTER TABLE `news_photos`
 -- AUTO_INCREMENT pour la table `page_views`
 --
 ALTER TABLE `page_views`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1029;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1428;
 
 --
 -- AUTO_INCREMENT pour la table `partenaires`
 --
 ALTER TABLE `partenaires`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT pour la table `personal_access_tokens`
@@ -3832,7 +4670,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT pour la table `preinscriptions`
 --
 ALTER TABLE `preinscriptions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT pour la table `preinscription_cta_media`
@@ -3844,13 +4682,13 @@ ALTER TABLE `preinscription_cta_media`
 -- AUTO_INCREMENT pour la table `security_log`
 --
 ALTER TABLE `security_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT pour la table `site_banners`
 --
 ALTER TABLE `site_banners`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT pour la table `site_content`
@@ -3862,7 +4700,7 @@ ALTER TABLE `site_content`
 -- AUTO_INCREMENT pour la table `teachers`
 --
 ALTER TABLE `teachers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT pour la table `testimonials`
@@ -3874,7 +4712,7 @@ ALTER TABLE `testimonials`
 -- AUTO_INCREMENT pour la table `utilisateurs`
 --
 ALTER TABLE `utilisateurs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- Contraintes pour les tables déchargées
@@ -4038,6 +4876,18 @@ ALTER TABLE `groupe_utilisateurs_membres`
 ALTER TABLE `groupe_utilisateurs_messages`
   ADD CONSTRAINT `groupe_utilisateurs_messages_ibfk_1` FOREIGN KEY (`groupe_id`) REFERENCES `groupes_utilisateurs` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `groupe_utilisateurs_messages_ibfk_2` FOREIGN KEY (`sender_id`) REFERENCES `utilisateurs` (`id`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `materiel_deplacements`
+--
+ALTER TABLE `materiel_deplacements`
+  ADD CONSTRAINT `materiel_deplacements_ibfk_1` FOREIGN KEY (`materiel_id`) REFERENCES `materiels` (`id`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `materiel_maintenance`
+--
+ALTER TABLE `materiel_maintenance`
+  ADD CONSTRAINT `materiel_maintenance_ibfk_1` FOREIGN KEY (`materiel_id`) REFERENCES `materiels` (`id`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `messagerie_attachments`
