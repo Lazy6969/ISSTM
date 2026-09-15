@@ -1,7 +1,7 @@
 # Cahier des charges — Site officiel de l'ISSTM
 
 **Institut Supérieur des Sciences et Technologies de Mahajanga**
-Document généré à partir de l'état réel du code au 04/09/2026 (reverse-engineering exhaustif du dépôt).
+Document généré à partir de l'état réel du code au 15/09/2026 (reverse-engineering exhaustif du dépôt).
 
 ---
 
@@ -19,9 +19,9 @@ Le site est la plateforme numérique officielle de l'ISSTM (Université de Mahaj
 
 | Indicateur | Valeur |
 |---|---|
-| Pages/scripts PHP à la racine | ~150 fichiers, ~22 200 lignes |
-| Panneaux d'administration dédiés (`admin_*.php`) | 18 |
-| Langues supportées | 3 (français, anglais, malagasy) via `translations.php`, ~1 665 clés traduites |
+| Pages/scripts PHP à la racine | ~135 fichiers, ~24 700 lignes |
+| Panneaux d'administration dédiés (`admin_*.php`) | 19 |
+| Langues supportées | 3 (français, anglais, malagasy) via `translations.php`, ~1 458 clés traduites |
 | Bases de données | 2 (`isstm_db` principale, `bibliotheque` séparée) |
 | Sous-application intégrée | Bibliothèque numérique (`bibliotheque/`) |
 
@@ -46,7 +46,8 @@ Table `utilisateurs.role` (enum) :
 | `enseignant` | Compte enseignant : accès à l'espace communautaire, groupes de classe (peut être délégué/animateur), messagerie. |
 | `etudiant` | Compte étudiant, créé lors de la validation d'une préinscription. Accès complet à l'espace communautaire, groupes de classe, réseau d'amis. |
 | `user` | Compte « visiteur inscrit » simple (sans statut étudiant/enseignant), accès restreint. |
-| `bibliotheque` | Compte dédié uniquement à l'administration de la bibliothèque numérique (indépendant du reste, voir §4.7). |
+| `bibliotheque` | Compte dédié uniquement à l'administration de la bibliothèque numérique (indépendant du reste, voir §3.7). |
+| `materiel` | Compte dédié à la gestion du matériel de l'ISSTM (accès direct à `admin_materiel.php` dès la connexion, indépendant du reste, voir §3.8). |
 
 Indicateurs booléens complémentaires sur `utilisateurs` : `is_messagerie` (accès à la conversation interne fixe Scolarité/Administration), `is_scolarite`, `is_bibliotheque` (pont d'accès admin bibliothèque sans second compte).
 
@@ -106,7 +107,7 @@ Un **visiteur anonyme** (non connecté) accède uniquement aux pages publiques (
 - **Messages privés** (`messages_prives.php`, `dm_*.php`) : conversations 1-à-1 entre amis, avec **recherche** (amis + conversations existantes dans une seule liste filtrable), **archive des médias échangés** par conversation (panneau latéral galerie), pièces jointes (`dm_attachments`), masquage/suppression de messages.
 - **Fil communautaire** (`communaute.php`) : publications, commentaires (`communaute_comment_*.php`), réactions (`communaute_react.php`), médias joints (`communaute_post_media`), sidebar avec accès direct aux messages privés et au groupe de classe.
 - **Notifications** :
-  - Cloche dans l'en-tête (`communaute_notifications.php`), icône agrandie.
+  - Cloche dans l'en-tête (`communaute_notifications.php`) avec menu déroulant détaillé : avatar de l'auteur de l'événement, icône colorée selon le type (nouvelle publication / réponse à un commentaire), horodatage relatif (« à l'instant », « il y a X min/h/j »), pastille de non-lu, action rapide « Tout marquer comme lu » sans quitter le menu, icône agrandie.
   - **Page dédiée `notifications.php`** : historique complet groupé par période (Aujourd'hui / Hier / Cette semaine / Plus ancien), actions individuelles (lu/non lu, suppression) et actions groupées par section, avec pagination (`notifications_action.php`, `notification_ouvrir.php`).
 - **Annuaire** (`annuaire.php`) : recherche d'utilisateurs (fusionné dans le hub `mes_amis.php`, conservé pour compatibilité des liens existants).
 
@@ -136,9 +137,27 @@ Sous-application PHP/MySQL **intégrée visuellement** au site (même `header.ph
 - **Carrousel d'accueil** dédié au module.
 - **Back-office propre** (`bibliotheque/admin/`) : gestion canevas/mémoires/mentions-filières/années/horaire/actualités/carrousel, avec **pont de session** — un admin ISSTM déjà connecté sur le site principal accède directement sans reconnexion.
 
-### 3.8 Back-office administrateur
+### 3.8 Gestion du matériel
 
-`administrateur.php` (tableau de bord) avec mini-calendrier (`admin_calendar_events.php`) et bloc-notes personnel auto-sauvegardé (`admin_notes_save.php`), puis 18 panneaux dédiés :
+Suivi en temps réel de l'inventaire physique de l'ISSTM (353 références réparties sur 27 lieux), avec un **rôle dédié** `materiel` qui accède directement à `admin_materiel.php` dès la connexion, sans passer par le tableau de bord général (l'administrateur `admin` y a également accès) :
+
+- **Inventaire par lieu** : fiche par matériel (nom, quantité, état — *bon état* / *en marche* / *mauvais* / *mauvais état* / *en panne* —, observation libre), ajout/suppression, historique de maintenance propre à chaque matériel.
+- **Emprunt entre salles avec quantités partielles** : un même matériel peut être emprunté simultanément vers plusieurs destinations différentes ; la quantité empruntée est décomptée du lieu d'origine (qui reste affiché — jamais supprimé de sa salle d'origine) et une **carte « visiteur »** apparaît dans chaque lieu de destination tant que le matériel n'est pas retourné.
+- Chaque emprunt actif est signalé sur sa carte d'origine par un **tampon « EMPRUNTÉ » cliquable**, qui ouvre une fenêtre de détail (emprunteur, quantité, date/heure, motif) avec bouton de retour en un clic.
+- **Historique global des déplacements** (fenêtre dédiée, consultable depuis n'importe quel lieu) : recherche et tri multi-critères, filtres par statut (Tous / En cours / Retourné), suppression individuelle ou totale — avec restitution automatique de la quantité au stock d'origine si l'événement supprimé était encore en cours.
+- **Statistiques** : répartition globale par état (anneau + légende), et pour chaque état un diagramme en barres listant **tous les départements sans exception** (grille de 6 colonnes par rangée, autant de rangées que nécessaire), avec bascule entre les 5 états d'un simple clic.
+
+### 3.9 Résultats d'examen
+
+Publication de résultats d'examen sous forme d'images (tout format accepté), organisée par filière et par niveau, accessible à tout compte connecté :
+
+- **`admin_resultats.php`** (administrateurs uniquement) : création d'une publication (filière, niveau de L1 à M2 ou « tous niveaux », titre, description, statut brouillon/publié) avec **import d'images dès l'écran de création** (sélection multiple, tout format d'image), possibilité d'ajouter des images supplémentaires par la suite, suppression individuelle d'une image ou de la publication entière.
+- **`resultats_examen.php`** (tout compte connecté) : sélecteur de filière qui présélectionne automatiquement celle de l'étudiant inscrit, publications affichées en galerie d'images avec visionneuse plein écran, **volontairement sans commentaires ni réactions** (contenu à portée strictement informative, distinct du fil communautaire).
+- Accès : lien « Voir le résultat d'examen » dans le menu « Mon compte » du header (tout compte connecté), et carte dédiée dans la barre latérale de `communaute.php`.
+
+### 3.10 Back-office administrateur
+
+`administrateur.php` (tableau de bord) avec mini-calendrier (`admin_calendar_events.php`) et bloc-notes personnel auto-sauvegardé (`admin_notes_save.php`), puis 19 panneaux dédiés :
 
 | Panneau | Domaine géré |
 |---|---|
@@ -158,6 +177,9 @@ Sous-application PHP/MySQL **intégrée visuellement** au site (même `header.ph
 | `admin_newsletter.php` | Campagnes et abonnés newsletter. |
 | `admin_communaute.php` | Modération du fil communautaire (posts/commentaires). |
 | `admin_dashboard_stats.php` | Statistiques (vues, compteurs — `page_views`/`site_stats`). |
+| `admin_materiel.php` | Gestion du matériel — voir détail en §3.8 (accessible aussi au rôle dédié `materiel`). |
+| `admin_resultats.php` | Publication des résultats d'examen — voir détail en §3.9. |
+| `admin_securite.php` | Sécurité des mots de passe : consultation du journal des tentatives de réinitialisation (`security_log`, voir §3.3 et §5). |
 
 ---
 
@@ -178,6 +200,10 @@ Contenu vitrine : `site_content`, `site_banners`, `hero_slides`, `testimonials`,
 Actualités & galerie : `news_articles`, `news_categories`, `news_photos`, `news_attachments`, `gallery_albums`, `gallery_categories`, `gallery_photos`.
 
 Événements & candidatures : `evenements`, `preinscriptions`.
+
+Gestion du matériel : `materiels` (référence, lieu, quantité, état, observation), `materiel_deplacements` (historique des emprunts/retours entre lieux, quantité empruntée, emprunteur, statut en_cours/retourne).
+
+Résultats d'examen : `resultat_publications` (filière, niveau, titre, description, statut), `resultat_images` (images liées à une publication).
 
 Divers : `newsletter_campaigns`, `newsletter_subscribers`, `admin_notes`, `security_log`, `page_views`, `site_stats`, `pays_nationalites` (référentiel).
 
@@ -222,3 +248,6 @@ Pour référence, les évolutions suivantes ont été livrées récemment et son
 - Correction de la luminosité des bannières de page (overlay assombrissant réduit).
 - Panneau d'administration « Inscription : Frais & Dates » (frais, date limite, adresse, compte bancaire configurables sans toucher au code).
 - Redesign de la carte « Dernière actualité » du héros d'accueil (carte animée avec vignette, badge « live » pulsé, reflet lumineux, effets de survol).
+- **Gestion du matériel** (§3.8) : nouveau rôle dédié, suivi d'inventaire par lieu, emprunts inter-salles à quantités partielles avec cartes visiteur et tampon cliquable, historique global filtrable, statistiques en grille de 6 colonnes affichant tous les départements sans troncature.
+- **Résultats d'examen** (§3.9) : publication d'images de résultats par filière/niveau, import dès la création, page de consultation sans commentaires ni réactions, accès depuis le header et la barre latérale de `communaute.php`.
+- Redesign du menu déroulant de notifications (avatar + icône de type, horodatage relatif, action « tout marquer comme lu », largeur et alignement du texte corrigés).
