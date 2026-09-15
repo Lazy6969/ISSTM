@@ -12,7 +12,7 @@ communaute_require_login(true);
 $self_id = (int) $_SESSION['user_id'];
 
 $rows = $mysqli->query("
-    SELECT n.*, u.nom AS actor_nom
+    SELECT n.*, u.nom AS actor_nom, u.avatar_path AS actor_avatar
     FROM communaute_notifications n
     LEFT JOIN utilisateurs u ON u.id = n.actor_id
     WHERE n.user_id = $self_id

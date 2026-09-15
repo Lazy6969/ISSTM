@@ -57,6 +57,8 @@ $header_has_groupes = $header_is_site_user && in_array($_SESSION['user_role'] ??
 // Communauté : fil d'actualité partagé enseignants/étudiants (voir communaute.php), l'admin y a
 // aussi accès pour prévisualiser et modérer directement depuis le lien du header.
 $header_has_communaute = $header_is_site_user && in_array($_SESSION['user_role'] ?? '', ['enseignant', 'etudiant', 'admin'], true);
+// Résultats d'examen : accessible à tout compte connecté (voir resultats_examen.php).
+$header_has_resultats = $header_is_site_user;
 $header_groupes_unread = 0;
 if ($header_has_groupes) {
     require_once 'groupe_functions.php';
@@ -295,6 +297,9 @@ if ($mysqli->query("SHOW TABLES LIKE 'site_banners'")->num_rows > 0) {
                             <?php if ($header_has_groupes): ?>
                                 <li><a href="<?php echo SITE_URL; ?>/mes_groupes.php"><?php echo t('groupe_nav_titre'); ?><?php if ($header_groupes_unread > 0): ?> <span class="messagerie-nav-badge"><?php echo $header_groupes_unread > 9 ? '9+' : $header_groupes_unread; ?></span><?php endif; ?></a></li>
                             <?php endif; ?>
+                            <?php if ($header_has_resultats): ?>
+                                <li><a href="<?php echo SITE_URL; ?>/resultats_examen.php"><?php echo t('header_resultats_examen'); ?></a></li>
+                            <?php endif; ?>
                         </ul>
                     </li>
                 <?php elseif ($header_is_bib_admin_only): ?>
@@ -329,8 +334,15 @@ if ($mysqli->query("SHOW TABLES LIKE 'site_banners'")->num_rows > 0) {
                             <?php endif; ?>
                         </a>
                         <div class="communaute-notif-menu">
-                            <h4><?php echo t('notifications_titre'); ?></h4>
-                            <div class="communaute-notif-list" data-empty-label="<?php echo htmlspecialchars(t('notifications_vide')); ?>"><p class="communaute-notif-loading"><?php echo t('notifications_chargement'); ?></p></div>
+                            <div class="communaute-notif-menu-head">
+                                <h4><?php echo t('notifications_titre'); ?></h4>
+                                <button type="button" class="communaute-notif-mark-all" title="<?php echo htmlspecialchars(t('notifications_tout_marquer_lu')); ?>"><i class="fas fa-check-double"></i> <?php echo t('notifications_tout_marquer_lu'); ?></button>
+                            </div>
+                            <div class="communaute-notif-menu-body">
+                                <div class="communaute-notif-list" data-empty-label="<?php echo htmlspecialchars(t('notifications_vide')); ?>" data-empty-sublabel="<?php echo htmlspecialchars(t('notifications_vide_sous_titre')); ?>">
+                                    <div class="communaute-notif-loading"><i class="fas fa-circle-notch fa-spin"></i> <?php echo t('notifications_chargement'); ?></div>
+                                </div>
+                            </div>
                             <a href="<?php echo SITE_URL; ?>/notifications.php" class="communaute-notif-voir-tout"><?php echo t('notifications_voir_tout'); ?> <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </li>
@@ -416,6 +428,9 @@ if ($mysqli->query("SHOW TABLES LIKE 'site_banners'")->num_rows > 0) {
         <?php endif; ?>
         <?php if ($header_has_groupes): ?>
             <a href="<?php echo SITE_URL; ?>/mes_groupes.php"><i class="fas fa-people-group"></i> <?php echo t('groupe_nav_titre'); ?><?php if ($header_groupes_unread > 0): ?> <span class="messagerie-nav-badge"><?php echo $header_groupes_unread > 9 ? '9+' : $header_groupes_unread; ?></span><?php endif; ?></a>
+        <?php endif; ?>
+        <?php if ($header_has_resultats): ?>
+            <a href="<?php echo SITE_URL; ?>/resultats_examen.php"><i class="fas fa-file-circle-check"></i> <?php echo t('header_resultats_examen'); ?></a>
         <?php endif; ?>
         <?php if ($header_has_communaute): ?>
             <a href="<?php echo SITE_URL; ?>/communaute.php"><i class="fas fa-users-rectangle"></i> <?php echo t('communaute_titre'); ?></a>

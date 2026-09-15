@@ -54,6 +54,18 @@ function communaute_render_comment($c, $self_id, $is_admin, $is_reply = false) {
     return ob_get_clean();
 }
 
+// Formate un datetime en durée relative courte ("à l'instant", "5 min", "3 h", "2 j") pour
+// l'affichage compact du menu cloche — au-delà de 6 jours, on retombe sur la date absolue
+// (peu utile de dire "12 j" quand une date précise se lit aussi vite).
+function communaute_time_ago($datetime) {
+    $diff = time() - strtotime($datetime);
+    if ($diff < 60) return t('temps_a_linstant');
+    if ($diff < 3600) return sprintf(t('temps_il_y_a_min'), (int) floor($diff / 60));
+    if ($diff < 86400) return sprintf(t('temps_il_y_a_heure'), (int) floor($diff / 3600));
+    if ($diff < 604800) return sprintf(t('temps_il_y_a_jour'), (int) floor($diff / 86400));
+    return date('d/m/Y', strtotime($datetime));
+}
+
 // Calcule le message affiché et le lien cible d'une notification (table communaute_notifications,
 // aucune colonne message/link stockée : tout est recalculé ici à partir de type+post_id/comment_id).
 // Utilisé à la fois par communaute_notifications.php (menu cloche) et notifications.php (page complète).
@@ -66,11 +78,16 @@ function communaute_notification_render($n) {
         $message = str_replace('%nom%', htmlspecialchars($actor), t('notification_reponse_commentaire'));
         $link = SITE_URL . '/communaute.php#communaute-comment-' . (int) $n['comment_id'];
     }
+    $avatar = !empty($n['actor_avatar']) ? SITE_URL . '/' . $n['actor_avatar'] : SITE_URL . '/images/teachers/default-avatar.svg';
     return [
         'id' => (int) $n['id'],
+        'type' => $n['type'],
         'message' => $message,
         'link' => $link,
         'is_read' => (bool) $n['is_read'],
+        'actor_nom' => $actor,
+        'actor_avatar' => $avatar,
+        'time_ago' => communaute_time_ago($n['created_at']),
         'created_at_raw' => $n['created_at'],
         'created_at' => date('d/m/Y H:i', strtotime($n['created_at'])),
     ];

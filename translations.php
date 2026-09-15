@@ -1918,6 +1918,11 @@ $translations['communaute_sidebar_aucun_groupe'] = ['fr' => 'Vous n\'appartenez 
 $translations['notifications_titre'] = ['fr' => 'Notifications', 'en' => 'Notifications', 'mg' => 'Fampandrenesana'];
 $translations['notifications_chargement'] = ['fr' => 'Chargement...', 'en' => 'Loading...', 'mg' => 'Eo am-panisiana...'];
 $translations['notifications_vide'] = ['fr' => 'Aucune notification pour le moment.', 'en' => 'No notifications yet.', 'mg' => 'Mbola tsy misy fampandrenesana.'];
+$translations['notifications_vide_sous_titre'] = ['fr' => 'Vous serez averti ici des nouveautés de la Communauté.', 'en' => 'You\'ll be notified here about Community updates.', 'mg' => 'Ho hitanao eto ny vaovao momba ny Vondrona.'];
+$translations['temps_a_linstant'] = ['fr' => 'à l\'instant', 'en' => 'just now', 'mg' => 'vao izao'];
+$translations['temps_il_y_a_min'] = ['fr' => 'il y a %d min', 'en' => '%d min ago', 'mg' => '%d min lasa izay'];
+$translations['temps_il_y_a_heure'] = ['fr' => 'il y a %d h', 'en' => '%d h ago', 'mg' => '%d ora lasa izay'];
+$translations['temps_il_y_a_jour'] = ['fr' => 'il y a %d j', 'en' => '%d d ago', 'mg' => '%d andro lasa izay'];
 $translations['notification_nouvelle_publication'] = ['fr' => '%nom% a publié une nouvelle publication dans la Communauté.', 'en' => '%nom% posted something new in the Community.', 'mg' => 'Nametraka zavatra vaovao tao amin\'ny Vondrona i %nom%.'];
 $translations['notification_reponse_commentaire'] = ['fr' => '%nom% a répondu à votre commentaire.', 'en' => '%nom% replied to your comment.', 'mg' => 'Namaly ny hevitrao i %nom%.'];
 $translations['communaute_voir_tous_commentaires'] = ['fr' => 'Voir tous les commentaires', 'en' => 'View all comments', 'mg' => 'Jereo ny hevitra rehetra'];
@@ -2024,5 +2029,50 @@ $translations['profil_public_en_savoir_plus'] = ['fr' => 'En savoir plus', 'en' 
 $translations['profil_public_nb_amis'] = ['fr' => '%s ami(s)', 'en' => '%s friend(s)', 'mg' => 'Namana %s'];
 $translations['profil_public_nb_amis_communs'] = ['fr' => '%s ami(s) en commun', 'en' => '%s mutual friend(s)', 'mg' => 'Namana iraisana %s'];
 $translations['profil_public_amis_communs_titre'] = ['fr' => 'Amis en commun (%s)', 'en' => 'Mutual friends (%s)', 'mg' => 'Namana iraisana (%s)'];
+
+// --- Résultats d'examen (resultats_examen.php / admin_resultats.php) ---
+$translations['header_resultats_examen'] = ['fr' => 'Voir le résultat d\'examen', 'en' => 'View exam results', 'mg' => 'Jereo ny valin\'ny fanadinana'];
+$translations['resultats_page_titre'] = ['fr' => 'Résultats d\'examen', 'en' => 'Exam results', 'mg' => 'Valin\'ny fanadinana'];
+$translations['resultats_page_soustitre'] = ['fr' => 'Consultez les résultats publiés pour votre filière.', 'en' => 'Browse the results published for your program.', 'mg' => 'Jereo ny valiny navoaka ho an\'ny sampanao.'];
+$translations['resultats_aucune_filiere'] = ['fr' => 'Aucun résultat n\'a encore été publié.', 'en' => 'No results have been published yet.', 'mg' => 'Mbola tsy misy valiny navoaka.'];
+$translations['resultats_aucune_publication'] = ['fr' => 'Aucun résultat publié pour cette filière pour le moment.', 'en' => 'No results published for this program yet.', 'mg' => 'Mbola tsy misy valiny navoaka ho an\'ity sampana ity.'];
+$translations['resultats_aucune_image'] = ['fr' => 'Aucune image dans cette publication.', 'en' => 'No image in this publication.', 'mg' => 'Tsy misy sary amin\'ity famoahana ity.'];
+$translations['resultats_niveau_toutes'] = ['fr' => 'Tous niveaux', 'en' => 'All levels', 'mg' => 'Ambaratonga rehetra'];
+$translations['resultats_lien_voir'] = ['fr' => 'Voir les résultats', 'en' => 'View results', 'mg' => 'Jereo ny valiny'];
+$translations['communaute_sidebar_resultats_titre'] = ['fr' => 'Résultats d\'examen', 'en' => 'Exam results', 'mg' => 'Valin\'ny fanadinana'];
+$translations['communaute_sidebar_resultats_desc'] = ['fr' => 'Consultez les résultats publiés pour votre filière.', 'en' => 'View the results published for your program.', 'mg' => 'Jereo ny valiny navoaka ho an\'ny sampanao.'];
+$translations['admin_dashboard_resultats_titre'] = ['fr' => 'Résultats d\'examen', 'en' => 'Exam results', 'mg' => 'Valin\'ny fanadinana'];
+$translations['admin_dashboard_resultats_desc'] = ['fr' => 'Publier les résultats d\'examen par parcours et par niveau.', 'en' => 'Publish exam results by program and level.', 'mg' => 'Mamoaka ny valin\'ny fanadinana araka ny sampana sy ambaratonga.'];
+$translations['admin_resultats_breadcrumb'] = ['fr' => 'Résultats d\'examen', 'en' => 'Exam results', 'mg' => 'Valin\'ny fanadinana'];
+$translations['admin_resultats_soustitre'] = ['fr' => 'Publiez des résultats en images pour chaque parcours et niveau.', 'en' => 'Publish results as images for each program and level.', 'mg' => 'Mamoaha valiny an-tsary ho an\'ny sampana sy ambaratonga tsirairay.'];
+$translations['admin_resultats_retour_liste'] = ['fr' => 'Retour à la liste', 'en' => 'Back to list', 'mg' => 'Miverina any amin\'ny lisitra'];
+$translations['admin_resultats_modifier_publication'] = ['fr' => 'Modifier la publication', 'en' => 'Edit publication', 'mg' => 'Ovay ny famoahana'];
+$translations['admin_resultats_nouvelle_publication'] = ['fr' => 'Nouvelle publication', 'en' => 'New publication', 'mg' => 'Famoahana vaovao'];
+$translations['admin_resultats_filiere_label'] = ['fr' => 'Filière / Parcours', 'en' => 'Program', 'mg' => 'Sampana'];
+$translations['admin_resultats_niveau_label'] = ['fr' => 'Niveau', 'en' => 'Level', 'mg' => 'Ambaratonga'];
+$translations['admin_resultats_niveau_toutes'] = ['fr' => 'Tous niveaux', 'en' => 'All levels', 'mg' => 'Ambaratonga rehetra'];
+$translations['admin_resultats_titre_label'] = ['fr' => 'Titre', 'en' => 'Title', 'mg' => 'Lohateny'];
+$translations['admin_resultats_titre_placeholder'] = ['fr' => 'Ex : Résultats L2 Semestre 1 - Session 2026', 'en' => 'E.g.: L2 Semester 1 Results - 2026 Session', 'mg' => 'Ohatra: Valiny L2 Semestre 1 - Session 2026'];
+$translations['admin_resultats_description_placeholder'] = ['fr' => 'Informations complémentaires sur cette publication (facultatif)', 'en' => 'Additional information about this publication (optional)', 'mg' => 'Fanazavana fanampiny momba ity famoahana ity (tsy tery)'];
+$translations['admin_resultats_creer_publication'] = ['fr' => 'Créer la publication', 'en' => 'Create publication', 'mg' => 'Mamorona ny famoahana'];
+$translations['admin_resultats_images_publication'] = ['fr' => 'Images de la publication', 'en' => 'Publication images', 'mg' => 'Sarin\'ny famoahana'];
+$translations['admin_resultats_multi_upload_text'] = ['fr' => 'Glissez des images ici ou cliquez pour parcourir', 'en' => 'Drop images here or click to browse', 'mg' => 'Alefaso eto ny sary na tsindrio hikaroka'];
+$translations['admin_resultats_multi_upload_hint'] = ['fr' => 'Tous formats d\'image acceptés (JPG, PNG, GIF, WEBP, BMP, SVG). Sélection multiple possible.', 'en' => 'All image formats accepted (JPG, PNG, GIF, WEBP, BMP, SVG). Multiple selection allowed.', 'mg' => 'Ekena ny endrika sary rehetra (JPG, PNG, GIF, WEBP, BMP, SVG). Azo misafidy maro.'];
+$translations['admin_resultats_ajouter_images'] = ['fr' => 'Ajouter les images', 'en' => 'Add images', 'mg' => 'Ampio ny sary'];
+$translations['admin_resultats_aucune_image'] = ['fr' => 'Aucune image ajoutée pour le moment.', 'en' => 'No image added yet.', 'mg' => 'Mbola tsy misy sary nampiana.'];
+$translations['admin_resultats_confirm_delete_image'] = ['fr' => 'Supprimer cette image ?', 'en' => 'Delete this image?', 'mg' => 'Fafana ve ity sary ity?'];
+$translations['admin_resultats_image_supprimee'] = ['fr' => 'Image supprimée.', 'en' => 'Image deleted.', 'mg' => 'Voafafa ny sary.'];
+$translations['admin_resultats_images_ajoutees'] = ['fr' => '%d image(s) ajoutée(s).', 'en' => '%d image(s) added.', 'mg' => 'Sary %d no nampiana.'];
+$translations['admin_resultats_publications_total'] = ['fr' => 'Publications', 'en' => 'Publications', 'mg' => 'Famoahana'];
+$translations['admin_resultats_publications_publiees'] = ['fr' => 'Publiées', 'en' => 'Published', 'mg' => 'Voavoaka'];
+$translations['admin_resultats_images_total'] = ['fr' => 'Images', 'en' => 'Images', 'mg' => 'Sary'];
+$translations['admin_resultats_rechercher'] = ['fr' => 'Rechercher une publication...', 'en' => 'Search a publication...', 'mg' => 'Karohy ny famoahana...'];
+$translations['admin_resultats_toutes_filieres'] = ['fr' => 'Toutes les filières', 'en' => 'All programs', 'mg' => 'Sampana rehetra'];
+$translations['admin_resultats_aucune_publication'] = ['fr' => 'Aucune publication pour le moment.', 'en' => 'No publication yet.', 'mg' => 'Mbola tsy misy famoahana.'];
+$translations['admin_resultats_confirm_delete_publication'] = ['fr' => 'Supprimer cette publication et toutes ses images ?', 'en' => 'Delete this publication and all its images?', 'mg' => 'Fafana ve ity famoahana ity mbamin\'ny sariny rehetra?'];
+$translations['admin_resultats_publication_supprimee'] = ['fr' => 'Publication supprimée.', 'en' => 'Publication deleted.', 'mg' => 'Voafafa ny famoahana.'];
+$translations['admin_resultats_publication_creee'] = ['fr' => 'Publication créée avec succès. Vous pouvez maintenant y ajouter des images.', 'en' => 'Publication created successfully. You can now add images to it.', 'mg' => 'Voaforona soa aman-tsara ny famoahana. Azonao ampiana sary izao.'];
+$translations['admin_resultats_publication_mise_a_jour'] = ['fr' => 'Publication mise à jour.', 'en' => 'Publication updated.', 'mg' => 'Voavaozina ny famoahana.'];
+$translations['admin_resultats_erreur_champs_requis'] = ['fr' => 'La filière et le titre sont obligatoires.', 'en' => 'Program and title are required.', 'mg' => 'Tsy maintsy fenoina ny sampana sy ny lohateny.'];
 
 ?>

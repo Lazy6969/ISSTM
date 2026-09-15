@@ -307,6 +307,12 @@ include 'header.php';
             <?php endif; ?>
 
             <div class="communaute-sidebar-card">
+                <h3><i class="fas fa-file-circle-check"></i> <?php echo t('communaute_sidebar_resultats_titre'); ?></h3>
+                <p class="communaute-sidebar-muted"><?php echo t('communaute_sidebar_resultats_desc'); ?></p>
+                <a href="resultats_examen.php" class="btn-add-item"><i class="fas fa-arrow-right"></i> <?php echo t('resultats_lien_voir'); ?></a>
+            </div>
+
+            <div class="communaute-sidebar-card">
                 <h3><i class="fas fa-paper-plane"></i> <?php echo t('communaute_sidebar_messages_titre'); ?><?php if ($sidebar_dm_unread > 0): ?> <span class="groupe-unread-badge communaute-sidebar-badge"><?php echo $sidebar_dm_unread > 99 ? '99+' : $sidebar_dm_unread; ?></span><?php endif; ?></h3>
                 <?php if (empty($sidebar_dm_entries)): ?>
                     <p class="communaute-sidebar-muted"><?php echo t('communaute_sidebar_aucun_message'); ?></p>

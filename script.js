@@ -1331,35 +1331,93 @@ document.addEventListener('DOMContentLoaded', () => {
         const dropdown = document.querySelector('.communaute-notif-dropdown');
         if (!dropdown) return;
         const list = dropdown.querySelector('.communaute-notif-list');
+        const markAllBtn = dropdown.querySelector('.communaute-notif-mark-all');
         let loaded = false;
 
-        function loadNotifications() {
-            if (loaded) return;
+        const notifIcons = {
+            nouvelle_publication: 'fa-bullhorn',
+            reponse_commentaire: 'fa-reply',
+        };
+
+        function updateBadge(count) {
+            const badge = dropdown.querySelector('.communaute-notif-toggle .messagerie-nav-badge');
+            if (!badge) return;
+            if (count <= 0) {
+                badge.remove();
+            } else {
+                badge.textContent = count > 9 ? '9+' : String(count);
+            }
+        }
+
+        function renderItems(items) {
+            if (items.length === 0) {
+                list.innerHTML =
+                    '<div class="communaute-notif-empty">' +
+                        '<i class="fas fa-bell-slash"></i>' +
+                        '<p>' + (list.dataset.emptyLabel || 'Aucune notification pour le moment.') + '</p>' +
+                        '<span>' + (list.dataset.emptySublabel || '') + '</span>' +
+                    '</div>';
+                return;
+            }
+            list.innerHTML = items.map((n) => {
+                const icon = notifIcons[n.type] || 'fa-bell';
+                return (
+                    '<a class="communaute-notif-item' + (n.is_read ? '' : ' is-unread') + '" data-id="' + n.id + '" href="notification_ouvrir.php?id=' + n.id + '&redirect=' + encodeURIComponent(n.link) + '">' +
+                        '<span class="communaute-notif-item-avatar">' +
+                            '<img src="' + n.actor_avatar + '" alt="" onerror="this.src=\'images/teachers/default-avatar.svg\'">' +
+                            '<i class="fas ' + icon + ' communaute-notif-item-badge"></i>' +
+                        '</span>' +
+                        '<span class="communaute-notif-item-body">' +
+                            '<span class="communaute-notif-item-msg">' + n.message + '</span>' +
+                            '<span class="communaute-notif-item-time">' + n.time_ago + '</span>' +
+                        '</span>' +
+                        (n.is_read ? '' : '<span class="communaute-notif-item-dot" aria-hidden="true"></span>') +
+                    '</a>'
+                );
+            }).join('');
+
+            list.querySelectorAll('.communaute-notif-item.is-unread').forEach((item) => {
+                item.addEventListener('click', () => {
+                    item.classList.remove('is-unread');
+                    item.querySelector('.communaute-notif-item-dot')?.remove();
+                    const badge = dropdown.querySelector('.communaute-notif-toggle .messagerie-nav-badge');
+                    const current = badge ? (parseInt(badge.textContent, 10) || 1) : 0;
+                    updateBadge(current - 1);
+                }, { once: true });
+            });
+        }
+
+        function loadNotifications(force) {
+            if (loaded && !force) return;
             loaded = true;
             fetch('communaute_notifications.php')
                 .then((r) => r.json())
-                .then((data) => {
-                    const items = data.items || [];
-                    if (items.length === 0) {
-                        list.innerHTML = '<p class="communaute-notif-empty">' + (list.dataset.emptyLabel || 'Aucune notification pour le moment.') + '</p>';
-                    } else {
-                        list.innerHTML = items.map((n) => (
-                            '<a class="communaute-notif-item' + (n.is_read ? '' : ' is-unread') + '" href="notification_ouvrir.php?id=' + n.id + '&redirect=' + encodeURIComponent(n.link) + '">' +
-                                '<p>' + n.message + '</p>' +
-                                '<span>' + n.created_at + '</span>' +
-                            '</a>'
-                        )).join('');
-                    }
-                })
-                .catch(() => {
-                    loaded = false;
-                });
+                .then((data) => renderItems(data.items || []))
+                .catch(() => { loaded = false; });
         }
 
-        dropdown.addEventListener('mouseenter', loadNotifications);
+        dropdown.addEventListener('mouseenter', () => loadNotifications(false));
         dropdown.querySelector('.communaute-notif-toggle')?.addEventListener('click', (e) => {
             e.preventDefault();
-            loadNotifications();
+            loadNotifications(false);
+        });
+
+        markAllBtn?.addEventListener('click', () => {
+            markAllBtn.disabled = true;
+            fetch('notifications_action.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: 'action=mark_all_read',
+            })
+                .then((r) => r.json())
+                .then(() => {
+                    list.querySelectorAll('.communaute-notif-item.is-unread').forEach((item) => {
+                        item.classList.remove('is-unread');
+                        item.querySelector('.communaute-notif-item-dot')?.remove();
+                    });
+                    updateBadge(0);
+                })
+                .finally(() => { markAllBtn.disabled = false; });
         });
     })();
 })();

@@ -137,6 +137,12 @@ $admin_note_content = $admin_note_row['contenu'] ?? '';
                     <p><?php echo t('admin_dashboard_etudiants_desc'); ?></p>
                     <span class="action-card-cta"><?php echo t('admin_dashboard_ouvrir'); ?> <i class="fas fa-arrow-right"></i></span>
                 </a>
+                <a href="admin_resultats.php" class="action-card">
+                    <div class="action-card-icon"><i class="fas fa-file-circle-check"></i></div>
+                    <h3><?php echo t('admin_dashboard_resultats_titre'); ?></h3>
+                    <p><?php echo t('admin_dashboard_resultats_desc'); ?></p>
+                    <span class="action-card-cta"><?php echo t('admin_dashboard_ouvrir'); ?> <i class="fas fa-arrow-right"></i></span>
+                </a>
                 <a href="admin_actualites.php" class="action-card">
                     <div class="action-card-icon"><i class="fas fa-newspaper"></i></div>
                     <h3><?php echo t('admin_dashboard_actualites_titre'); ?></h3>
